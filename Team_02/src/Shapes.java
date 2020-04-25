@@ -37,14 +37,15 @@ public class Shapes implements ActionListener {
 	public Shapes()
 	{
 		shapesToolBar = new JToolBar(); 
+		shapesToolBar.setSize(400, 100);
 	}
 
 	public JToolBar CreateShapes() {
-		panel = new Panel();
+		//panel = new Panel();
 		setUpButtons();
 		addButtons();
-		panel.setSize(400, 100);
-		shapesToolBar.add(panel);
+		//panel.setSize(400, 100);
+		//shapesToolBar.add(panel);
 		return shapesToolBar;
 	}
 
@@ -55,7 +56,7 @@ public class Shapes implements ActionListener {
 			button.setPreferredSize(new Dimension(180, 70));
 			button.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(images[i])).getImage()
 					.getScaledInstance(190, 70, Image.SCALE_SMOOTH)));
-			panel.add(button);
+			shapesToolBar.add(button);
 		}
 
 	}

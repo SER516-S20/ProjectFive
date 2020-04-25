@@ -36,12 +36,12 @@ public class MainWindow {
 		//panel.s(objMenu.CreateMenu());
 		//panel.setSize(100, 100);
 		//panel.setBounds(0, 0, 500, 50);
-		JPanel panelToolKit = new JPanel();
-		panelToolKit.setBounds(0, 0, 1350, 100);
-		panelToolKit.setBackground(Color.red);
-		panelToolKit.add(shapes.CreateShapes());
+		JToolBar toolBarToolKit = shapes.CreateShapes();
+		toolBarToolKit.setBounds(0, 0, 1350, 100);
+		toolBarToolKit.setBackground(Color.red);
+		//panelToolKit.add();
 		//frame.getContentPane().add(panelToolKit);
-		frame.getContentPane().add(panelToolKit);
+		frame.getContentPane().add(toolBarToolKit);
 		obj = new NewTab();
 		obj.createAndShowGUI();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
