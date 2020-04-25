@@ -7,9 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import com.sun.glass.ui.MenuBar;
 
 /**
  *
@@ -17,36 +22,59 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @created on 02-18-2020
  * @version 1.0
  */
-public class Menu extends JPanel implements ActionListener {
+public class Menu implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
-	
+	JMenu menu;
+	JMenuBar mb;  
+	JMenuItem clear, save, restore, quit, newTab,compile;  
 	java.util.List<Point> displayList = new ArrayList<Point>();
 	String pathName = "";
-	JButton clearBtn = new JButton("Clear");
+	//JButton clearBtn = new JButton("Clear");
 	Point initial = new Point(0, 0);
-	JButton saveBtn = new JButton("Save");
-	JButton restoreBtn = new JButton("Restore");
-	JButton quitBtn = new JButton("Quit");
-	JButton newTabBtn = new JButton("NewTab");
-	JButton compileBtn = new JButton("Compile");
+	
 
-	public Panel CreateMenu() {
-		Panel pan = new Panel();
-		clearBtn.addActionListener(this);
-		pan.add(clearBtn);
-		saveBtn.addActionListener(this);
-		pan.add(saveBtn);
-		restoreBtn.addActionListener(this);
-		pan.add(restoreBtn);
-		quitBtn.addActionListener(this);
-		pan.add(quitBtn);
-		newTabBtn.addActionListener(this);
-		pan.add(newTabBtn);
-		compileBtn.addActionListener(this);
-		pan.add(compileBtn);
-		pan.setSize(500, 50);
-		return pan;
+	public JMenuBar createMenu() {
+		 try {
+			 clear = new JMenuItem("Clear");
+			save = new JMenuItem("Save");
+				restore = new JMenuItem("Restore");
+				 quit = new JMenuItem("Quit");
+				 newTab = new JMenuItem("NewTab");
+				 compile = new JMenuItem("Compile");
+			//Panel pan = new Panel();
+			menu=new JMenu("Menu"); 
+			mb=new JMenuBar();  
+			clear.addActionListener(this);
+			//pan.add(clearBtn);
+			save.addActionListener(this);
+			//pan.add(saveBtn);
+			restore.addActionListener(this);
+			//pan.add(restoreBtn);
+			quit.addActionListener(this);
+			//pan.add(quitBtn);
+			newTab.addActionListener(this);
+			//pan.add(newTabBtn);
+			compile.addActionListener(this);
+			//pan.add(compileBtn);
+			//pan.setSize(500, 50);
+			//return pan;
+			mb.add(menu);
+			menu.add(newTab);
+			menu.add(save);
+			menu.add(restore);
+			menu.add(clear);
+			menu.add(compile);
+			menu.add(quit);
+			
+			
+			//mb.setSize(400,400);
+			return mb;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return null;
 	}
 
 	public void LoadFileChooser() {
@@ -104,21 +132,21 @@ public class Menu extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		SystemFileManager objSFM = new SystemFileManager();
-		if (e.getSource() == clearBtn) {
+		if (e.getSource() == clear) {
 			clearDrawingBoard();
-		} else if (e.getSource() == saveBtn) {
+		} else if (e.getSource() == save) {
 			SaveFileChooser();
 			objSFM.saveShape(pathName);
-		} else if (e.getSource() == restoreBtn) {
+		} else if (e.getSource() == restore) {
 			LoadFileChooser();
 			objSFM.restoreShape(pathName);
-		} else if (e.getSource() == quitBtn) {
+		} else if (e.getSource() == quit) {
 			MainWindow.CloseApplication();	
 		}
-		else if (e.getSource() == newTabBtn) {
+		else if (e.getSource() == newTab) {
 			MainWindow.obj.AddPanel();
 		}
-		else if (e.getSource() == compileBtn) {
+		else if (e.getSource() == compile) {
 
 		}
 	}
