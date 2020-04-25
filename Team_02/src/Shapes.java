@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JToolBar;
 
 /**
  * @author Sarvansh
@@ -16,7 +17,7 @@ import javax.swing.JButton;
  * @version 2.0
  */
 public class Shapes implements ActionListener {
-
+	private JToolBar shapesToolBar;
 	private JButton openParanthesis = new JButton();
 	private JButton closedParanthesis = new JButton();
 	private JButton lessThanOperator = new JButton();
@@ -32,13 +33,19 @@ public class Shapes implements ActionListener {
 			"images/shape5.png", "images/shape6.png", 
 			"images/shape7.png" };
 	private Panel panel;
+	
+	public Shapes()
+	{
+		shapesToolBar = new JToolBar(); 
+	}
 
-	public Panel CreateShapes() {
+	public JToolBar CreateShapes() {
 		panel = new Panel();
 		setUpButtons();
 		addButtons();
 		panel.setSize(400, 100);
-		return panel;
+		shapesToolBar.add(panel);
+		return shapesToolBar;
 	}
 
 	private void addButtons() {

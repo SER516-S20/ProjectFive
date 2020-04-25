@@ -37,10 +37,10 @@ public class MainWindow {
 		//panel.setSize(100, 100);
 		//panel.setBounds(0, 0, 500, 50);
 		JPanel panelToolKit = new JPanel();
-		panelToolKit.setBounds(0, 50, 1350, 100);
+		panelToolKit.setBounds(0, 0, 1350, 100);
 		panelToolKit.setBackground(Color.red);
 		panelToolKit.add(shapes.CreateShapes());
-		//frame.getContentPane().add(panel);
+		//frame.getContentPane().add(panelToolKit);
 		frame.getContentPane().add(panelToolKit);
 		obj = new NewTab();
 		obj.createAndShowGUI();
