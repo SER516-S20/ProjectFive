@@ -23,7 +23,7 @@ public class NewTab extends JPanel{
 			tabbedPane = new JTabbedPane();
 			// tabbedPane.setLocation(0, 300);
 			// tabbedPane.setSize(400,400);
-			tabbedPane.setBounds(0,100,1350,600); 
+			tabbedPane.setBounds(170,100,1200,600); 
 			tabbedPane.addTab("Tab1", makePanel("This is tab 1"));
 			// tabbedPane.addTab("Tab3", makePanel("This is tab 3"));
 			// tabbedPane.setBounds(200,200,200,200);  
