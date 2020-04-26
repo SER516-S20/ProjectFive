@@ -25,4 +25,8 @@ public class PaneRight extends JTabbedPane {
         addTab("Tab " + tabNum, tab);
         tabNum++;
     }
+    
+    public PaneRightTab getRightTab() {
+    	return Database.selectedTab;
+    }
 }
