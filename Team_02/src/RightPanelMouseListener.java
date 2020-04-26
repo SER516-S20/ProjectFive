@@ -42,7 +42,10 @@ public class RightPanelMouseListener extends JPanel {
 						value = JOptionPane.showInputDialog("Value of Shape");
 					}
 					dataProcessor.doubleClick(event.getX() - 150, event.getY(), value);
-				} else {
+				}else if(event.getButton() == MouseEvent.BUTTON3) {
+					System.out.println("Right clicked "+event.getX()+","+event.getY());
+				}
+				else {
 					try {
 						Thread.sleep(200); // To wait for double click.
 					} catch (InterruptedException e) {
