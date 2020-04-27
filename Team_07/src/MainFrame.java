@@ -12,22 +12,26 @@ public class MainFrame extends JFrame {
     final PanelLeft panelLeft = new PanelLeft();
     final static PaneRight PANE_RIGHT = new PaneRight();
     static MainFrame mainFrame = new MainFrame();
+    
 
     public MainFrame() {
-        super("Project Four - Team 7");
+        super("Project Five - Team 7");
         setSize(1800, 1000);
-        add(addMainPanel());
+        add(addScrollPane());
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private JPanel addMainPanel() {
+    private JScrollPane addScrollPane() {
+    	JScrollPane scrollBarPane;
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout(0, 0));
         mainPanel.add(panelTop, BorderLayout.NORTH);
         mainPanel.add(panelLeft, BorderLayout.WEST);
         mainPanel.add(PANE_RIGHT, BorderLayout.CENTER);
         mainPanel.setBackground(Color.WHITE);
-        return mainPanel;
+        scrollBarPane=new JScrollPane(mainPanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        return scrollBarPane;
     }
 
     public static void main(String[] args) {
