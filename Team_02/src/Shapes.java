@@ -169,36 +169,42 @@ public class Shapes extends JPanel implements ActionListener, MouseListener {
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		
 		String temp = ClickedShape.shapeName;
+		System.out.println("in mouse released");
 		System.out.println(e.getSource());
+		RightPanel currTabPanel = NewTab.mapRightPanels.get(NewTab.currentTabIndx);
+		RightPanelDataProcessor rpDataProcessor = currTabPanel.panelMouseListener.dataProcessor;
+		
 		if (e.getSource() == openParanthesis1) {
 			ClickedShape.shapeName = "openParanthesis";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() - 25);
+			rpDataProcessor.addNewIcon(e.getX() - 165, e.getY() - 25);
 		} else if (e.getSource() == closedParanthesis1) {
 			ClickedShape.shapeName = "closedParanthesis";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 62);
+			rpDataProcessor.addNewIcon(e.getX() - 165, e.getY() + 62);
 		} else if (e.getSource() == lessThanOperator1) {
 			ClickedShape.shapeName = "lessThanOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 150);
+			rpDataProcessor.addNewIcon(e.getX() - 165, e.getY() + 150);
 		} else if (e.getSource() == greaterThanOperator1) {
 			ClickedShape.shapeName = "greaterThanOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 238);
+			rpDataProcessor.addNewIcon(e.getX() - 165, e.getY() + 238);
 		} else if (e.getSource() == atTheRateOperator1) {
 			ClickedShape.shapeName = "atTheRateOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 325);
+			rpDataProcessor.addNewIcon(e.getX() - 165, e.getY() + 325);
 		} else if (e.getSource() == barOperator1) {
 			ClickedShape.shapeName = "barOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 412);
+			rpDataProcessor.addNewIcon(e.getX() - 165, e.getY() + 412);
 		} else if (e.getSource() == dashOperator1) {
 			ClickedShape.shapeName = "dashOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 500);
+			rpDataProcessor.addNewIcon(e.getX() - 165, e.getY() + 500);
 		} else if (e.getSource() == hashOperator1) {
 			ClickedShape.shapeName = "hashOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 587);
+			rpDataProcessor.addNewIcon(e.getX() - 165, e.getY() + 587);
 			MainWindow.obj.AddPanel();
 		}
 
-		RightPanelMouseListener.dataProcessor.customNotify();
+		rpDataProcessor.customNotify();
+
 		ClickedShape.shapeName = temp;
 
 	}
