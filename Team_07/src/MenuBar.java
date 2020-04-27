@@ -1,6 +1,8 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 /**
  * Contains Menu items
@@ -10,15 +12,14 @@ import java.awt.event.ActionListener;
  */
 
 public class MenuBar {
-
-    JMenuBar menuFile;
+    JMenuBar menu;
 
     public MenuBar() {
-        menuFile = new JMenuBar();
+        menu = new JMenuBar();
         JMenu fileButton = new JMenu("File");
         JMenu runButton = new JMenu("Project");
 
-        menuFile.add(fileButton);
+        menu.add(fileButton);
         JMenuItem newButton = new JMenuItem("New");
         JMenuItem openButton = new JMenuItem("Open");
         JMenuItem saveButton = new JMenuItem("Save");
@@ -26,7 +27,7 @@ public class MenuBar {
         fileButton.add(openButton);
         fileButton.add(saveButton);
 
-        menuFile.add(runButton);
+        menu.add(runButton);
         JMenuItem compileButton = new JMenuItem("Compile");
         JMenuItem translateButton = new JMenuItem("Translate");
         runButton.add(compileButton);
@@ -76,11 +77,64 @@ public class MenuBar {
     }
 
     public void save() {
-
+        FileDialog dialog = new FileDialog(MainFrame.mainFrame, "Enter file name to Save");
+        dialog.setMode(FileDialog.SAVE);
+        System.out.println(dialog.getDirectory());
+        dialog.setVisible(true);
+        String file = dialog.getFile();
+        if (file == null)
+            return;
+        FileOutputStream fileOutputStream;
+        ObjectOutputStream objectOutputStream;
+        Component[] tabsToSave = MainFrame.PANE_RIGHT.getComponents();
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(tabsToSave);
+            objectOutputStream.close();
+            fileOutputStream.close();
+            JOptionPane.showMessageDialog(MainFrame.mainFrame, "Saved as " + file);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void open() {
+        FileDialog dialog = new FileDialog(MainFrame.mainFrame, "Select file to open");
+        dialog.setMode(FileDialog.LOAD);
+        dialog.setVisible(true);
+        String file = dialog.getFile();
+        if (file == null)
+            return;
+        MainFrame.PANE_RIGHT.removeAll();
+        PaneRight.tabNum = 1;
+        Component[] tabsToOpen;
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
+            tabsToOpen = (Component[]) objectInputStream.readObject();
+            objectInputStream.close();
+            fileInputStream.close();
+
+            for (Component component : tabsToOpen) {
+                PaneRightTab tab = (PaneRightTab) component;
+                PaneRight.tabNum++;
+                MainFrame.PANE_RIGHT.addTab("Tab " + PaneRight.tabNum, tab);
+                ListenersPanelRightTab.addAllListenersToTab(tab);
+                tab.repaint();
+            }
+            Database.selectedTab = (PaneRightTab) tabsToOpen[0];
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("Error initializing stream");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void compile() {
