@@ -7,14 +7,14 @@ import java.awt.*;
  * @author Aditya Bajaj
  * @author Karandeep Singh Grewal
  * @since April 26, 2020
- *
  */
+
 public class MainFrame extends JFrame {
     final ToolbarTop toolbarTop = new ToolbarTop();
     final PanelLeft panelLeft = new PanelLeft();
     final static PaneRight PANE_RIGHT = new PaneRight();
     static MainFrame mainFrame = new MainFrame();
-
+    final MenuBar menuFile = new MenuBar();
 
     public MainFrame() {
         super("Project Five - Team 7");
@@ -22,6 +22,8 @@ public class MainFrame extends JFrame {
         add(addScrollPane());
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setJMenuBar(menuFile.menuFile);
+
     }
 
     private JScrollPane addScrollPane() {
