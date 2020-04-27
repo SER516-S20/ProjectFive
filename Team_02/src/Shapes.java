@@ -18,6 +18,7 @@ import javax.swing.JToolBar;
  */
 public class Shapes implements ActionListener {
 	private JToolBar shapesToolBar;
+	private JToolBar leftShapesToolBar;
 	private JButton openParanthesis = new JButton();
 	private JButton closedParanthesis = new JButton();
 	private JButton lessThanOperator = new JButton();
@@ -25,19 +26,27 @@ public class Shapes implements ActionListener {
 	private JButton atTheRateOperator = new JButton();
 	private JButton barOperator = new JButton();
 	private JButton dashOperator = new JButton();
+	private JButton hashOperator = new JButton();
 	private java.util.List<JButton> buttons = new ArrayList<JButton>();
+	private java.util.List<JButton> leftButtons = new ArrayList<JButton>();
 
 	String[] images = new String[] { 
 			"images/shape1.png", "images/shape2.png", 
 			"images/shape3.png", "images/shape4.png",
 			"images/shape5.png", "images/shape6.png", 
-			"images/shape7.png" };
+			"images/shape7.png","images/shape8.png" };
 	private Panel panel;
 	
 	public Shapes()
 	{
 		shapesToolBar = new JToolBar(); 
 		shapesToolBar.setSize(400, 100);
+		
+		leftShapesToolBar = new JToolBar(JToolBar.VERTICAL); 
+		leftShapesToolBar.setPreferredSize(new Dimension(1500, 30));
+		leftShapesToolBar.setBounds(0, 0, 100, 200);
+		leftShapesToolBar.setFloatable(false);
+		
 	}
 
 	public JToolBar CreateShapes() {
@@ -48,18 +57,43 @@ public class Shapes implements ActionListener {
 		//shapesToolBar.add(panel);
 		return shapesToolBar;
 	}
+	
+	public JToolBar CreateLeftShapes() {
+		//panel = new Panel();
+		setLeftButtons();
+		addLeftButtons();
+		//panel.setSize(400, 100);
+		//shapesToolBar.add(panel);
+		return leftShapesToolBar;
+	}
+	
 
 	private void addButtons() {
 		for (int i = 0; i < buttons.size(); i++) {
 			JButton button = buttons.get(i);
-			button.addActionListener(this);
-			button.setPreferredSize(new Dimension(180, 70));
+			button.addActionListener(this);	
+			button.setPreferredSize(new Dimension(150, 70));
 			button.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(images[i])).getImage()
-					.getScaledInstance(190, 70, Image.SCALE_SMOOTH)));
+					.getScaledInstance(160, 70, Image.SCALE_SMOOTH)));
 			shapesToolBar.add(button);
+			shapesToolBar.addSeparator();
 		}
 
 	}
+	
+	private void addLeftButtons() {
+		for (int i = 0; i < leftButtons.size(); i++) {
+			JButton button = leftButtons.get(i);
+			button.addActionListener(this);
+			button.setPreferredSize(new Dimension(50, 100));
+			button.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(images[i])).getImage()
+					.getScaledInstance(120, 60, Image.SCALE_SMOOTH)));
+			leftShapesToolBar.add(button);
+			leftShapesToolBar.addSeparator();
+		}
+
+	}
+	
 
 	private void setUpButtons() {
 		buttons.add(openParanthesis);
@@ -69,7 +103,20 @@ public class Shapes implements ActionListener {
 		buttons.add(atTheRateOperator);
 		buttons.add(barOperator);
 		buttons.add(dashOperator);
+		buttons.add(hashOperator);
 	}
+	
+	private void setLeftButtons() {
+		leftButtons.add(openParanthesis);
+		leftButtons.add(closedParanthesis);
+		leftButtons.add(lessThanOperator);
+		leftButtons.add(greaterThanOperator);
+		leftButtons.add(atTheRateOperator);
+		leftButtons.add(barOperator);
+		leftButtons.add(dashOperator);
+		leftButtons.add(hashOperator);
+	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -87,6 +134,8 @@ public class Shapes implements ActionListener {
 			ClickedShape.shapeName = "barOperator";
 		} else if (e.getSource() == dashOperator) {
 			ClickedShape.shapeName = "dashOperator";
+		} else if (e.getSource() == dashOperator) {
+			ClickedShape.shapeName = "hashOperator";
 		}
 	}
 }

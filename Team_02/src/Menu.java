@@ -14,8 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import com.sun.glass.ui.MenuBar;
-
 /**
  *
  * @author Kunal Sharma

@@ -26,22 +26,25 @@ public class MainWindow {
 	public static void main(String[] args) {
 		Menu objMenu = new Menu();
 		Shapes shapes = new Shapes();
+		Shapes leftShapes = new Shapes();
 		frame = new JFrame("Main Window");
 		frame.setVisible(true);
 		frame.setSize(1000, 1000);
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setJMenuBar(objMenu.createMenu());
-		//JPanel panel = new JPanel();
-		//panel.s(objMenu.CreateMenu());
-		//panel.setSize(100, 100);
-		//panel.setBounds(0, 0, 500, 50);
-		JToolBar toolBarToolKit = shapes.CreateShapes();
-		toolBarToolKit.setBounds(0, 0, 1350, 100);
-		toolBarToolKit.setBackground(Color.red);
-		//panelToolKit.add();
-		//frame.getContentPane().add(panelToolKit);
-		frame.getContentPane().add(toolBarToolKit);
+		
+		JToolBar topToolBarToolKit = shapes.CreateShapes();
+		topToolBarToolKit.setBounds(10, 0, 1350, 100);
+		topToolBarToolKit.setBackground(Color.red);
+		frame.getContentPane().add(topToolBarToolKit);
+		
+		JToolBar leftToolBarToolKit = leftShapes.CreateLeftShapes();
+		leftToolBarToolKit.setBounds(10, 110,150, 900);
+		leftToolBarToolKit.setBackground(Color.blue);
+		frame.getContentPane().add(leftToolBarToolKit);
+		
+		
 		obj = new NewTab();
 		obj.createAndShowGUI();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
