@@ -44,6 +44,11 @@ public class RightPanelMouseListener extends JPanel {
 					dataProcessor.doubleClick(event.getX() - 150, event.getY(), value);
 				}else if(event.getButton() == MouseEvent.BUTTON3) {
 					System.out.println("Right clicked "+event.getX()+","+event.getY());
+					int input = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Select an Option...",
+							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+
+				// 0=yes, 1=no, 2=cancel
+				System.out.println(input);
 				}
 				else {
 					try {
