@@ -30,6 +30,9 @@ public class FactoryOp {
             case "||":
                 op = new OpVerticalBars();
                 break;
+            case "#":
+                op = new OpHash();
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + opName);
         }

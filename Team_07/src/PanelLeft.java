@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class PanelLeft extends JPanel {
     final static List<String> PANEL_LEFT_OPERATORS = new ArrayList<>(Arrays.asList
-            ("(", ")", "<", ">", "@", "||", "-"));
+            ("(", ")", "<", ">", "@", "||", "-","#"));
     final Dimension DIMENSION_PANEL_LEFT = new Dimension(200, Database.SCREEN_SIZE.height);
 
 

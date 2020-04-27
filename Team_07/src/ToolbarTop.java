@@ -13,7 +13,7 @@ import java.util.List;
  *
  */public class ToolbarTop extends JToolBar{
     final static List<String> OPERATORS = new ArrayList<>(Arrays.asList
-            ("(", ")", "<", ">", "@", "||", "-"));
+            ("(", ")", "<", ">", "@", "||", "-","#"));
     final Dimension DIMENSION_PANEL_TOP = new Dimension(Database.SCREEN_SIZE.width, 100);
 
 
