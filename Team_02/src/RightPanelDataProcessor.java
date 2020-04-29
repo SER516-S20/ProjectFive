@@ -56,17 +56,18 @@ public class RightPanelDataProcessor extends Observable {
 		notifyObservers(this);
 	}
 	
-	public void dragDrop(Dot startPoint, Dot endPoint) {
+	public void dragDrop(Dot dragPoint, Dot dropPoint) {
 		String draggedShape;
+		changeLine(dragPoint, dropPoint);
 		for(String key: iconMap.keySet()) {
 			for(Icon eachIcon: iconMap.get(key)) {
-				if (isClickedIcon(eachIcon, startPoint.getX(), startPoint.getY())) {
+				if (isClickedIcon(eachIcon, dragPoint.getX(), dragPoint.getY())) {
 					draggedShape = key;
 					iconMap.get(key).remove(eachIcon);
 					removeDot(draggedShape, eachIcon);
 					ClickedShape.shapeName = draggedShape;
-					addNewIcon(endPoint.getX(), endPoint.getY());
-					moveLines(draggedShape, eachIcon);
+					addNewIcon(dropPoint.getX(), dropPoint.getY());
+					moveLinesWithIcon(draggedShape, eachIcon);
 					break;
 				}
 			}
@@ -155,6 +156,34 @@ public class RightPanelDataProcessor extends Observable {
 			ShapeDash s = (ShapeDash) icon;
 			removeLine(s.getRightDot());
 			removeLine(s.getLeftDot());
+		}
+	}
+	
+	private void changeLine(Dot dragPoint, Dot dropPoint) {
+		List<Line> allLines = new ArrayList<Line>();
+		for(Line l : getLineList()) {
+			allLines.add(l);
+		}
+		for (Line eachLine: allLines) {
+			if (eachLine.getStartDot().equals(dragPoint)) {
+				Dot lineEndPoint = eachLine.getEndDot();
+				getLineList().remove(eachLine);
+				for (Dot eachDot: dotList) {
+					if (eachDot.equals(dropPoint)) {
+						addNewLine(eachDot, lineEndPoint);
+					}
+				}
+				break;
+			} else if (eachLine.getEndDot().equals(dragPoint)) {
+				Dot lineStartPoint = eachLine.getStartDot();
+				getLineList().remove(eachLine);
+				for (Dot eachDot: dotList) {
+					if (eachDot.equals(dropPoint)) {
+						addNewLine(lineStartPoint, eachDot);
+					}
+				}
+				break;
+			}
 		}
 	}
 	
@@ -295,7 +324,7 @@ public class RightPanelDataProcessor extends Observable {
 		}
 	}
 	
-	private void moveLines(String shapeName, Icon icon) {
+	private void moveLinesWithIcon(String shapeName, Icon icon) {
 		
 		List<Line> allLines = new ArrayList<Line>();
 		for(Line l : getLineList()) {
@@ -428,8 +457,8 @@ public class RightPanelDataProcessor extends Observable {
 	}
 	
 	private boolean isClickedIcon(Icon icon, int x, int y) {
-		if (x >= icon.getMiddlePointX() - 100 &&
-			x <= icon.getMiddlePointX() + 100 &&
+		if (x >= icon.getMiddlePointX() - 80 &&
+			x <= icon.getMiddlePointX() + 80 &&
 			y >= icon.getMiddlePointY() - 30 &&
 			y <= icon.getMiddlePointY() + 30) {
 			return true;
