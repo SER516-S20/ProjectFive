@@ -8,12 +8,12 @@ import java.awt.*;
  * @since March 13, 2020
  */
 public class OpMinus extends Op {
-    final Color IRON = new Color(155, 163, 169);
+    final Color TEAL = new Color(90, 200, 250);
 
     OpMinus() {
         label = "-";
         opLabel.setText(label);
-        color = IRON;
+        color = TEAL;
         packOperator();
         addToConnector("I", FactoryConnector.getOp("Dot", this));
         addToConnector("O", FactoryConnector.getOp("Dot", this));

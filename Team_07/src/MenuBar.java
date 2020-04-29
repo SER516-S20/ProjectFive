@@ -45,14 +45,14 @@ public class MenuBar {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("Opened");
-                open();
+                FileManager.open();
             }
         });
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("Saved");
-                save();
+                FileManager.save();
             }
         });
 
@@ -74,67 +74,6 @@ public class MenuBar {
 
     public void newFile() {
 
-    }
-
-    public void save() {
-        FileDialog dialog = new FileDialog(MainFrame.mainFrame, "Enter file name to Save");
-        dialog.setMode(FileDialog.SAVE);
-        System.out.println(dialog.getDirectory());
-        dialog.setVisible(true);
-        String file = dialog.getFile();
-        if (file == null)
-            return;
-        FileOutputStream fileOutputStream;
-        ObjectOutputStream objectOutputStream;
-        Component[] tabsToSave = MainFrame.PANE_RIGHT.getComponents();
-        try {
-            fileOutputStream = new FileOutputStream(file);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(tabsToSave);
-            objectOutputStream.close();
-            fileOutputStream.close();
-            JOptionPane.showMessageDialog(MainFrame.mainFrame, "Saved as " + file);
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void open() {
-        FileDialog dialog = new FileDialog(MainFrame.mainFrame, "Select file to open");
-        dialog.setMode(FileDialog.LOAD);
-        dialog.setVisible(true);
-        String file = dialog.getFile();
-        if (file == null)
-            return;
-        MainFrame.PANE_RIGHT.removeAll();
-        PaneRight.tabNum = 1;
-        Component[] tabsToOpen;
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
-            tabsToOpen = (Component[]) objectInputStream.readObject();
-            objectInputStream.close();
-            fileInputStream.close();
-
-            for (Component component : tabsToOpen) {
-                PaneRightTab tab = (PaneRightTab) component;
-                PaneRight.tabNum++;
-                MainFrame.PANE_RIGHT.addTab("Tab " + PaneRight.tabNum, tab);
-                ListenersPanelRightTab.addAllListenersToTab(tab);
-                tab.repaint();
-            }
-            Database.selectedTab = (PaneRightTab) tabsToOpen[0];
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (IOException e) {
-            System.out.println("Error initializing stream");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     public void compile() {

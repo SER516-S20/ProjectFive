@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
  *
  */
 public class ListenersToolbarTop {
+    final static Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
 
     public static void addShapeListeners(Op op) {
         op.addMouseListener(new MouseListener() {
@@ -40,9 +41,7 @@ public class ListenersToolbarTop {
 
             @Override
             public void mouseExited(MouseEvent mouseEvent) {
-                op.setCursor(Database.DEFAULT_CURSOR);
-
-
+                op.setCursor(DEFAULT_CURSOR);
             }
         });
 
