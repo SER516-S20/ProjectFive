@@ -22,7 +22,7 @@ public abstract class Op extends JPanel implements Serializable {
     final JLabel opLabel;
     public String label;
     JPanel inputConnector, outputConnector;
-    private String value;
+    String value;
 
     Op() {
         setPreferredSize(opDimen);

@@ -38,11 +38,12 @@ public class PanelRightTab extends JPanel implements Serializable {
                     destConnector.getLocationOnScreen().y - panelLocation.y + destConnector.getHeight() / 2;
             int[] arrowX = new int[]{x2, x2 - 10, x2 - 10};
             int[] arrowY = new int[]{y2, y2 - 10, y2 + 10};
-            g.fillPolygon(arrowX, arrowY, 3);
+            Graphics2D graphics2D = (Graphics2D)g;
+            graphics2D.fillPolygon(arrowX, arrowY, 3);
             int[][] points = Connection.getLinePoints(x1, y1, x2, y2);
-            g.drawPolyline(points[0], points[1], points[0].length);
+            graphics2D.drawPolyline(points[0], points[1], points[0].length);
         }
-        revalidate();
         repaint();
+        revalidate();
     }
 }
