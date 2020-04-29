@@ -77,15 +77,13 @@ public class ListenersPanelRightTab {
 
             @Override
             public void mousePressed(MouseEvent mouseEvent) {
-
-
             }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
                 cursor = new Cursor(Cursor.HAND_CURSOR);
                 op.setCursor(cursor);
-
+                PanelRightTab.refreshTab();
             }
 
             @Override
@@ -110,12 +108,14 @@ public class ListenersPanelRightTab {
                 int mouseLocationY = e.getYOnScreen() + dragY[0];
                 op.setLocation(mouseLocationX,
                         mouseLocationY);
+                PanelRightTab.refreshTab();
             }
 
             @Override
             public void mouseMoved(MouseEvent e) {
                 dragX[0] = op.getX() - e.getXOnScreen();
                 dragY[0] = op.getY() - e.getYOnScreen();
+                PanelRightTab.refreshTab();
             }
         });
     }

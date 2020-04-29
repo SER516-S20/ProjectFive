@@ -12,7 +12,9 @@ import java.awt.event.*;
  * @since March 11, 2020
  */
 public class ListenersPanelLeft {
-	static Op draggableOp=null;
+    static final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
+    static final Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
+    static Op draggableOp=null;
 	static boolean isOpCreated=false;
     public static void addShapeListeners(Op op) {
         final int[] dragX = new int[1];
@@ -39,12 +41,12 @@ public class ListenersPanelLeft {
 
             @Override
             public void mouseEntered(MouseEvent mouseEvent) {
-                op.setCursor(Database.HAND_CURSOR);
+                op.setCursor(HAND_CURSOR);
             }
 
             @Override
             public void mouseExited(MouseEvent mouseEvent) {
-                op.setCursor(Database.DEFAULT_CURSOR);
+                op.setCursor(DEFAULT_CURSOR);
                 
                 
             }
