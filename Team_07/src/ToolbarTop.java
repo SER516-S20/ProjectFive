@@ -19,7 +19,7 @@ public class ToolbarTop extends JToolBar {
 
     ToolbarTop() {
         super();
-        setLayout(new FlowLayout(FlowLayout.CENTER, 70, 20));
+        setLayout(new FlowLayout(FlowLayout.CENTER, 40, 20));
         setPreferredSize(DIMENSION_PANEL_TOP);
         setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.white));
         setBackground(Database.GRAY);

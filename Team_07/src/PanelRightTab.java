@@ -8,8 +8,10 @@ import java.util.List;
 /**
  * RightPane Tab
  *
+ * @author Aditya Bajaj
  * @author Karandeep Singh Grewal
- * @since March 14, 2020
+ * @since April 29, 2020
+ *
  */
 public class PanelRightTab extends JPanel implements Serializable {
     public List<Connector> src = new ArrayList<>();
@@ -20,7 +22,7 @@ public class PanelRightTab extends JPanel implements Serializable {
     PanelRightTab() {
         super();
         setLayout(null);
-        setBackground(Color.GRAY);
+        setBackground(Color.WHITE);
         ListenersPanelRightTab.addPanelListeners(this);
     }
 
@@ -47,8 +49,6 @@ public class PanelRightTab extends JPanel implements Serializable {
             graphics2D.drawPolyline(points[0], points[1], points[0].length);
         }
     }
-
-
 
     static public void refreshTab(){
         Database.selectedTab.repaint();
