@@ -85,7 +85,25 @@ public class RightPanelDataProcessor extends Observable {
 			}
 		}
 	}
-
+	
+	public void rightClick(int x, int y) {
+		System.out.println("Removing Icon1");
+		for(String key: iconMap.keySet()) {
+			System.out.println("Removing Icon2");
+			for(Icon eachIcon: iconMap.get(key)) {
+				System.out.println("Removing Icon3");
+				if (isClickedIcon(eachIcon, x, y)) {
+					System.out.println("Removing Icon4");
+					iconMap.get(key).remove(eachIcon);
+					removeIconLines(key ,eachIcon);
+					break;
+				}
+			}
+		}
+		setChanged();
+		notifyObservers(this);
+	}
+	
 	public String getTextValue(int x, int y) {
 		for(String key: iconMap.keySet()) {
 			for(Icon eachIcon: iconMap.get(key)) {
@@ -95,6 +113,62 @@ public class RightPanelDataProcessor extends Observable {
 			}
 		}
 		return null;
+	}
+	
+	private void removeIconLines(String shapeName, Icon icon) {
+		
+		List<Line> allLines = new ArrayList<Line>();
+		for(Line l : getLineList()) {
+			allLines.add(l);
+		}
+		if (shapeName.equalsIgnoreCase("openParanthesis")) {
+			ShapeOpenParan s = (ShapeOpenParan) icon;
+			removeLine(s.getRightDot());
+		} else if (shapeName.equalsIgnoreCase("closedParanthesis")) {
+			ShapeClosedParan s = (ShapeClosedParan) icon;
+			removeLine(s.getLeftDot());
+		} else if (shapeName.equalsIgnoreCase("lessThanOperator")) {
+			ShapeLessThan s = (ShapeLessThan) icon;
+			removeLine(s.getRightLowerDot());
+			removeLine(s.getRightUpperDot());
+			removeLine(s.getLeftDot());
+		} else if (shapeName.equalsIgnoreCase("greaterThanOperator")) {
+			ShapeGreaterThan s = (ShapeGreaterThan) icon;
+			removeLine(s.getLeftLowerDot());
+			removeLine(s.getLeftUpperDot());
+			removeLine(s.getRightDot());
+		} else if (shapeName.equalsIgnoreCase("atTheRateOperator")) {
+			ShapeAtTheRate s = (ShapeAtTheRate) icon;
+			removeLine(s.getLeftLowerDot());
+			removeLine(s.getLeftUpperDot());
+			removeLine(s.getRightLowerDot());
+			removeLine(s.getRightUpperDot());
+		} else if (shapeName.equalsIgnoreCase("barOperator")) {
+			ShapeBar s = (ShapeBar) icon;
+			Dot oldLDot = new Dot(s.getLeftLowerDot().getX(),
+					(s.getLeftLowerDot().getY() + s.getLeftUpperDot().getY())/2,true,false);
+			Dot oldRDot = new Dot(s.getRightLowerDot().getX(),
+					(s.getRightLowerDot().getY() + s.getRightUpperDot().getY())/2,false,true);
+			removeLine(oldRDot);
+			removeLine(oldLDot);
+		} else if (shapeName.equalsIgnoreCase("dashOperator")) {
+			ShapeDash s = (ShapeDash) icon;
+			removeLine(s.getRightDot());
+			removeLine(s.getLeftDot());
+		}
+	}
+	
+	private void removeLine(Dot lineEndPoint) {
+		List<Line> allLines = new ArrayList<Line>();
+		for(Line l : getLineList()) {
+			allLines.add(l);
+		}
+		for (Line eachLine: allLines) {
+			if (eachLine.getStartDot().equals(lineEndPoint) ||
+					eachLine.getEndDot().equals(lineEndPoint)) {
+				getLineList().remove(eachLine);
+			}
+		}
 	}
 	
 	private void addNewLine(Dot startPoint, Dot endPoint) {
