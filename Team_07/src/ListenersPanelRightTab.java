@@ -120,7 +120,7 @@ public class ListenersPanelRightTab {
         });
     }
 
-    static void addAllListenersToTab(PaneRightTab tab) {
+    static void addAllListenersToTab(PanelRightTab tab) {
         ListenersPanelRightTab.addPanelListeners(tab);
         for (Component component :
                 tab.getComponents()) {

@@ -13,7 +13,7 @@ public class Database {
     static final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
     static final Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
     static Op selectedOp;
-    static PaneRightTab selectedTab = null;
+    static PanelRightTab selectedTab = null;
 
     /**
      * @return True if the connector is source connector (output)

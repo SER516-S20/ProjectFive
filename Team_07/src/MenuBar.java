@@ -86,7 +86,7 @@ public class MenuBar {
             return;
         FileOutputStream fileOutputStream;
         ObjectOutputStream objectOutputStream;
-        Component[] tabsToSave = MainFrame.PANE_RIGHT.getComponents();
+        Component[] tabsToSave = MainFrame.PANEL_RIGHT.getComponents();
         try {
             fileOutputStream = new FileOutputStream(file);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -108,8 +108,8 @@ public class MenuBar {
         String file = dialog.getFile();
         if (file == null)
             return;
-        MainFrame.PANE_RIGHT.removeAll();
-        PaneRight.tabNum = 1;
+        MainFrame.PANEL_RIGHT.removeAll();
+        PanelRight.tabNum = 1;
         Component[] tabsToOpen;
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
@@ -120,13 +120,13 @@ public class MenuBar {
             fileInputStream.close();
 
             for (Component component : tabsToOpen) {
-                PaneRightTab tab = (PaneRightTab) component;
-                PaneRight.tabNum++;
-                MainFrame.PANE_RIGHT.addTab("Tab " + PaneRight.tabNum, tab);
+                PanelRightTab tab = (PanelRightTab) component;
+                PanelRight.tabNum++;
+                MainFrame.PANEL_RIGHT.addTab("Tab " + PanelRight.tabNum, tab);
                 ListenersPanelRightTab.addAllListenersToTab(tab);
                 tab.repaint();
             }
-            Database.selectedTab = (PaneRightTab) tabsToOpen[0];
+            Database.selectedTab = (PanelRightTab) tabsToOpen[0];
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found");

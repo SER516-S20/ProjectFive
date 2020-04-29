@@ -74,9 +74,9 @@ public class ListenersPanelLeft {
                         mouseLocationY);
 
                 if(isOpCreated) {
-                	MainFrame.PANE_RIGHT.getRightTab().add(draggableOp);
+                	MainFrame.PANEL_RIGHT.getRightTab().add(draggableOp);
                 }
-                MainFrame.PANE_RIGHT.getRightTab().repaint();
+                MainFrame.PANEL_RIGHT.getRightTab().repaint();
 				
 			}
 

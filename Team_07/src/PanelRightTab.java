@@ -10,12 +10,12 @@ import java.util.List;
  * @author Karandeep Singh Grewal
  * @since March 14, 2020
  */
-public class PaneRightTab extends JPanel implements Serializable {
+public class PanelRightTab extends JPanel implements Serializable {
     public List<Connector> src = new ArrayList<>();
     public List<Connector> dest = new ArrayList<>();
     public int OpCount;
 
-    PaneRightTab() {
+    PanelRightTab() {
         super();
         setLayout(null);
         setBackground(Color.WHITE);

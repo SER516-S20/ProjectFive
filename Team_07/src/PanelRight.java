@@ -8,25 +8,25 @@ import java.awt.*;
  * @author Aditya Bajaj
  * @since March 10, 2020
  */
-public class PaneRight extends JTabbedPane {
+public class PanelRight extends JTabbedPane {
     public static int tabNum = 1;
-    PaneRightTab tab;
+    PanelRightTab tab;
 
-    PaneRight() {
+    PanelRight() {
         super();
         setForeground(Color.WHITE);
         addNewTab();
-        Database.selectedTab = (PaneRightTab) getSelectedComponent();
-        addChangeListener(changeEvent -> Database.selectedTab = (PaneRightTab) getSelectedComponent());
+        Database.selectedTab = (PanelRightTab) getSelectedComponent();
+        addChangeListener(changeEvent -> Database.selectedTab = (PanelRightTab) getSelectedComponent());
     }
 
     public void addNewTab() {
-        tab = new PaneRightTab();
+        tab = new PanelRightTab();
         addTab("Tab " + tabNum, tab);
         tabNum++;
     }
     
-    public PaneRightTab getRightTab() {
+    public PanelRightTab getRightTab() {
     	return Database.selectedTab;
     }
 }
