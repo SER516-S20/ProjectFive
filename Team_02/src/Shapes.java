@@ -136,6 +136,8 @@ public class Shapes implements ActionListener {
 			ClickedShape.shapeName = "dashOperator";
 		} else if (e.getSource() == dashOperator) {
 			ClickedShape.shapeName = "hashOperator";
+		} else if (e.getSource() == hashOperator) {
+			ClickedShape.shapeName = "hashOperator";
 		}
 	}
 }

@@ -156,6 +156,10 @@ public class RightPanelDataProcessor extends Observable {
 			ShapeDash s = (ShapeDash) icon;
 			removeLine(s.getRightDot());
 			removeLine(s.getLeftDot());
+		} else if (shapeName.equalsIgnoreCase("hashOperator")) {
+			ShapeHash s = (ShapeHash) icon;
+			removeLine(s.getRightDot());
+			removeLine(s.getLeftDot());
 		}
 	}
 	
@@ -272,15 +276,27 @@ public class RightPanelDataProcessor extends Observable {
 			iconList.add(new ShapeBar(x, y));
 			iconMap.put(selectedIcon, iconList);
 			barCenterList.add(new Dot(newShape.getLeftLowerDot().getX(),
-					(newShape.getLeftLowerDot().getY() + newShape.getLeftUpperDot().getY())/2,true,false));
+					(newShape.getLeftLowerDot().getY() +
+							newShape.getLeftUpperDot().getY())/2,true,false));
 			barCenterList.add(new Dot(newShape.getRightLowerDot().getX(),
-					(newShape.getRightLowerDot().getY() + newShape.getRightUpperDot().getY())/2,false,true));
+					(newShape.getRightLowerDot().getY() +
+							newShape.getRightUpperDot().getY())/2,false,true));
 		} else if (selectedIcon.equalsIgnoreCase("dashOperator")) {
 			List<Icon> iconList = iconMap.get(selectedIcon);
 			if (iconList == null) {
 				iconList = new ArrayList<Icon>();
 			}
 			ShapeDash newShape = new ShapeDash(x, y);
+			iconList.add(newShape);
+			iconMap.put(selectedIcon, iconList);
+			dotList.add(newShape.getRightDot());
+			dotList.add(newShape.getLeftDot());
+		} else if (selectedIcon.equalsIgnoreCase("hashOperator")) {
+			List<Icon> iconList = iconMap.get(selectedIcon);
+			if (iconList == null) {
+				iconList = new ArrayList<Icon>();
+			}
+			ShapeHash newShape = new ShapeHash(x, y);
 			iconList.add(newShape);
 			iconMap.put(selectedIcon, iconList);
 			dotList.add(newShape.getRightDot());
@@ -321,6 +337,10 @@ public class RightPanelDataProcessor extends Observable {
 			ShapeDash s = (ShapeDash) icon;
 			this.dotList.remove(s.getRightDot());
 			this.dotList.remove(s.getLeftDot());
+		} else if (shapeName.equalsIgnoreCase("hashOperator")) {
+			ShapeHash s = (ShapeHash) icon;
+			this.dotList.remove(s.getRightDot());
+			this.dotList.remove(s.getLeftDot());
 		}
 	}
 	
@@ -338,7 +358,7 @@ public class RightPanelDataProcessor extends Observable {
 				if (eachLine.getStartDot().equals(s.getRightDot())) {
 					Dot end = eachLine.getEndDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(newIcon.getRightDot(), end));
+					addNewLine(newIcon.getRightDot(), end);
 					break;
 				}
 			}
@@ -350,7 +370,7 @@ public class RightPanelDataProcessor extends Observable {
 				if (eachLine.getEndDot().equals(s.getLeftDot())) {
 					Dot start = eachLine.getStartDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(start, newIcon.getLeftDot()));
+					addNewLine(start, newIcon.getLeftDot());
 					break;
 				}
 			}
@@ -362,15 +382,15 @@ public class RightPanelDataProcessor extends Observable {
 				if (eachLine.getStartDot().equals(s.getRightLowerDot())) {
 					Dot end = eachLine.getEndDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(newIcon.getRightLowerDot(), end));
+					addNewLine(newIcon.getRightLowerDot(), end);
 				} else if (eachLine.getStartDot().equals(s.getRightUpperDot())) {
 					Dot end = eachLine.getEndDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(newIcon.getRightUpperDot(), end));
+					addNewLine(newIcon.getRightUpperDot(), end);
 				} else if (eachLine.getEndDot().equals(s.getLeftDot())) {
 					Dot start = eachLine.getStartDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(start, newIcon.getLeftDot()));
+					addNewLine(start, newIcon.getLeftDot());
 				}
 			}
 		} else if (shapeName.equalsIgnoreCase("greaterThanOperator")) {
@@ -381,15 +401,15 @@ public class RightPanelDataProcessor extends Observable {
 				if (eachLine.getEndDot().equals(s.getLeftLowerDot())) {
 					Dot start = eachLine.getStartDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(start, newIcon.getLeftLowerDot()));
+					addNewLine(start, newIcon.getLeftLowerDot());
 				} else if (eachLine.getEndDot().equals(s.getLeftUpperDot())) {
 					Dot start = eachLine.getStartDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(start, newIcon.getLeftUpperDot()));
+					addNewLine(start, newIcon.getLeftUpperDot());
 				} else if (eachLine.getStartDot().equals(s.getRightDot())) {
 					Dot end = eachLine.getEndDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(newIcon.getRightDot(), end));
+					addNewLine(newIcon.getRightDot(), end);
 				}
 			}
 		} else if (shapeName.equalsIgnoreCase("atTheRateOperator")) {
@@ -400,19 +420,19 @@ public class RightPanelDataProcessor extends Observable {
 				if (eachLine.getEndDot().equals(s.getLeftLowerDot())) {
 					Dot start = eachLine.getStartDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(start, newIcon.getLeftLowerDot()));
+					addNewLine(start, newIcon.getLeftLowerDot());
 				} else if (eachLine.getEndDot().equals(s.getLeftUpperDot())) {
 					Dot start = eachLine.getStartDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(start, newIcon.getLeftUpperDot()));
+					addNewLine(start, newIcon.getLeftUpperDot());
 				} else if (eachLine.getStartDot().equals(s.getRightLowerDot())) {
 					Dot end = eachLine.getEndDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(newIcon.getRightLowerDot(), end));
+					addNewLine(newIcon.getRightLowerDot(), end);
 				} else if (eachLine.getStartDot().equals(s.getRightUpperDot())) {
 					Dot end = eachLine.getEndDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(newIcon.getRightUpperDot(), end));
+					addNewLine(newIcon.getRightUpperDot(), end);
 				}
 			}
 		} else if (shapeName.equalsIgnoreCase("barOperator")) {
@@ -431,11 +451,11 @@ public class RightPanelDataProcessor extends Observable {
 				if (eachLine.getStartDot().equals(oldRDot)) {
 					Dot end = eachLine.getEndDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(newRDot, end));
+					addNewLine(newRDot, end);
 				} else if (eachLine.getEndDot().equals(oldLDot)) {
 					Dot start = eachLine.getStartDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(start, newLDot));
+					addNewLine(start, newLDot);
 				}
 			}
 		} else if (shapeName.equalsIgnoreCase("dashOperator")) {
@@ -446,11 +466,26 @@ public class RightPanelDataProcessor extends Observable {
 				if (eachLine.getStartDot().equals(s.getRightDot())) {
 					Dot end = eachLine.getEndDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(newIcon.getRightDot(), end));
+					addNewLine(newIcon.getRightDot(), end);
 				} else if (eachLine.getEndDot().equals(s.getLeftDot())) {
 					Dot start = eachLine.getStartDot();
 					getLineList().remove(eachLine);
-					getLineList().add(new Line(start, newIcon.getLeftDot()));
+					addNewLine(start, newIcon.getLeftDot());
+				}
+			}
+		} else if (shapeName.equalsIgnoreCase("hashOperator")) {
+			ShapeHash s = (ShapeHash) icon;
+			int newIconIndex = iconMap.get(shapeName).size()-1;
+			ShapeHash newIcon = (ShapeHash) iconMap.get(shapeName).get(newIconIndex);
+			for (Line eachLine: allLines) {
+				if (eachLine.getStartDot().equals(s.getRightDot())) {
+					Dot end = eachLine.getEndDot();
+					getLineList().remove(eachLine);
+					addNewLine(newIcon.getRightDot(), end);
+				} else if (eachLine.getEndDot().equals(s.getLeftDot())) {
+					Dot start = eachLine.getStartDot();
+					getLineList().remove(eachLine);
+					addNewLine(start, newIcon.getLeftDot());
 				}
 			}
 		}
