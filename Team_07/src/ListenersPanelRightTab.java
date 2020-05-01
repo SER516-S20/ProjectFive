@@ -90,6 +90,10 @@ public class ListenersPanelRightTab {
             public void mouseReleased(MouseEvent mouseEvent) {
                 cursor = new Cursor(Cursor.HAND_CURSOR);
                 op.setCursor(cursor);
+                if(mouseEvent.isPopupTrigger()) {
+                	ContextMenuOp.opToDelete = op;
+                	PanelRightTab.opContextMenu.show(op, mouseEvent.getX(), mouseEvent.getY());
+                }
                 PanelRightTab.refreshTab();
             }
 
