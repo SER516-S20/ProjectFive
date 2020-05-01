@@ -1,12 +1,15 @@
 package View;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.table.TableRowSorter;
+
 import Controller.*;
 import Model.*;
 /**
@@ -41,13 +44,24 @@ public class MenuBar extends JMenuBar {
 		menu.add(compileFile);
 		menuBar.add(menu);
 
-		//JButton Model.NewTab = new JButton("  New Tab  ");
 		Border border = new LineBorder(Color.BLACK, 1);
 		JButton Compiler = new JButton("  Compile  ");
 		Compiler.setBorder(border);
 		Compiler.addActionListener(e -> {
 		});
 		this.add(menuBar);
+
+		JButton translate = new JButton("Translate");
+		translate.addActionListener(e -> {
+			Translate.save();
+		});
+
+
+		menuBar.add(translate);
+
 	}
+
+
+
 
 }
