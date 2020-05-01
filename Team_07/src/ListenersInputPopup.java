@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
@@ -6,8 +7,9 @@ import java.awt.event.WindowFocusListener;
 /**
  * Listeners for the InputPopup
  *
+ * @author Aditya Bajaj
  * @author Karandeep Singh Grewal
- * @since March 11, 2020
+ * @since April 29, 2020
  */
 public class ListenersInputPopup {
     static void addCancelButtonListeners(ButtonCustom buttonCustom, InputPopup popup) {
@@ -59,6 +61,7 @@ public class ListenersInputPopup {
             public void mouseClicked(MouseEvent mouseEvent) {
                 popup.op.setValue(popup.name.getText());
                 popup.dispose();
+                setTabTitle(ListenersPanelRightTab.map.get(popup.op), popup.name.getText());
             }
 
             @Override
@@ -80,5 +83,16 @@ public class ListenersInputPopup {
             public void mouseExited(MouseEvent mouseEvent) {
             }
         });
+    }
+
+    public static void setTabTitle(JPanel tab, String title) {
+        JTabbedPane tabbedPane = (JTabbedPane) SwingUtilities.getAncestorOfClass(JTabbedPane.class, tab);
+
+        for (int tabIndex = 0; tabIndex < tabbedPane.getTabCount(); tabIndex++) {
+            if (SwingUtilities.isDescendingFrom(tab, tabbedPane.getComponentAt(tabIndex))) {
+                tabbedPane.setTitleAt(tabIndex, title);
+                break;
+            }
+        }
     }
 }

@@ -166,6 +166,20 @@ public class RightPanel extends JPanel implements Observer {
 						System.out.println(ex.getMessage());
 					}
 				}
+			} else if (key.equalsIgnoreCase("hashOperator")) {
+				for (Icon each : iconLocalMap.get(key)) {
+					ShapeHash s1 = (ShapeHash) each;
+					try {
+						Shape objRectangle = new Rectangle(s1.getMiddlePointX() - 100, s1.getMiddlePointY() - 30, 200,
+								60);
+						obj2D.draw(objRectangle);
+						obj2D.drawString("#", s1.getMiddlePointX(), s1.getMiddlePointY());
+						obj2D.fillOval(s1.getLeftDot().getX(), s1.getLeftDot().getY(), 6, 10);
+						obj2D.fillOval(s1.getRightDot().getX(), s1.getRightDot().getY(), 6, 10);
+					} catch (Exception ex) {
+						System.out.println(ex.getMessage());
+					}
+				}
 			}
 		}
 		for (Line eachLine : localStoreLine) {

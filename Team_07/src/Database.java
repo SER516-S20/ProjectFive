@@ -8,10 +8,8 @@ import java.awt.*;
  */
 public class Database {
     final static Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
-    final static Color THEME_BLUE = new Color(78, 108, 162);
-    final static Color THEME_BLUE_DARK = new Color(49, 72, 121);
-    static final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
-    static final Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
+    final static Color GRAY = new Color(78, 108, 162);
+    final static Color LIGHT_GRAY = new Color(49, 72, 121);
     static Op selectedOp;
     static PanelRightTab selectedTab = null;
 

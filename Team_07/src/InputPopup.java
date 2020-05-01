@@ -16,7 +16,7 @@ public class InputPopup extends JDialog {
     InputPopup(MouseEvent mouseEvent) {
         super();
         op = (Op) mouseEvent.getSource();
-        getContentPane().setBackground(Database.THEME_BLUE);
+        getContentPane().setBackground(Database.GRAY);
         setPreferredSize(DIMENSIONS_INPUT_POPUP);
         setUndecorated(true);
         setLocationRelativeTo(mouseEvent.getComponent());
@@ -34,8 +34,8 @@ public class InputPopup extends JDialog {
     private JTextField getTextField() {
         name = new JTextField(op.getValue());
         name.setColumns(20);
-        name.setBorder(BorderFactory.createLineBorder(Database.THEME_BLUE_DARK, 10));
-        name.setBackground(Database.THEME_BLUE_DARK);
+        name.setBorder(BorderFactory.createLineBorder(Database.LIGHT_GRAY, 10));
+        name.setBackground(Database.LIGHT_GRAY);
         name.setForeground(Color.WHITE);
         name.setCaretColor(Color.WHITE);
         name.setEnabled(true);
@@ -48,14 +48,14 @@ public class InputPopup extends JDialog {
     }
 
     private ButtonCustom getDoneButton() {
-        ButtonCustom doneButton = new ButtonCustom("Done", Database.THEME_BLUE_DARK);
+        ButtonCustom doneButton = new ButtonCustom("Done", Database.LIGHT_GRAY);
         doneButton.setBorder(BorderFactory.createLineBorder(Color.white, 1));
         ListenersInputPopup.addDoneButtonListeners(doneButton, this);
         return doneButton;
     }
 
     private ButtonCustom getCancelButton() {
-        ButtonCustom cancelButton = new ButtonCustom("Cancel", Database.THEME_BLUE_DARK);
+        ButtonCustom cancelButton = new ButtonCustom("Cancel", Database.LIGHT_GRAY);
         ListenersInputPopup.addCancelButtonListeners(cancelButton, this);
         return cancelButton;
     }
