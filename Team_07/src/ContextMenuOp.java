@@ -37,8 +37,8 @@ public class ContextMenuOp extends JPopupMenu {
 		// removing connections 
 		for (int i = destSize-1; i >= 0; i--){
 			
-			System.out.println(src.get(i).op.ID);
-			System.out.println(dest.get(i).op.ID);
+			System.out.println("delete connection " + src.get(i).op.ID + " " + dest.get(i).op.ID);
+
 			if(dest.get(i).op.ID == opID || src.get(i).op.ID == opID){
 				if(op.label == "||"){ //because "||" has multiple connections
 					//TODO 

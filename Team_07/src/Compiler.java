@@ -43,6 +43,8 @@ public class Compiler {
             return "No ')' operator";
         if (getTotalOp(")") > 1)
             return "There should only one ')' operator";
+        if (getTotalOp("<") != getTotalOp(">"))
+            return "Operators '<' and '>' should be equal in number";
         return "No Error";
     }
 
