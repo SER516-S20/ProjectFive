@@ -15,6 +15,12 @@ public class MenuBar {
     JMenuBar menu;
 
     public MenuBar() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
         menu = new JMenuBar();
         JMenu fileButton = new JMenu("File");
         JMenu runButton = new JMenu("Project");
@@ -33,42 +39,27 @@ public class MenuBar {
         runButton.add(compileButton);
         runButton.add(translateButton);
 
-        newButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("New File created");
-                newFile();
-            }
+        newButton.addActionListener(arg0 -> {
+            System.out.println("New File created");
+            newFile();
         });
 
-        openButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Opened");
-                FileManager.open();
-            }
+        openButton.addActionListener(arg0 -> {
+            System.out.println("Opened");
+            FileManager.open();
         });
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Saved");
-                FileManager.save();
-            }
+        saveButton.addActionListener(arg0 -> {
+            System.out.println("Saved");
+            FileManager.save();
         });
 
-        compileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Compiled");
-                compile();
-            }
+        compileButton.addActionListener(arg0 -> {
+            System.out.println("Compiled");
+            compile();
         });
-        translateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Translated");
-                translate();
-            }
+        translateButton.addActionListener(arg0 -> {
+            System.out.println("Translated");
+            translate();
         });
     }
 
