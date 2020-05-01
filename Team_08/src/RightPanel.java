@@ -129,4 +129,8 @@ public class RightPanel extends JPanel {
 		}
 	}
 
+	public void storeConnections(){
+
+	}
+
 }

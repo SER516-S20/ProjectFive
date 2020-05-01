@@ -14,7 +14,7 @@ import java.util.List;
 public class RightPanelMouseListener implements MouseListener, MouseMotionListener {
 
     private Shapes selectedShape;
-    private List<Line> linesList = new ArrayList<>();
+    private static List<Line> linesList = new ArrayList<>();
     private TextBox textBox = new TextBox();
 
     @Override
@@ -118,6 +118,7 @@ public class RightPanelMouseListener implements MouseListener, MouseMotionListen
     @Override
     public void mouseReleased(MouseEvent e) {
         selectedShape = null;
+        //linesList.remove(0);
         linesList.clear();
     }
 
