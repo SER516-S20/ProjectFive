@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Aditya Bajaj
  * @author Karandeep Singh Grewal
- * @since April 29, 2020
+ * @since April 30, 2020
  *
  */
 public class PanelRightTab extends JPanel implements Serializable {
@@ -22,7 +22,7 @@ public class PanelRightTab extends JPanel implements Serializable {
     PanelRightTab() {
         super();
         setLayout(null);
-        setBackground(Color.WHITE);
+        setBackground(Color.GRAY);
         ListenersPanelRightTab.addPanelListeners(this);
     }
 

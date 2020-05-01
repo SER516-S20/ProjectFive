@@ -11,10 +11,10 @@ import java.util.HashMap;
  *
  * @author Aditya Bajaj
  * @author Karandeep Singh Grewal
- * @since April 29, 2020
+ * @since April 30, 2020
  */
 public class ListenersPanelRightTab {
-    public static HashMap<Op, PanelRightTab> map = new HashMap<>();
+    public static HashMap<Op, PanelRightTab> mapOP = new HashMap<>();
 
     public static void addPanelListeners(JPanel rightPanel) {
         rightPanel.addMouseListener(new MouseListener() {
@@ -40,7 +40,8 @@ public class ListenersPanelRightTab {
 
                 ListenersPanelRightTab.addShapeListeners(op);
                 if (op.getOpLabel().getText() == "#") {
-                    map.put(op, MainFrame.PANEL_RIGHT.addNewTab());
+                    mapOP.put(op, MainFrame.PANEL_RIGHT.addNewTab());
+                    ListenersInputPopup.mapTab.put(mapOP.get(op),"Tab " + (PanelRight.tabNum-1));
                 }
                 rightPanel.revalidate();
                 rightPanel.repaint();

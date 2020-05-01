@@ -8,7 +8,7 @@ import java.io.*;
  * Contains Menu items
  *
  * @author Aditya Bajaj
- * @since April 26, 2020
+ * @since April 30, 2020
  */
 
 public class MenuBar {
@@ -33,27 +33,17 @@ public class MenuBar {
         runButton.add(compileButton);
         runButton.add(translateButton);
 
-        newButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("New File created");
-                newFile();
-            }
+        newButton.addActionListener(arg0 -> {
+            FileManager.newFile();
+            System.out.println("New File created");
         });
-
-        openButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Opened");
-                FileManager.open();
-            }
+        openButton.addActionListener(arg0 -> {
+            FileManager.open();
+            System.out.println("File Opened");
         });
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Saved");
-                FileManager.save();
-            }
+        saveButton.addActionListener(arg0 -> {
+            FileManager.save();
+            System.out.println("File Saved");
         });
 
         compileButton.addActionListener(new ActionListener() {
@@ -70,10 +60,6 @@ public class MenuBar {
                 translate();
             }
         });
-    }
-
-    public void newFile() {
-
     }
 
     public void compile() {

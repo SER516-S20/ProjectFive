@@ -3,15 +3,19 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.util.HashMap;
 
 /**
  * Listeners for the InputPopup
  *
  * @author Aditya Bajaj
  * @author Karandeep Singh Grewal
- * @since April 29, 2020
+ * @since April 30, 2020
  */
 public class ListenersInputPopup {
+
+    public static HashMap< PanelRightTab,String> mapTab = new HashMap<>();
+
     static void addCancelButtonListeners(ButtonCustom buttonCustom, InputPopup popup) {
         buttonCustom.addMouseListener(new MouseListener() {
             @Override
@@ -61,7 +65,8 @@ public class ListenersInputPopup {
             public void mouseClicked(MouseEvent mouseEvent) {
                 popup.op.setValue(popup.name.getText());
                 popup.dispose();
-                setTabTitle(ListenersPanelRightTab.map.get(popup.op), popup.name.getText());
+                setTabTitle(ListenersPanelRightTab.mapOP.get(popup.op), popup.name.getText());
+                mapTab.replace(ListenersPanelRightTab.mapOP.get(popup.op),popup.name.getText());
             }
 
             @Override
