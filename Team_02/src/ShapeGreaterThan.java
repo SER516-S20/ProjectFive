@@ -86,4 +86,9 @@ public class ShapeGreaterThan extends Icon{
 	public static void setSymbol(String text) {
 		ShapeGreaterThan.symbol = text;
 	}
+	
+	@Override
+	public String getTraslateSymbol() {
+		return symbol;
+	}
 }
