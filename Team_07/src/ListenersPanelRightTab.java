@@ -4,14 +4,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 
 /**
  * Listeners for the PanelRightTab
  *
+ * @author Aditya Bajaj
  * @author Karandeep Singh Grewal
- * @since March 11, 2020
+ * @since April 30, 2020
  */
 public class ListenersPanelRightTab {
+    public static HashMap<Op, PanelRightTab> mapOP = new HashMap<>();
 
     public static void addPanelListeners(JPanel rightPanel) {
         rightPanel.addMouseListener(new MouseListener() {
@@ -36,6 +39,10 @@ public class ListenersPanelRightTab {
                 rightPanel.add(op);
 
                 ListenersPanelRightTab.addShapeListeners(op);
+                if (op.getOpLabel().getText() == "#") {
+                    mapOP.put(op, MainFrame.PANEL_RIGHT.addNewTab());
+                    ListenersInputPopup.mapTab.put(mapOP.get(op),"Tab " + (PanelRight.tabNum-1));
+                }
                 rightPanel.revalidate();
                 rightPanel.repaint();
             }
@@ -77,15 +84,13 @@ public class ListenersPanelRightTab {
 
             @Override
             public void mousePressed(MouseEvent mouseEvent) {
-
-
             }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
                 cursor = new Cursor(Cursor.HAND_CURSOR);
                 op.setCursor(cursor);
-
+                PanelRightTab.refreshTab();
             }
 
             @Override
@@ -110,17 +115,19 @@ public class ListenersPanelRightTab {
                 int mouseLocationY = e.getYOnScreen() + dragY[0];
                 op.setLocation(mouseLocationX,
                         mouseLocationY);
+                PanelRightTab.refreshTab();
             }
 
             @Override
             public void mouseMoved(MouseEvent e) {
                 dragX[0] = op.getX() - e.getXOnScreen();
                 dragY[0] = op.getY() - e.getYOnScreen();
+                PanelRightTab.refreshTab();
             }
         });
     }
 
-    static void addAllListenersToTab(PaneRightTab tab) {
+    static void addAllListenersToTab(PanelRightTab tab) {
         ListenersPanelRightTab.addPanelListeners(tab);
         for (Component component :
                 tab.getComponents()) {

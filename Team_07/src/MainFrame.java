@@ -12,7 +12,7 @@ import java.awt.*;
 public class MainFrame extends JFrame {
     final ToolbarTop toolbarTop = new ToolbarTop();
     final PanelLeft panelLeft = new PanelLeft();
-    final static PaneRight PANE_RIGHT = new PaneRight();
+    final static PanelRight PANEL_RIGHT = new PanelRight();
     static MainFrame mainFrame = new MainFrame();
     final MenuBar menuBar = new MenuBar();
 
@@ -32,7 +32,7 @@ public class MainFrame extends JFrame {
         mainPanel.setLayout(new BorderLayout(0, 0));
         mainPanel.add(toolbarTop, BorderLayout.NORTH);
         mainPanel.add(panelLeft, BorderLayout.WEST);
-        mainPanel.add(PANE_RIGHT, BorderLayout.CENTER);
+        mainPanel.add(PANEL_RIGHT, BorderLayout.CENTER);
         mainPanel.setBackground(Color.WHITE);
         scrollBarPane = new JScrollPane(mainPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         return scrollBarPane;

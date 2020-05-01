@@ -1,4 +1,4 @@
-package Controller;
+package Model;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -6,7 +6,7 @@ import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 /**
- * This class consists of Controller.TwoBars shape with two vertical bars.
+ * This class consists of Model.TwoBars shape with two vertical bars.
  *
  * @author Sandya Manoharan
  * @version 1.1
