@@ -1,10 +1,12 @@
+package Model;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 import java.io.Serializable;
 
 /**
- * This class consists of TwoBars shape with two vertical bars.
+ * This class consists of Model.TwoBars shape with two vertical bars.
  *
  * @author Sandya Manoharan
  * @version 1.1

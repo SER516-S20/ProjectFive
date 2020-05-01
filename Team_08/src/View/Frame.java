@@ -1,19 +1,17 @@
-import com.sun.jmx.snmp.SnmpStatusException;
+package View;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.*;
 import java.util.List;
-
+import Model.Button;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * This class creates a Frame and adds two JPanels to the frame.
+ * This class creates a View.Frame and adds two JPanels to the frame.
  *
  * @author Kartik Mathpal
  * @version 1.0
@@ -81,7 +79,7 @@ public class MyChange implements ChangeListener{
         JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
         int index = sourceTabbedPane.getSelectedIndex();
         System.out.println("Tab changed to: " + sourceTabbedPane.getTitleAt(index));
-        //rightPanel = (RightPanel) panelList.get(index);
+        //rightPanel = (View.RightPanel) panelList.get(index);
         //rightPanel.updateUI();
         //rightPanel.repaint();
         //tabbedPane.setSelectedComponent((JTabbedPane)sourceTabbedPane.getSelectedComponent());

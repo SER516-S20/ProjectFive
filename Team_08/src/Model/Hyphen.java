@@ -1,3 +1,5 @@
+package Model;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
@@ -5,7 +7,7 @@ import java.io.Serializable;
 import java.awt.*;
 
 /**
- * This class consists of Hyphen shape with one input and one output dots.
+ * This class consists of Model.Hyphen shape with one input and one output dots.
  *
  * @author Sandya Manoharan
  * @version 1.1

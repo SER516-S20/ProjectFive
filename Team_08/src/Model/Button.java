@@ -1,3 +1,10 @@
+package Model;
+
+import Controller.LeftPanelMouseListener;
+import View.Frame;
+import View.LeftPanel;
+import View.RightPanel;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -9,10 +16,9 @@ import java.awt.*;
  */
 
 public class Button {
-    Frame frame;
     public void addButtonsToLeftPanel(LeftPanel panel) {
 
-        //Adds Pound
+        //Adds Model.Pound
         JButton poundButton = new JButton("#",new ImageIcon(""));
         poundButton.setPreferredSize(new Dimension(200, 100));
         poundButton.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -20,7 +26,7 @@ public class Button {
         poundButton.addActionListener(e -> {
             poundButton.setName("poundButton");
             //createTab();
-            //poundButton.addActionListener(new Frame.MyAction());
+            //poundButton.addActionListener(new View.Frame.MyAction());
             resetButtonClicked(poundButton);
 
         });

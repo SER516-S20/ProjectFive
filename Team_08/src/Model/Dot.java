@@ -1,3 +1,9 @@
+package Model;
+
+import Controller.CompileFile;
+import View.Frame;
+import View.RightPanel;
+
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,7 +16,7 @@ import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 /**
- * This class consists of Dot
+ * This class consists of Model.Dot
  *
  * @author Amudhan Manisekaran
  * @version 1.0
@@ -25,7 +31,7 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
     private int sourceY;
     private boolean firstDotClicked = false;
     private Shapes firstShape;
-    protected static boolean isBarClicked = false, isDotClicked = false;
+    public static boolean isBarClicked = false, isDotClicked = false;
     CompileFile compileFile = new CompileFile();
 
     public Dot(double x, double y) {
@@ -366,29 +372,29 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
 
     public void updateHashMap(Shapes firstShape, Shapes secondShape) {
         //Makes note of the shapes connected to one another
-        if (firstShape.toString().contains("OpenBracket"))
+        if (firstShape.toString().contains("Model.OpenBracket"))
             compileFile.push('(', 1);
-        if (firstShape.toString().contains("LessThan"))
+        if (firstShape.toString().contains("Model.LessThan"))
             compileFile.push('<', 1);
-        if (firstShape.toString().contains("CloseBracket"))
+        if (firstShape.toString().contains("Model.CloseBracket"))
             compileFile.push(')', 1);
-        if (firstShape.toString().contains("GreaterThan"))
+        if (firstShape.toString().contains("Model.GreaterThan"))
             compileFile.push('>', 1);
-        if (secondShape.toString().contains("CloseBracket"))
+        if (secondShape.toString().contains("Model.CloseBracket"))
             compileFile.push(')', 1);
-        if (secondShape.toString().contains("GreaterThan"))
+        if (secondShape.toString().contains("Model.GreaterThan"))
             compileFile.push('>', 1);
-        if (secondShape.toString().contains("OpenBracket"))
+        if (secondShape.toString().contains("Model.OpenBracket"))
             compileFile.push('(', 1);
-        if (secondShape.toString().contains("LessThan"))
+        if (secondShape.toString().contains("Model.LessThan"))
             compileFile.push('<', 1);
-        if (firstShape.toString().contains("TwoBars"))
+        if (firstShape.toString().contains("Model.TwoBars"))
             compileFile.push('|', 1);
-        if (secondShape.toString().contains("TwoBars"))
+        if (secondShape.toString().contains("Model.TwoBars"))
             compileFile.push('|', 1);
-        if (firstShape.toString().contains("AtTheRate"))
+        if (firstShape.toString().contains("Model.AtTheRate"))
             compileFile.push('@', 1);
-        if (secondShape.toString().contains("AtTheRate"))
+        if (secondShape.toString().contains("Model.AtTheRate"))
             compileFile.push('@', 1);
 
     }

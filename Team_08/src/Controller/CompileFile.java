@@ -1,6 +1,8 @@
+package Controller;
 
 
-
+import View.RightPanel;
+import Model.*;
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
@@ -47,7 +49,7 @@ public class CompileFile extends JMenuItem implements ActionListener {
     public void compileCanvas() {
 
         if (null == charMap || charMap.isEmpty()) {
-            infoBox("No Controller.Shapes On Canvas", "Failed Case");
+            infoBox("No Controller.Model.Shapes On Canvas", "Failed Case");
             return;
         }
 

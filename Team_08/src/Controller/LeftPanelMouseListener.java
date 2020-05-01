@@ -1,3 +1,8 @@
+package Controller;
+
+import Model.*;
+import View.*;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 

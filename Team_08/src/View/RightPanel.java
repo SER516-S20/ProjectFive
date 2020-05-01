@@ -1,12 +1,13 @@
+package View;
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-
+import Model.*;
+import Controller.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.geom.Line2D;
 
 import java.util.ArrayList;
@@ -127,10 +128,6 @@ public class RightPanel extends JPanel {
 			Graphics2D g2 = (Graphics2D) graphics;
 			g2.draw(shape);
 		}
-	}
-
-	public void storeConnections(){
-
 	}
 
 }

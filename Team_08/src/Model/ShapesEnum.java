@@ -1,3 +1,5 @@
+package Model;
+
 /**
  * This class consists of constants for the shapes.
  *

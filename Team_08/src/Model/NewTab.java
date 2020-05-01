@@ -1,3 +1,7 @@
+package Model;
+
+import View.RightPanel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

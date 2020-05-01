@@ -1,8 +1,14 @@
+package Controller;
+
+import View.Frame;
+import View.RightPanel;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
+import Model.*;
 
 /**
  * Adding mouse listeners for providing mouse click functionality
@@ -14,7 +20,7 @@ import java.util.List;
 public class RightPanelMouseListener implements MouseListener, MouseMotionListener {
 
     private Shapes selectedShape;
-    private static List<Line> linesList = new ArrayList<>();
+    private List<Line> linesList = new ArrayList<>();
     private TextBox textBox = new TextBox();
 
     @Override
@@ -118,7 +124,6 @@ public class RightPanelMouseListener implements MouseListener, MouseMotionListen
     @Override
     public void mouseReleased(MouseEvent e) {
         selectedShape = null;
-        //linesList.remove(0);
         linesList.clear();
     }
 

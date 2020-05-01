@@ -1,3 +1,5 @@
+package Model;
+
 /**
  * This class defines the line drawn between any two shapes.
  *
