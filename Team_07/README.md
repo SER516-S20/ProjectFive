@@ -11,6 +11,7 @@ $ cd Team_07/src ; javac MainFrame.java ; java MainFrame
 - Performance Improvements
 - Native System Look
 - Scroll-bars for the right panel
+- New "#" Hash operator (to create new tabs)
 
 ### Contributors
 - Aditya Bajaj
