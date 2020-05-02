@@ -1,9 +1,12 @@
 # Team 07
 
-## How to run
+## How to run?
 ```sh
 $ cd Team_07/src ; javac MainFrame.java ; java MainFrame
 ```
+
+## Changelog
+- Right-Click the connection to delete connection.
 
 ### Contributors
 - Aditya Bajaj
