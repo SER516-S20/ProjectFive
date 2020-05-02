@@ -20,13 +20,14 @@ public class RightPanelDataProcessor extends Observable {
 	private List<Dot> barCenterList;
 	private boolean lineStartPointSelected = false;
 	private Dot lineStartPoint;
-	public static List<Observer> observers = new ArrayList<Observer>();
+	public List<Observer> observers = new ArrayList<Observer>();
 
-	public RightPanelDataProcessor() {
+	public RightPanelDataProcessor(RightPanel rp) {
 		this.iconMap = new HashMap<String, List<Icon>>();
 		this.dotList = new ArrayList<Dot>();
 		this.setLineList(new ArrayList<Line>());
 		this.setBarCenterList(new ArrayList<Dot>());
+		observers.add(rp);
 		addObs();
 	}
 
@@ -503,8 +504,8 @@ public class RightPanelDataProcessor extends Observable {
 	}
 
 	private void addObs() {
-		System.out.println(RightPanelDataProcessor.observers.size());
-		for (Observer each : RightPanelDataProcessor.observers) {
+		System.out.println("Obs size" +this.observers.size());
+		for (Observer each : this.observers) {
 			this.addObserver(each);
 		}
 	}

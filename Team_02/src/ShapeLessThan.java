@@ -88,4 +88,9 @@ public class ShapeLessThan extends Icon{
 	public static void setSymbol(String text) {
 		ShapeLessThan.symbol = text;
 	}
+	
+	@Override
+	public String getTraslateSymbol() {
+		return symbol;
+	}
 }

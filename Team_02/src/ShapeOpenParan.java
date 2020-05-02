@@ -64,4 +64,9 @@ public class ShapeOpenParan extends Icon{
 	public static void setSymbol(String text) {
 		ShapeOpenParan.symbol = text;
 	}
+	
+	@Override
+	public String getTraslateSymbol() {
+		return symbol;
+	}
 }

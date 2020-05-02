@@ -142,7 +142,7 @@ public class Menu implements ActionListener {
 			MainWindow.CloseApplication();	
 		}
 		else if (e.getSource() == newTab) {
-			MainWindow.obj.AddPanel();
+			new NewTab("button");
 		}
 		else if (e.getSource() == compile) {
 

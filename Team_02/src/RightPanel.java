@@ -57,6 +57,10 @@ public class RightPanel extends JPanel implements Observer {
 		localStoreLine = (ArrayList<Line>) ((ArrayList<Line>) (objProcessor.getLineList())).clone();
 		repaint();
 	}
+	
+	public void customRepaint() {
+		repaint();
+	}
 
 	public void paint(Graphics objGraphics) {
 		super.paintComponent(objGraphics);

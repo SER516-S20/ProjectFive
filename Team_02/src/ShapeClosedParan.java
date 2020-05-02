@@ -60,4 +60,9 @@ public class ShapeClosedParan extends Icon{
 	public static void setSymbol(String text) {
 		ShapeClosedParan.symbol = text;
 	}
+	
+	@Override
+	public String getTraslateSymbol() {
+		return symbol;
+	}
 }
