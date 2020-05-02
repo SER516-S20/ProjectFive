@@ -84,7 +84,7 @@ public class Frame extends JFrame {
             Button button = new Button();
 
             button.addButtonsToTopPanel(topPanel);
-            topPanel.setBounds(screenSize.width / 8, 0, 4 * screenSize.width / 4, screenSize.height/8);
+            topPanel.setBounds(screenSize.width / 6, 0, 4 * screenSize.width / 5, screenSize.height/8);
             topPanel.setVisible(true);
             this.add(topPanel);
 
