@@ -23,7 +23,8 @@ import javax.swing.event.ChangeListener;
 public class Frame extends JFrame {
     private static final long serialVersionUID = 1L;
     public  static RightPanel rightPanel;
-    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private Dimension screenSize = new Dimension(1800, 1000);
+//    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static JTabbedPane tabbedPane;
     static List<RightPanel> panelList = new ArrayList<>();
     static List<JTabbedPane> tabList = new ArrayList<>();
@@ -37,6 +38,7 @@ public class Frame extends JFrame {
     public Frame() {
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setLayout(null);
+        System.out.println(screenSize);
         String TITLE = "Project 5 - Team 8";
         setTitle(TITLE);
         setBackground(Color.BLACK);
@@ -153,15 +155,15 @@ public class MyChange implements ChangeListener{
 
     public static void main(String[] args) {
         Frame frame = new Frame();
-        frame.setLayout(new BorderLayout( ));
+//        frame.setLayout(new BorderLayout( ));
         frame.createLeftPanel();
         frame.createTopPanel();
         frame.createRightpanel();
         frame.createMenu();
-        JScrollBar hbar=new JScrollBar(JScrollBar.HORIZONTAL, 30, 20, 0, 500);
-        JScrollBar vbar=new JScrollBar(JScrollBar.VERTICAL, 30, 40, 0, 500);
-        frame.getContentPane().add(hbar, BorderLayout.SOUTH);
-        frame.getContentPane().add(vbar, BorderLayout.EAST);
+//        JScrollBar hbar=new JScrollBar(JScrollBar.HORIZONTAL, 30, 20, 0, 500);
+//        JScrollBar vbar=new JScrollBar(JScrollBar.VERTICAL, 30, 40, 0, 500);
+//        frame.getContentPane().add(hbar, BorderLayout.SOUTH);
+//        frame.getContentPane().add(vbar, BorderLayout.EAST);
         frame.setVisible(true);
 
 
