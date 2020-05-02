@@ -29,6 +29,7 @@ public class RightPanel extends JPanel implements Observer {
 	private HashMap<String, List<Icon>> iconLocalMap;
 	private ArrayList<Line> localStoreLine;
 	private static final Polygon ARROW_HEAD = new Polygon();
+	public RightPanelMouseListener panelMouseListener ;
 	static {
 		ARROW_HEAD.addPoint(0, 0);
 		ARROW_HEAD.addPoint(-5, -10);
@@ -39,7 +40,8 @@ public class RightPanel extends JPanel implements Observer {
 		iconLocalMap = new HashMap<String, List<Icon>>();
 		localStoreLine = new ArrayList<Line>();
 		try {
-			add(new RightPanelMouseListener(this));
+			panelMouseListener = new RightPanelMouseListener(this);
+			add(panelMouseListener);
 			setVisible(true);
 			Border blackline = BorderFactory.createLineBorder(Color.black);
 			setBorder(blackline);
@@ -55,6 +57,10 @@ public class RightPanel extends JPanel implements Observer {
 		RightPanelDataProcessor objProcessor = (RightPanelDataProcessor) arg;
 		iconLocalMap = (HashMap<String, List<Icon>>) objProcessor.getIconMap().clone();
 		localStoreLine = (ArrayList<Line>) ((ArrayList<Line>) (objProcessor.getLineList())).clone();
+		repaint();
+	}
+	
+	public void customRepaint() {
 		repaint();
 	}
 

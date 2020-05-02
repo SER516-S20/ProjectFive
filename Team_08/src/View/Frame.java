@@ -5,10 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
+import Model.*;
 import Model.Button;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+
 
 /**
  * This class creates a View.Frame and adds two JPanels to the frame.
@@ -19,12 +23,14 @@ import javax.swing.event.ChangeListener;
 public class Frame extends JFrame {
     private static final long serialVersionUID = 1L;
     public  static RightPanel rightPanel;
-    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private Dimension screenSize = new Dimension(1800, 1000);
+//    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static JTabbedPane tabbedPane;
     static List<RightPanel> panelList = new ArrayList<>();
     static List<JTabbedPane> tabList = new ArrayList<>();
     static Map<JTabbedPane,RightPanel> map = new HashMap<>();
     public JButton button ;
+
 
     static int tabCount=0;
     JTabbedPane tab;
@@ -32,12 +38,27 @@ public class Frame extends JFrame {
     public Frame() {
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setLayout(null);
-        String TITLE = "Project 4 - Team 8";
+        System.out.println(screenSize);
+        String TITLE = "Project 5 - Team 8";
         setTitle(TITLE);
         setBackground(Color.BLACK);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    public void createTopPanel() {
+        try {
+            TopPanel topPanel = new TopPanel();
+            Button button = new Button();
+
+            button.addButtonsToTopPanel(topPanel);
+            topPanel.setBounds(screenSize.width / 6, 0, 4 * screenSize.width / 5, screenSize.height/8);
+            topPanel.setVisible(true);
+            this.add(topPanel);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     private void createLeftPanel() {
         try {
             LeftPanel leftPanel = new LeftPanel();
@@ -52,11 +73,10 @@ public class Frame extends JFrame {
             e.printStackTrace();
         }
     }
-
     public void createRightpanel() {
         try {
             tabbedPane = new JTabbedPane();
-            tabbedPane.setBounds(screenSize.width / 6, 0, 4 * screenSize.width / 4, screenSize.height);
+            tabbedPane.setBounds(screenSize.width / 6, screenSize.height/8, 4 * screenSize.width / 5, screenSize.height);
             tabbedPane.setVisible(true);
             rightPanel = new RightPanel();
             tabbedPane.add("Home Tab", rightPanel);//-----------
@@ -72,6 +92,10 @@ public class Frame extends JFrame {
             e.printStackTrace();
         }
     }
+
+
+
+
 public class MyChange implements ChangeListener{
 
     @Override
@@ -131,9 +155,15 @@ public class MyChange implements ChangeListener{
 
     public static void main(String[] args) {
         Frame frame = new Frame();
+//        frame.setLayout(new BorderLayout( ));
         frame.createLeftPanel();
+        frame.createTopPanel();
         frame.createRightpanel();
         frame.createMenu();
+//        JScrollBar hbar=new JScrollBar(JScrollBar.HORIZONTAL, 30, 20, 0, 500);
+//        JScrollBar vbar=new JScrollBar(JScrollBar.VERTICAL, 30, 40, 0, 500);
+//        frame.getContentPane().add(hbar, BorderLayout.SOUTH);
+//        frame.getContentPane().add(vbar, BorderLayout.EAST);
         frame.setVisible(true);
 
     }

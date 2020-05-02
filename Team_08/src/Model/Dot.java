@@ -246,6 +246,14 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
                 hyphen.setLineDrawnDot2(true);
             }
         }
+        else if (shape instanceof Pound) {
+            Pound pound = (Pound) shape;
+            if (pound.getDot1().containsPoint(x, y)) {
+                pound.setLineDrawnDot1(true);
+            } else if (pound.getDot2().containsPoint(x, y)) {
+                pound.setLineDrawnDot2(true);
+            }
+        }
     }
 
     public boolean getIsLineDrawn(Shapes shape, int x, int y) {
@@ -292,6 +300,14 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
                 return !hyphen.isLineDrawnDot2();
             }
         }
+        else if (shape instanceof Pound) {
+            Pound pound = (Pound) shape;
+            if (pound.getDot1().containsPoint(x, y)) {
+                return !pound.isLineDrawnDot1();
+            } else if (pound.getDot2().containsPoint(x, y)) {
+                return !pound.isLineDrawnDot2();
+            }
+        }
         return true;
     }
 
@@ -323,6 +339,10 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
                     break;
                 } else if (sh instanceof Hyphen && (((Hyphen) sh).getDot1().containsPoint(e.getX(), e.getY())
                         || ((Hyphen) sh).getDot2().containsPoint(e.getX(), e.getY()))) {
+                    isDotClicked = true;
+                    break;
+                } else if (sh instanceof Pound && (((Pound) sh).getDot1().containsPoint(e.getX(), e.getY())
+                        || ((Pound) sh).getDot2().containsPoint(e.getX(), e.getY()))) {
                     isDotClicked = true;
                     break;
                 } else if (sh instanceof TwoBars && (((TwoBars) sh).getLeftBar().containsPoint(e.getX(), e.getY())

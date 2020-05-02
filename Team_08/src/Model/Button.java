@@ -4,6 +4,7 @@ import Controller.LeftPanelMouseListener;
 import View.Frame;
 import View.LeftPanel;
 import View.RightPanel;
+import View.TopPanel;
 
 import javax.swing.*;
 
@@ -18,10 +19,72 @@ import java.awt.*;
 public class Button {
     public void addButtonsToLeftPanel(LeftPanel panel) {
 
-        //Adds Model.Pound
-        JButton poundButton = new JButton("#",new ImageIcon(""));
+       JButton openButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/openbracket1.jpg"));
+        openButton.setPreferredSize(new Dimension(200, 100));
+        openButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        openButton.addActionListener(e -> {
+            openButton.setName("openButton");
+            resetButtonClicked(openButton);
+        });
+        panel.add(openButton);
+
+        JButton closeButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/closebracket1.jpg"));
+        closeButton.setPreferredSize(new Dimension(200, 100));
+        closeButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        closeButton.addActionListener(e -> {
+            closeButton.setName("closeButton");
+            resetButtonClicked(closeButton);
+        });
+        panel.add(closeButton);
+
+        JButton lessThanButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/lessthan1.jpg"));
+        lessThanButton.setPreferredSize(new Dimension(200, 100));
+        lessThanButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        lessThanButton.addActionListener(e -> {
+            lessThanButton.setName("lessThanButton");
+            resetButtonClicked(lessThanButton);
+        });
+        panel.add(lessThanButton);
+
+        JButton greaterThanButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/greaterthan1.jpg"));
+        greaterThanButton.setPreferredSize(new Dimension(200, 100));
+        greaterThanButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        greaterThanButton.addActionListener(e -> {
+            greaterThanButton.setName("greaterThanButton");
+            resetButtonClicked(greaterThanButton);
+        });
+        panel.add(greaterThanButton);
+
+        JButton atTheRateButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/attherate1.jpg"));
+        atTheRateButton.setPreferredSize(new Dimension(200, 100));
+        atTheRateButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        atTheRateButton.addActionListener(e -> {
+            atTheRateButton.setName("atTheRateButton");
+            resetButtonClicked(atTheRateButton);
+        });
+        panel.add(atTheRateButton);
+
+        JButton twoBarButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/twobars1.jpg"));
+        twoBarButton.setPreferredSize(new Dimension(200, 100));
+        twoBarButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        twoBarButton.addActionListener(e -> {
+            twoBarButton.setName("twoBarButton");
+            resetButtonClicked(twoBarButton);
+        });
+        panel.add(twoBarButton);
+
+        JButton hyphenButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/hyphen1.jpg"));
+        hyphenButton.setPreferredSize(new Dimension(200, 100));
+        hyphenButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        hyphenButton.addActionListener(e -> {
+            hyphenButton.setName("hyphenButton");
+            resetButtonClicked(hyphenButton);
+        });
+        panel.add(hyphenButton);
+
+        JButton poundButton = new JButton("#", new ImageIcon("Team_08/src/ImageFiles/pound1.jpg"));
         poundButton.setPreferredSize(new Dimension(200, 100));
-        poundButton.setFont(new Font("Arial", Font.PLAIN, 30));
+//        poundButton.setFont(new Font("Arial", Font.PLAIN, 30));
         poundButton.addActionListener(new Frame.MyAction());
         poundButton.addActionListener(e -> {
             poundButton.setName("poundButton");
@@ -33,8 +96,12 @@ public class Button {
 
         panel.add(poundButton);
 
-        JButton openButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/openbracket.jpg"));
-        openButton.setPreferredSize(new Dimension(200, 100));
+    }
+
+    public void addButtonsToTopPanel(TopPanel panel) {
+
+        JButton openButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/openbracket2.jpg"));
+        openButton.setPreferredSize(new Dimension(150, 75));
         openButton.setFont(new Font("Arial", Font.PLAIN, 30));
         openButton.addActionListener(e -> {
             openButton.setName("openButton");
@@ -42,8 +109,8 @@ public class Button {
         });
         panel.add(openButton);
 
-        JButton closeButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/closebracket.jpg"));
-        closeButton.setPreferredSize(new Dimension(200, 100));
+        JButton closeButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/closebracket2.jpg"));
+        closeButton.setPreferredSize(new Dimension(150, 75));
         closeButton.setFont(new Font("Arial", Font.PLAIN, 30));
         closeButton.addActionListener(e -> {
             closeButton.setName("closeButton");
@@ -51,8 +118,8 @@ public class Button {
         });
         panel.add(closeButton);
 
-        JButton lessThanButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/lessthan.jpg"));
-        lessThanButton.setPreferredSize(new Dimension(200, 100));
+        JButton lessThanButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/lessthan2.jpg"));
+        lessThanButton.setPreferredSize(new Dimension(150, 75));
         lessThanButton.setFont(new Font("Arial", Font.PLAIN, 30));
         lessThanButton.addActionListener(e -> {
             lessThanButton.setName("lessThanButton");
@@ -60,8 +127,8 @@ public class Button {
         });
         panel.add(lessThanButton);
 
-        JButton greaterThanButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/greaterthan.jpg"));
-        greaterThanButton.setPreferredSize(new Dimension(200, 100));
+        JButton greaterThanButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/greaterthan2.jpg"));
+        greaterThanButton.setPreferredSize(new Dimension(150, 75));
         greaterThanButton.setFont(new Font("Arial", Font.PLAIN, 30));
         greaterThanButton.addActionListener(e -> {
             greaterThanButton.setName("greaterThanButton");
@@ -69,8 +136,8 @@ public class Button {
         });
         panel.add(greaterThanButton);
 
-        JButton atTheRateButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/attherate.jpg"));
-        atTheRateButton.setPreferredSize(new Dimension(200, 100));
+        JButton atTheRateButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/attherate2.jpg"));
+        atTheRateButton.setPreferredSize(new Dimension(150, 75));
         atTheRateButton.setFont(new Font("Arial", Font.PLAIN, 30));
         atTheRateButton.addActionListener(e -> {
             atTheRateButton.setName("atTheRateButton");
@@ -78,8 +145,8 @@ public class Button {
         });
         panel.add(atTheRateButton);
 
-        JButton twoBarButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/twobars.jpg"));
-        twoBarButton.setPreferredSize(new Dimension(200, 100));
+        JButton twoBarButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/twobars2.jpg"));
+        twoBarButton.setPreferredSize(new Dimension(150, 75));
         twoBarButton.setFont(new Font("Arial", Font.PLAIN, 30));
         twoBarButton.addActionListener(e -> {
             twoBarButton.setName("twoBarButton");
@@ -87,14 +154,28 @@ public class Button {
         });
         panel.add(twoBarButton);
 
-        JButton hyphenButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/hyphen.jpg"));
-        hyphenButton.setPreferredSize(new Dimension(200, 100));
+        JButton hyphenButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/hyphen2.jpg"));
+        hyphenButton.setPreferredSize(new Dimension(150, 75));
         hyphenButton.setFont(new Font("Arial", Font.PLAIN, 30));
         hyphenButton.addActionListener(e -> {
             hyphenButton.setName("hyphenButton");
             resetButtonClicked(hyphenButton);
         });
         panel.add(hyphenButton);
+
+        JButton poundButton = new JButton("#", new ImageIcon("Team_08/src/ImageFiles/pound2.jpg"));
+        poundButton.setPreferredSize(new Dimension(150, 75));
+//        poundButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        poundButton.addActionListener(new Frame.MyAction());
+        poundButton.addActionListener(e -> {
+            poundButton.setName("poundButton");
+            //createTab();
+            //poundButton.addActionListener(new View.Frame.MyAction());
+            resetButtonClicked(poundButton);
+
+        });
+
+        panel.add(poundButton);
 
     }
 

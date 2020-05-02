@@ -71,8 +71,4 @@ public class MenuBar extends JMenuBar {
 		this.add(Pmenu);
 
 	}
-
-
-
-
 }
