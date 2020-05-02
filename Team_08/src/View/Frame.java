@@ -136,9 +136,6 @@ public class MyChange implements ChangeListener{
         frame.createMenu();
         frame.setVisible(true);
 
-
-
-
     }
 
 }

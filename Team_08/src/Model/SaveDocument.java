@@ -2,10 +2,10 @@ package Model;
 
 import View.RightPanel;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFileChooser;
-import javax.swing.JMenuItem;
+import javax.swing.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,6 +30,8 @@ public class SaveDocument extends JMenuItem implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        JFrame frame = new JFrame("Loading/Saving Example");
+        Container content = frame.getContentPane();
         FileOutputStream fileOut = null;
         ObjectOutputStream out = null;
         

@@ -26,11 +26,11 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
 
     private static final long serialVersionUID = 1L;
     private double x, y;
-    private Shape square = null;
+    public Shape square = null;
     private int sourceX;
     private int sourceY;
     private boolean firstDotClicked = false;
-    private Shapes firstShape;
+    public Shapes firstShape;
     public static boolean isBarClicked = false, isDotClicked = false;
     CompileFile compileFile = new CompileFile();
 
@@ -119,6 +119,7 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
             RightPanel.setSelected(true);
 
         } else if (RightPanel.isSelected() && isDotClicked) {
+
             if (!RightPanel.getOriginShape().containsPoint(e.getX(), e.getY())) {
                 for (Shapes shape : RightPanel.getRightPanelShapes()) {
                     if (shape.containsPoint(e.getX(), e.getY()) && getIsLineDrawn(shape, e.getX(), e.getY())
@@ -247,7 +248,7 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
         }
     }
 
-    private boolean getIsLineDrawn(Shapes shape, int x, int y) {
+    public boolean getIsLineDrawn(Shapes shape, int x, int y) {
         if (shape instanceof OpenBracket) {
             OpenBracket openbracket = (OpenBracket) shape;
             return !openbracket.isLineDrawn();
@@ -399,4 +400,7 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
 
     }
 
+    public Shape getSquare() {
+        return square;
+    }
 }
