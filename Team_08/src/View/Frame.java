@@ -12,6 +12,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+
+
 /**
  * This class creates a View.Frame and adds two JPanels to the frame.
  *
@@ -27,6 +29,7 @@ public class Frame extends JFrame {
     static List<JTabbedPane> tabList = new ArrayList<>();
     static Map<JTabbedPane,RightPanel> map = new HashMap<>();
     public JButton button ;
+
 
     static int tabCount=0;
     JTabbedPane tab;
@@ -58,7 +61,7 @@ public class Frame extends JFrame {
     public void createRightpanel() {
         try {
             tabbedPane = new JTabbedPane();
-            tabbedPane.setBounds(screenSize.width / 6, 0, 4 * screenSize.width / 4, screenSize.height);
+            tabbedPane.setBounds(screenSize.width / 6, screenSize.height/8, 4 * screenSize.width / 5, screenSize.height);
             tabbedPane.setVisible(true);
             rightPanel = new RightPanel();
             tabbedPane.add("Home Tab", rightPanel);//-----------
@@ -74,6 +77,22 @@ public class Frame extends JFrame {
             e.printStackTrace();
         }
     }
+
+    public void createTopPanel() {
+        try {
+            TopPanel topPanel = new TopPanel();
+            Button button = new Button();
+
+            button.addButtonsToTopPanel(topPanel);
+            topPanel.setBounds(screenSize.width / 8, 0, 4 * screenSize.width / 4, screenSize.height/8);
+            topPanel.setVisible(true);
+            this.add(topPanel);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 public class MyChange implements ChangeListener{
 
     @Override
@@ -134,8 +153,10 @@ public class MyChange implements ChangeListener{
     public static void main(String[] args) {
         Frame frame = new Frame();
         frame.createLeftPanel();
+        frame.createTopPanel();
         frame.createRightpanel();
         frame.createMenu();
+//        frame.createToolBar();
         frame.setVisible(true);
 
 
