@@ -17,6 +17,7 @@ public class ShapeAtTheRate extends Icon{
 	private static String symbol = "@";
 	private Dot leftUpperDot,leftLowerDot;
 	private Dot rightUpperDot, rightLowerDot;
+	
 
 	public ShapeAtTheRate(int x, int y) {
 		this.setCenterX(x);
@@ -97,5 +98,10 @@ public class ShapeAtTheRate extends Icon{
 
 	public static void setSymbol(String text) {
 		ShapeAtTheRate.symbol = text;
+	}
+	
+	@Override
+	public String getTraslateSymbol() {
+		return symbol;
 	}
 }

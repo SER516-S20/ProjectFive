@@ -96,5 +96,10 @@ public class ShapeBar extends Icon{
 	public static void setSymbol(String text) {
 		ShapeBar.symbol = text;
 	}
+	
+	@Override
+	public String getTraslateSymbol() {
+		return symbol;
+	}
 
 }

@@ -1,4 +1,4 @@
-package Controller;
+package Model;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 /**
  * This class consists of Vertical bars that are given as
- * input and output to the Controller.TwoBars shape.
+ * input and output to the Model.TwoBars shape.
  * @author Amudhan Manisekaran
  * @version 1.1
  */

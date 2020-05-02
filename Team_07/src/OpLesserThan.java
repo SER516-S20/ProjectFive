@@ -8,7 +8,7 @@ import java.awt.*;
  * @since March 13, 2020
  */
 public class OpLesserThan extends Op {
-    final Color GREEN = new Color(52, 199, 89);
+    static Color GREEN = new Color(52,199,89);
 
     OpLesserThan() {
         super();

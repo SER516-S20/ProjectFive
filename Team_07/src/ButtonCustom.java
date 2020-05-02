@@ -10,7 +10,7 @@ import java.awt.event.MouseListener;
  * @since March 10, 2020
  */
 public class ButtonCustom extends JPanel {
-
+    static final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
 
     Color buttonColor;
     final MouseListener BUTTON_CLICK_LISTENERS = new MouseListener() {
@@ -30,12 +30,12 @@ public class ButtonCustom extends JPanel {
 
         @Override
         public void mouseEntered(MouseEvent mouseEvent) {
-            setCursor(Database.HAND_CURSOR);
+            setCursor(HAND_CURSOR);
         }
 
         @Override
         public void mouseExited(MouseEvent mouseEvent) {
-            setCursor(Database.HAND_CURSOR);
+            setCursor(HAND_CURSOR);
         }
     };
     JLabel buttonLabel;

@@ -15,6 +15,9 @@ public class Icon extends JPanel{
 	private int width = 200;
 	private int dotSize = 6;
 	private int dotMargin = 10;
+	public static String symbol;
+	
+	public String translateSymbol;
 
 	Icon() {  }
 
@@ -84,5 +87,13 @@ public class Icon extends JPanel{
 
 	public void setText(String text) {
 		this.text = text;
+	}
+	
+	public static String getSymbol() {
+		return symbol;
+	}
+	
+	public String getTraslateSymbol() {
+		return translateSymbol;
 	}
 }

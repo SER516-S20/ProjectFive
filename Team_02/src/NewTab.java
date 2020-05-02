@@ -38,7 +38,10 @@ public class NewTab extends JPanel implements ChangeListener{
 
 		try {
 			tabbedPane = new JTabbedPane();
-			tabbedPane.setBounds(170,100,1200,600); 
+
+			// tabbedPane.setLocation(0, 300);
+			// tabbedPane.setSize(400,400);
+			tabbedPane.setBounds(170,100,1200,700); 
 			tabbedPane.addTab("Tab1", makePanel("This is tab 1"));
 			MainWindow.frame.getContentPane().add(tabbedPane);
 		}

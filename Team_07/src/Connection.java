@@ -7,9 +7,9 @@
 public class Connection {
 
     Connection(Connector src, Connector dest) {
-        PaneRightTab paneRightTab = Database.selectedTab;
-        paneRightTab.src.add(src);
-        paneRightTab.dest.add(dest);
+        PanelRightTab panelRightTab = Database.selectedTab;
+        panelRightTab.src.add(src);
+        panelRightTab.dest.add(dest);
     }
 
     /**

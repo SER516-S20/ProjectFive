@@ -1,15 +1,21 @@
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.util.HashMap;
 
 /**
  * Listeners for the InputPopup
  *
+ * @author Aditya Bajaj
  * @author Karandeep Singh Grewal
- * @since March 11, 2020
+ * @since April 30, 2020
  */
 public class ListenersInputPopup {
+
+    public static HashMap< PanelRightTab,String> mapTab = new HashMap<>();
+
     static void addCancelButtonListeners(ButtonCustom buttonCustom, InputPopup popup) {
         buttonCustom.addMouseListener(new MouseListener() {
             @Override
@@ -59,6 +65,8 @@ public class ListenersInputPopup {
             public void mouseClicked(MouseEvent mouseEvent) {
                 popup.op.setValue(popup.name.getText());
                 popup.dispose();
+                setTabTitle(ListenersPanelRightTab.mapOP.get(popup.op), popup.name.getText());
+                mapTab.replace(ListenersPanelRightTab.mapOP.get(popup.op),popup.name.getText());
             }
 
             @Override
@@ -80,5 +88,16 @@ public class ListenersInputPopup {
             public void mouseExited(MouseEvent mouseEvent) {
             }
         });
+    }
+
+    public static void setTabTitle(JPanel tab, String title) {
+        JTabbedPane tabbedPane = (JTabbedPane) SwingUtilities.getAncestorOfClass(JTabbedPane.class, tab);
+
+        for (int tabIndex = 0; tabIndex < tabbedPane.getTabCount(); tabIndex++) {
+            if (SwingUtilities.isDescendingFrom(tab, tabbedPane.getComponentAt(tabIndex))) {
+                tabbedPane.setTitleAt(tabIndex, title);
+                break;
+            }
+        }
     }
 }

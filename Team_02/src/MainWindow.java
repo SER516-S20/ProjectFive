@@ -44,7 +44,7 @@ public class MainWindow {
 		frame.getContentPane().add(topToolBarToolKit);
 		
 		JToolBar leftToolBarToolKit = leftShapes.CreateLeftShapes();
-		leftToolBarToolKit.setBounds(10, 110,150, 900);
+		leftToolBarToolKit.setBounds(10, 110,150, 700);
 		leftToolBarToolKit.setBackground(Color.blue);
 		frame.getContentPane().add(leftToolBarToolKit);
 		

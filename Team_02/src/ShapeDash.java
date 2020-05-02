@@ -74,4 +74,9 @@ public class ShapeDash extends Icon{
 	public static void setSymbol(String text) {
 		ShapeDash.symbol = text;
 	}
+	
+	@Override
+	public String getTraslateSymbol() {
+		return symbol;
+	}
 }

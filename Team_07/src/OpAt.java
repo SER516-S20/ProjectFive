@@ -8,12 +8,12 @@ import java.awt.*;
  * @since March 13, 2020
  */
 public class OpAt extends Op {
-    final Color PINK = new Color(255, 45, 85);
+    static Color ORANGE = new Color(255, 149, 0);
 
     OpAt() {
         label = "@";
         opLabel.setText(label);
-        color = PINK;
+        color = ORANGE;
         packOperator();
         addToConnector("I", FactoryConnector.getOp("Dot", this));
         addToConnector("I", FactoryConnector.getOp("Dot", this));

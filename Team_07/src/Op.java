@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author Karandeep Singh Grewal
  * @since March 13, 2020
  */
-public class Op extends JPanel implements Serializable {
+public abstract class Op extends JPanel implements Serializable {
     public int ID;
     final Dimension opDimen = new Dimension(100, 50);
     final int vMargins = 5, borderThickness = 2, //vMargin - vertical margin for opLabel
@@ -22,7 +22,7 @@ public class Op extends JPanel implements Serializable {
     final JLabel opLabel;
     public String label;
     JPanel inputConnector, outputConnector;
-    private String value;
+    String value;
 
     Op() {
         setPreferredSize(opDimen);

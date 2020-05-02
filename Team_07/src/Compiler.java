@@ -10,7 +10,7 @@ import java.util.List;
  * @since March 15, 2020
  */
 public class Compiler {
-    PaneRightTab currentTab = Database.selectedTab;
+    PanelRightTab currentTab = Database.selectedTab;
 
     /**
      * Checks for the errors in the current tab
@@ -43,6 +43,8 @@ public class Compiler {
             return "No ')' operator";
         if (getTotalOp(")") > 1)
             return "There should only one ')' operator";
+        if (getTotalOp("<") != getTotalOp(">"))
+            return "Operators '<' and '>' should be equal in number";
         return "No Error";
     }
 
@@ -109,7 +111,7 @@ public class Compiler {
         for (int i = 0; i < src.size(); i++) {
             Op op1 = src.get(i).op;
             Op op2 = desc.get(i).op;
-            int minID = MainFrame.PANE_RIGHT.getSelectedIndex() == 0 ? 8 : 1;
+            int minID = MainFrame.PANEL_RIGHT.getSelectedIndex() == 0 ? 8 : 1;
             graph.addEdge(op1.ID - minID, op2.ID - minID);
         }
         return (graph.isCyclic());
