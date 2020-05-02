@@ -18,22 +18,7 @@ import java.awt.*;
 public class Button {
     public void addButtonsToLeftPanel(LeftPanel panel) {
 
-        //Adds Model.Pound
-        JButton poundButton = new JButton("#",new ImageIcon(""));
-        poundButton.setPreferredSize(new Dimension(200, 100));
-        poundButton.setFont(new Font("Arial", Font.PLAIN, 30));
-        poundButton.addActionListener(new Frame.MyAction());
-        poundButton.addActionListener(e -> {
-            poundButton.setName("poundButton");
-            //createTab();
-            //poundButton.addActionListener(new View.Frame.MyAction());
-            resetButtonClicked(poundButton);
-
-        });
-
-        panel.add(poundButton);
-
-        JButton openButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/openbracket.jpg"));
+       JButton openButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/openbracket.jpg"));
         openButton.setPreferredSize(new Dimension(200, 100));
         openButton.setFont(new Font("Arial", Font.PLAIN, 30));
         openButton.addActionListener(e -> {
@@ -95,6 +80,20 @@ public class Button {
             resetButtonClicked(hyphenButton);
         });
         panel.add(hyphenButton);
+
+        JButton poundButton = new JButton("#", new ImageIcon("Team_08/src/ImageFiles/pound.jpg"));
+        poundButton.setPreferredSize(new Dimension(200, 100));
+//        poundButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        poundButton.addActionListener(new Frame.MyAction());
+        poundButton.addActionListener(e -> {
+            poundButton.setName("poundButton");
+            //createTab();
+            //poundButton.addActionListener(new View.Frame.MyAction());
+            resetButtonClicked(poundButton);
+
+        });
+
+        panel.add(poundButton);
 
     }
 

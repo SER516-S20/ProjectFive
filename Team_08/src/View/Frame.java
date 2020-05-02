@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
+import Model.*;
 import Model.Button;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -32,7 +34,7 @@ public class Frame extends JFrame {
     public Frame() {
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setLayout(null);
-        String TITLE = "Project 4 - Team 8";
+        String TITLE = "Project 5 - Team 8";
         setTitle(TITLE);
         setBackground(Color.BLACK);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
