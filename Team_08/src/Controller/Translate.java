@@ -18,22 +18,22 @@ public class Translate {
     private static String fileName;
 
     public static void save() {
-        if(CompileFile.isSuccessful()){
-            try {
-                JFileChooser chosenFile = new JFileChooser();
-                int showSaveDialog = chosenFile.showSaveDialog(null);
-                if (showSaveDialog == JFileChooser.APPROVE_OPTION) {
-                    String FILE_EXT = ".txt";
-                    fileName = chosenFile.getSelectedFile().getAbsolutePath() + FILE_EXT;
-                }
-                Files.write(Paths.get(fileName), CompileFile.getCharMap().getBytes());
-                infoBox("Translation Successful","Translation Success!!!");
-            } catch (IOException i) {
-                i.printStackTrace();
-            }
-        }else{
-            infoBox("<<<<Check if the compilation was successful>>>>","Translation Failed!!!");
-        }
+//        if(CompileFile.isSuccessful()){
+//            try {
+//                JFileChooser chosenFile = new JFileChooser();
+//                int showSaveDialog = chosenFile.showSaveDialog(null);
+//                if (showSaveDialog == JFileChooser.APPROVE_OPTION) {
+//                    String FILE_EXT = ".txt";
+//                    fileName = chosenFile.getSelectedFile().getAbsolutePath() + FILE_EXT;
+//                }
+//                Files.write(Paths.get(fileName), CompileFile.getCharMap().getBytes());
+//                infoBox("Translation Successful","Translation Success!!!");
+//            } catch (IOException i) {
+//                i.printStackTrace();
+//            }
+//        }else{
+//            infoBox("<<<<Check if the compilation was successful>>>>","Translation Failed!!!");
+//        }
 
     }
 

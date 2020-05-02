@@ -1,34 +1,48 @@
+import java.awt.Panel;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 /**
  * @author Kunal Sharma
  * @created 03-18-2020
  * @version 1.0
+ * 
+ * @author Suryadeep
+ * @created 04-27-2020
+ * @version 2.0
  */
-public class NewTab extends JPanel{
-
+public class NewTab extends JPanel implements ChangeListener{
+	
+	static Map<Integer, RightPanel> mapRightPanels = new HashMap<>();
 	private static final long serialVersionUID = 1L;
-	public 	JTabbedPane tabbedPane;
-
+	public static JTabbedPane tabbedPane;
+	static int localCounter = 0;
+	static int currentTabIndx = 0;
+	
+	NewTab(String source){
+		System.out.println(source);
+		if (source.equals("main_window")){
+			createAndShowGUI();
+		}
+		else {
+			AddPanel();
+		}
+		tabbedPane.addChangeListener(this);
+	}
+	
 	public void createAndShowGUI() {
-		// Create and set up the window.
-		//    final JFrame frame = new JFrame("Split Pane Example");
-		// Display the window.
-		////   frame.setSize(500, 300);
-		//   frame.setVisible(true);
-		//  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// set grid layout for the frame
-		// frame.getContentPane().setLayout(new GridLayout(1, 1));
+
 		try {
 			tabbedPane = new JTabbedPane();
+
 			// tabbedPane.setLocation(0, 300);
 			// tabbedPane.setSize(400,400);
 			tabbedPane.setBounds(170,100,1200,700); 
 			tabbedPane.addTab("Tab1", makePanel("This is tab 1"));
-			// tabbedPane.addTab("Tab3", makePanel("This is tab 3"));
-			// tabbedPane.setBounds(200,200,200,200);  
-			// frame.getContentPane().add(tabbedPane);
-			// MainWindow.drawingBoardPanel.add(tabbedPane);
 			MainWindow.frame.getContentPane().add(tabbedPane);
 		}
 		catch(Exception ex)
@@ -38,32 +52,35 @@ public class NewTab extends JPanel{
 	}
 
 	private static JPanel makePanel(String text) {
-		JPanel p = new RightPanel();
+		RightPanel p = new RightPanel();
+		mapRightPanels.put(localCounter, p);
+		localCounter += 1;
+		System.out.println("Adding panel"+mapRightPanels);
 		p.setVisible(true);
-		//JPanel p = new JPanel();
-		//p.add(new Label(text));
 		p.setSize(1600,800);
-		// p.setLayout(null);
 		return p;
 	}
 
 	public void AddPanel() {
 		try {
-			//int componentCount = MainWindow.frame.getContentPane().getComponentCount();
-			//JTabbedPane tabbedPane = (JTabbedPane) MainWindow.frame.getContentPane().getComponent(componentCount-1);
-			//JTabbedPane tabbedPane = (JTabbedPane) MainWindow.frame.getc
 			int count = tabbedPane.getTabCount()+1;
+			System.out.println("adding tab");
 			tabbedPane.addTab("Tab"+count, makePanel("This is tab "+ count ));
+			System.out.println("added tab");
 			count = tabbedPane.getTabCount();
-			//MainWindow.frame.getContentPane().add(tabbedPane);
 			tabbedPane.setSelectedIndex(count-1);
-			//tabbedPane.setVisible(true);
-			//MainWindow.frame.revalidate();
 		}
 		catch(Exception ex)
 		{
-			System.out.println(ex);
+			System.out.println("Exception while adding panel " +ex);
 		}
+	}
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
+		currentTabIndx = tabbedPane.getSelectedIndex();
+		mapRightPanels.get(currentTabIndx).customRepaint();
 	}
 }
 

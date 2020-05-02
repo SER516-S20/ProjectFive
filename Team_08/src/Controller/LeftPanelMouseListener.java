@@ -17,8 +17,7 @@ public class LeftPanelMouseListener extends MouseAdapter {
 
     /*
     * */
-    private static boolean isPoundButtonClicked = false; //-----
-
+    private static boolean isPoundButtonClicked = false;
     private static boolean isOpenBracketClicked = false;
     private static boolean isCloseBracketClicked = false;
     private static boolean isLessThanClicked = false;
@@ -128,6 +127,11 @@ public class LeftPanelMouseListener extends MouseAdapter {
             } else if (next instanceof Hyphen) {
                 if (next.containsPoint(x, y)) {
                     markIsClickedTrue(ShapesEnum.HYPHEN);
+                }
+            }
+            else if (next instanceof Pound) {
+                if (next.containsPoint(x, y)) {
+                    markIsClickedTrue(ShapesEnum.POUND);
                 }
             }
         }

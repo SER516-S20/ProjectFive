@@ -84,6 +84,9 @@ public class RightPanelMouseListener implements MouseListener, MouseMotionListen
             } else if (selectedShape == ShapesEnum.HYPHEN) {
                 RightPanel.getRightPanelShapes().add(new Hyphen(x, y));
             }
+            else if (selectedShape == ShapesEnum.POUND) {
+                RightPanel.getRightPanelShapes().add(new Pound(x, y));
+            }
             Frame.rightPanel.repaint();
         }
     }
