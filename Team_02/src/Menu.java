@@ -145,7 +145,11 @@ public class Menu implements ActionListener {
 			new NewTab("button");
 		}
 		else if (e.getSource() == compile) {
-
+			Compiler cObj = new Compiler();
+			for (Integer key : NewTab.mapRightPanels.keySet()) {
+				System.out.println("Compiling Tab number: " + key);
+				cObj.compilePanel(key, NewTab.mapRightPanels.get(key));
+			}
 		}
 	}
 
