@@ -25,10 +25,10 @@ public class ListenersPanelLeft {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 if (Database.selectedOp != null) {
-                    Database.selectedOp.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+                    Database.selectedOp.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
                 }
                 Database.selectedOp = (Op) mouseEvent.getSource();
-                Database.selectedOp.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                Database.selectedOp.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 
             }
 

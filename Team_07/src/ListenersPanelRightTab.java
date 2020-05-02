@@ -106,16 +106,20 @@ public class ListenersPanelRightTab {
                     int y2 =
                             destLocation.y - panelLocation.y + destConnector.getHeight() / 2;
                     GeneralPath generalPath = Connection.getGeneralPath(x1, y1, x2, y2);
-                    if (generalPath.intersects(mouseEvent.getXOnScreen() - panelLocation.x,
+                    if(generalPath.intersects(mouseEvent.getXOnScreen() - panelLocation.x,
                             mouseEvent.getYOnScreen() - panelLocation.y, 20, 20)) {
                         rightPanel.setCursor(HAND_CURSOR);
                         panelRightTabAllowance = false;
                         currentConnection = i;
-                    } else {
-                        rightPanel.setCursor(DEFAULT_CURSOR);
-                        panelRightTabAllowance = true;
+                        break;
                     }
+                    else{
+                        panelRightTabAllowance=true;
+                        rightPanel.setCursor(DEFAULT_CURSOR);
+                    }
+
                 }
+
             }
         });
     }
