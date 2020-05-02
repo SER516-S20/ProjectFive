@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.GeneralPath;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
@@ -15,11 +16,25 @@ import java.util.HashMap;
  */
 public class ListenersPanelRightTab {
     public static HashMap<Op, PanelRightTab> map = new HashMap<>();
+    static Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
+    static Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
+    static int currentConnection;
+    private static boolean panelRightTabAllowance = true;
 
-    public static void addPanelListeners(JPanel rightPanel) {
+    public static void addRightPanelTabListeners(JPanel rightPanel) {
         rightPanel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
+                if (!panelRightTabAllowance) {
+                    if (mouseEvent.getButton() == 3) {
+                        Database.selectedTab.src.get(currentConnection).connected = false;
+                        Database.selectedTab.dest.get(currentConnection).connected = false;
+                        Database.selectedTab.src.remove(currentConnection);
+                        Database.selectedTab.dest.remove(currentConnection);
+                        PanelRightTab.refreshTab();
+                    }
+                    return;
+                }
                 int mouseLocationX = mouseEvent.getX();
                 int mouseLocationY = mouseEvent.getY();
                 Op op = null;
@@ -31,7 +46,7 @@ public class ListenersPanelRightTab {
                     e.printStackTrace();
                 }
                 assert op != null;
-                op.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+                op.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
                 op.setBounds(mouseLocationX - op.getWidth() / 2,
                         mouseLocationY - op.getHeight() / 2,
                         op.getWidth(),
@@ -39,7 +54,7 @@ public class ListenersPanelRightTab {
                 rightPanel.add(op);
 
                 ListenersPanelRightTab.addShapeListeners(op);
-                if (op.getOpLabel().getText() == "#") {
+                if (op.getOpLabel().getText().equals("#")) {
                     map.put(op, MainFrame.PANEL_RIGHT.addNewTab());
                 }
                 rightPanel.revalidate();
@@ -64,6 +79,43 @@ public class ListenersPanelRightTab {
             @Override
             public void mouseExited(MouseEvent mouseEvent) {
 
+            }
+        });
+    }
+
+    public static void addRightPanelTabMotionListeners(JPanel rightPanel) {
+        rightPanel.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent mouseEvent) {
+                for (int i = 0; i < Database.selectedTab.src.size(); i++) {
+                    Connector srcConnector = Database.selectedTab.src.get(i), destConnector = Database.selectedTab.dest.get(i);
+                    Point panelLocation = rightPanel.getLocationOnScreen();
+                    Point srcLocation = srcConnector.getLocationOnScreen();
+                    Point destLocation = destConnector.getLocationOnScreen();
+                    int x1 =
+                            srcLocation.x - panelLocation.x + srcConnector.getWidth();
+                    int y1 =
+                            srcLocation.y - panelLocation.y + srcConnector.getHeight() / 2;
+                    int x2 =
+                            destLocation.x - panelLocation.x - 2;
+                    int y2 =
+                            destLocation.y - panelLocation.y + destConnector.getHeight() / 2;
+                    GeneralPath generalPath = Connection.getGeneralPath(x1, y1, x2, y2);
+                    if (generalPath.intersects(mouseEvent.getXOnScreen() - panelLocation.x,
+                            mouseEvent.getYOnScreen() - panelLocation.y, 20, 20)) {
+                        rightPanel.setCursor(HAND_CURSOR);
+                        panelRightTabAllowance = false;
+                        currentConnection = i;
+                    } else {
+                        rightPanel.setCursor(DEFAULT_CURSOR);
+                        panelRightTabAllowance = true;
+                    }
+                }
             }
         });
     }
@@ -126,8 +178,8 @@ public class ListenersPanelRightTab {
         });
     }
 
-    static void addAllListenersToTab(PanelRightTab tab) {
-        ListenersPanelRightTab.addPanelListeners(tab);
+    static void addListenersToPanelOps(PanelRightTab tab) {
+        ListenersPanelRightTab.addRightPanelTabMotionListeners(tab);
         for (Component component :
                 tab.getComponents()) {
             Op op = (Op) component;

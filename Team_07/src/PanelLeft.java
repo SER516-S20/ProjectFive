@@ -22,7 +22,7 @@ public class PanelLeft extends JPanel {
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
         setPreferredSize(DIMENSION_PANEL_LEFT);
         setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.gray));
-        setBackground(Database.GRAY);
+        setBackground(Color.DARK_GRAY);
         addOperators();
     }
 

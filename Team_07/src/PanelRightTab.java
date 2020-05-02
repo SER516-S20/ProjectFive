@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.geom.GeneralPath;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,6 @@ import java.util.List;
  * @author Aditya Bajaj
  * @author Karandeep Singh Grewal
  * @since April 29, 2020
- *
  */
 public class PanelRightTab extends JPanel implements Serializable {
     public List<Connector> src = new ArrayList<>();
@@ -22,14 +23,25 @@ public class PanelRightTab extends JPanel implements Serializable {
     PanelRightTab() {
         super();
         setLayout(null);
-        setBackground(Color.WHITE);
-        ListenersPanelRightTab.addPanelListeners(this);
+        setBackground(Color.DARK_GRAY);
+        ListenersPanelRightTab.addRightPanelTabListeners(this);
+        ListenersPanelRightTab.addRightPanelTabMotionListeners(this);
     }
 
-        @Override
+    static public void refreshTab() {
+        Database.selectedTab.repaint();
+        Database.selectedTab.revalidate();
+    }
+
+
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D graphics2D = (Graphics2D)g;
+        Graphics2D graphics2D = (Graphics2D) g;
+        Stroke stroke = new BasicStroke(1f);
+        graphics2D.setStroke(stroke);
+        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
         graphics2D.setColor(Color.WHITE);
         for (int i = 0; i < src.size(); i++) {
             Point panelLocation = getLocationOnScreen();
@@ -45,13 +57,7 @@ public class PanelRightTab extends JPanel implements Serializable {
             int[] arrowX = new int[]{x2, x2 - 10, x2 - 10};
             int[] arrowY = new int[]{y2, y2 - 10, y2 + 10};
             graphics2D.fillPolygon(arrowX, arrowY, 3);
-            int[][] points = Connection.getLinePoints(x1, y1, x2, y2);
-            graphics2D.drawPolyline(points[0], points[1], points[0].length);
+            graphics2D.draw(Connection.getGeneralPath(x1,y1,x2,y2));
         }
-    }
-
-    static public void refreshTab(){
-        Database.selectedTab.repaint();
-        Database.selectedTab.revalidate();
     }
 }
