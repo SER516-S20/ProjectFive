@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  */
 public class LeftPanel extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
-	private final int N = 7;
+	private final int N = 8;
 	private JButton []btns;
 	
 	public LeftPanel() {
@@ -30,6 +30,7 @@ public class LeftPanel extends JPanel implements ActionListener{
 		btns[4].setText("@");
 		btns[5].setText("||");
 		btns[6].setText("-");
+		btns[7].setText("#");
 		for(int i = 0; i < btns.length; i++) {
 			this.add(btns[i]);
 		}
