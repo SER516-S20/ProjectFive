@@ -27,6 +27,8 @@ public class ButtonBoxFactory {
 		case "-" :
 			button = new DotButtonBox();
 			break;
+		case "#" :
+			button = new SharpButton();
 		}
 		return button;
 	}
