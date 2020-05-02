@@ -22,6 +22,10 @@ public class MainWindow {
 			System.out.println(ex);
 		}
 	}
+	
+	public static void callAddButton() {
+		new NewTab("button");
+	}
 
 	public static void main(String[] args) {
 		Menu objMenu = new Menu();
@@ -44,9 +48,9 @@ public class MainWindow {
 		leftToolBarToolKit.setBackground(Color.blue);
 		frame.getContentPane().add(leftToolBarToolKit);
 		
-		
-		obj = new NewTab();
-		obj.createAndShowGUI();
+		new NewTab("main_window");
+		//obj = new NewTab();
+		//obj.createAndShowGUI();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 }
