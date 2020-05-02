@@ -98,6 +98,7 @@ public class RightPanelDataProcessor extends Observable {
 					System.out.println("Removing Icon4");
 					iconMap.get(key).remove(eachIcon);
 					removeIconLines(key ,eachIcon);
+					removeDot(key, eachIcon);
 					break;
 				}
 			}

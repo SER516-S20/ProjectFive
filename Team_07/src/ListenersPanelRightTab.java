@@ -15,7 +15,7 @@ import java.util.HashMap;
  * @since April 29, 2020
  */
 public class ListenersPanelRightTab {
-    public static HashMap<Op, PanelRightTab> map = new HashMap<>();
+    public static HashMap<Op, PanelRightTab> mapOP = new HashMap<>();
     static Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
     static Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
     static int currentConnection;
@@ -55,7 +55,8 @@ public class ListenersPanelRightTab {
 
                 ListenersPanelRightTab.addShapeListeners(op);
                 if (op.getOpLabel().getText().equals("#")) {
-                    map.put(op, MainFrame.PANEL_RIGHT.addNewTab());
+                    mapOP.put(op, MainFrame.PANEL_RIGHT.addNewTab());
+                    ListenersInputPopup.mapTab.put(mapOP.get(op),"Tab " + (PanelRight.tabNum-1));
                 }
                 rightPanel.revalidate();
                 rightPanel.repaint();
@@ -145,6 +146,10 @@ public class ListenersPanelRightTab {
             public void mouseReleased(MouseEvent mouseEvent) {
                 cursor = new Cursor(Cursor.HAND_CURSOR);
                 op.setCursor(cursor);
+                if(mouseEvent.isPopupTrigger()) {
+                    ContextMenuOp.opToDelete = op;
+                    PanelRightTab.opContextMenu.show(op, mouseEvent.getX(), mouseEvent.getY());
+                }
                 PanelRightTab.refreshTab();
             }
 

@@ -1,14 +1,18 @@
 package View;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.table.TableRowSorter;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.event.*;
+
 
 import Controller.*;
 import Model.*;
@@ -16,48 +20,61 @@ import Model.*;
  * This class consists of GUI for the Menu options.
  * @author Kartik Mathpal
  * @version 1.0
+ * @author Sandya Manoharan
+ * @version 1.1
  */
 
 public class MenuBar extends JMenuBar {
 
 	private static final long serialVersionUID = 1L;
-
 	MenuBar() {
-		String MENU = "| MENU |";
-		JMenu menu = new JMenu(MENU);
-		JMenuBar menuBar = new JMenuBar();
 
-		String SAVE = "Save Document";
-		SaveDocument saveDocument = new SaveDocument(SAVE);
-		saveDocument.addActionListener(saveDocument);
+		String FileMenu = "File";
+		JMenu Fmenu = new JMenu(FileMenu);
+		JMenuBar FmenuBar = new JMenuBar();
 
-		String LOAD = "Load Document";
-		LoadDocument loadDocument = new LoadDocument(LOAD);
+		String ProjectMenu = "Project";
+		JMenu Pmenu = new JMenu(ProjectMenu);
+		JMenuBar PmenuBar = new JMenuBar();
+
+		String NewDoc = "New";
+		//NewDocument newDocument = new NewDocument(NEW);
+		//newDocument.addActionListener(newDocument);
+
+		String OpenDoc = "Open";
+		LoadDocument loadDocument = new LoadDocument(OpenDoc);
 		loadDocument.addActionListener(loadDocument);
 
-		String COMPILE = "Compile Document";
-		CompileFile compileFile = new CompileFile(COMPILE);
+		String SaveDoc = "Save";
+		SaveDocument saveDocument = new SaveDocument(SaveDoc);
+		saveDocument.addActionListener(saveDocument);
+
+		String CompileProject = "Compile";
+		CompileFile compileFile = new CompileFile(CompileProject);
 		compileFile.addActionListener(compileFile);
-		
-		menu.add(saveDocument);
-		menu.add(loadDocument);
-		menu.add(compileFile);
-		menuBar.add(menu);
 
-		Border border = new LineBorder(Color.BLACK, 1);
-		JButton Compiler = new JButton("  Compile  ");
-		Compiler.setBorder(border);
-		Compiler.addActionListener(e -> {
-		});
-		this.add(menuBar);
+		String TranslateProject = "Translate";
+		//Translate translate = new Translate(TRANSLATE);
+		//Translate.addActionListener(translate);
 
-		JButton translate = new JButton("Translate");
+		Fmenu.add(NewDoc);
+		Fmenu.add(loadDocument);
+		Fmenu.add(saveDocument);
+
+		FmenuBar.add(Fmenu);
+
+		Pmenu.add(compileFile);
+		Pmenu.add(TranslateProject);
+		PmenuBar.add(Pmenu);
+
+		this.add(FmenuBar);
+		this.add(Pmenu);
+		/*JButton translate = new JButton("Translate");
 		translate.addActionListener(e -> {
 			Translate.save();
-		});
+		});*/
 
-
-		menuBar.add(translate);
+		/*menuBar.add(translate);*/
 
 	}
 

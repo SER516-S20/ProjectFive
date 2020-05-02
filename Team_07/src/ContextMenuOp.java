@@ -17,12 +17,7 @@ public class ContextMenuOp extends JPopupMenu {
 
 	public ContextMenuOp() {
 		add(menuItemDelete);
-		menuItemDelete.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent actionEvent) {
-				deleteOp();
-			}
-		});
+		menuItemDelete.addActionListener(actionEvent -> deleteOp());
 	}
 
 	void deleteOp()
@@ -50,7 +45,7 @@ public class ContextMenuOp extends JPopupMenu {
 		}
 		PanelRightTab.refreshTab();
 
-		/* (to not break compiler) because "||" may have multiple connections and 
+		/* (to not break compiler) because "||" may have multiple connections and
 		 * status may be changed while removing some connections
 		 */
 		for(int i=0; i < Database.selectedTab.dest.size(); i++){
@@ -64,9 +59,9 @@ public class ContextMenuOp extends JPopupMenu {
 					((Op) component).ID--;
 		}
 		Database.selectedTab.OpCount-- ;
-		
+
 		// remove tab associated with the # operator 
-		if(op.label == "#"){
+		if(op.label.equals("#")){
 			PanelRightTab tabToRemove = ListenersPanelRightTab.mapOP.get(opToDelete);
 			MainFrame.PANEL_RIGHT.remove(tabToRemove);
 			ListenersPanelRightTab.mapOP.remove(opToDelete);

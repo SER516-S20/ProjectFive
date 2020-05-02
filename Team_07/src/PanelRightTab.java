@@ -19,6 +19,7 @@ public class PanelRightTab extends JPanel implements Serializable {
     public List<Connector> dest = new ArrayList<>();
     public int OpCount;
     GeneralPath polyline;
+    static ContextMenuOp opContextMenu = new ContextMenuOp();
 
     PanelRightTab() {
         super();
