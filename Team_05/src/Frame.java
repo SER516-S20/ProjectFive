@@ -42,7 +42,7 @@ public class Frame extends JFrame {
 		this.getContentPane().add(createRightPanel(),BorderLayout.CENTER);
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setLayout(null);
+		//this.setLayout(null);
 		MenuBar menuBar = new MenuBar(dragArea);
 		this.setJMenuBar(menuBar.createMenuBar());
 		this.setVisible(true);
@@ -50,11 +50,12 @@ public class Frame extends JFrame {
 	
 	private JScrollPane createLeftPanel() {
 		btnContainer.setPreferredSize(new  Dimension(200, 600));
-		btnContainer.setLocation(0, 0);
+		//btnContainer.setLocation(0, 0);
 		btnContainer.setBackground(lBackground);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(btnContainer);
-        scrollPane.setBounds(0, 0, 200, 480);
+		scrollPane.setPreferredSize(new Dimension(200,300));
+        //scrollPane.setBounds(0, 0, 200, 150);
 		return scrollPane;
 	}
 	
