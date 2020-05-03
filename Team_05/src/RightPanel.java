@@ -4,6 +4,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Hashtable;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -138,6 +140,7 @@ public class RightPanel extends JPanel implements MouseListener, MouseMotionList
 			}
 		}
 		if(e.getButton() == MouseEvent.BUTTON3) {
+			JOptionPane.showMessageDialog(this, "Delete node and links");
 			this.remove(e.getComponent());
 			Object source = e.getComponent();
 			if(source instanceof JPanel){

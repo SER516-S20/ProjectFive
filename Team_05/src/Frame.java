@@ -30,7 +30,7 @@ public class Frame extends JFrame {
 		model.setFrame(this);
 		this.setTitle(title);
 		this.setMinimumSize(new Dimension(800, 500));
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//getContentPane().setLayout(null);
 		dragArea = new RightTabbedPane();
