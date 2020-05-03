@@ -24,7 +24,6 @@ public class Frame extends JFrame {
     private static final long serialVersionUID = 1L;
     public  static RightPanel rightPanel;
     private Dimension screenSize = new Dimension(1800, 1000);
-//    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static JTabbedPane tabbedPane;
     static List<RightPanel> panelList = new ArrayList<>();
     static List<JTabbedPane> tabList = new ArrayList<>();

@@ -15,8 +15,6 @@ import java.awt.event.MouseEvent;
  */
 public class LeftPanelMouseListener extends MouseAdapter {
 
-    /*
-    * */
     private static boolean isPoundButtonClicked = false;
     private static boolean isOpenBracketClicked = false;
     private static boolean isCloseBracketClicked = false;
