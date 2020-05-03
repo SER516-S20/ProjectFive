@@ -127,14 +127,19 @@ public class RightPanel extends JPanel implements MouseListener, MouseMotionList
 			if (e.getClickCount() == 2) {
 				Object source = e.getComponent();
 				if(source instanceof JPanel){
-					ButtonBox panelPressed = (ButtonBox) source;
-					if(vPane == null) {
-						vPane = panelPressed.createJOptionPane();
-						panelPressed.setTitle(vPane.getvalue());
-					}else {
-						String val = panelPressed.getTitle();
-						vPane.setValue(val);
-						panelPressed.setTitle(vPane.getvalue());
+					if(source.getClass().getName().equals("SharpButton")) {
+						Model.getRightTabbedPane().addWorkingAreaTab();
+					}
+					else {
+						ButtonBox panelPressed = (ButtonBox) source;
+						if(vPane == null) {
+							vPane = panelPressed.createJOptionPane();
+							panelPressed.setTitle(vPane.getvalue());
+						}else {
+							String val = panelPressed.getTitle();
+							vPane.setValue(val);
+							panelPressed.setTitle(vPane.getvalue());
+						}
 					}
 				}
 			}
