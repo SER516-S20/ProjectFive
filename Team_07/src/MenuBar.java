@@ -40,17 +40,16 @@ public class MenuBar {
         runButton.add(translateButton);
 
         newButton.addActionListener(arg0 -> {
+            FileManager.newFile();
             System.out.println("New File created");
-            newFile();
         });
-
         openButton.addActionListener(arg0 -> {
-            System.out.println("Opened");
             FileManager.open();
+            System.out.println("File Opened");
         });
         saveButton.addActionListener(arg0 -> {
-            System.out.println("Saved");
             FileManager.save();
+            System.out.println("File Saved");
         });
 
         compileButton.addActionListener(arg0 -> {
@@ -68,7 +67,8 @@ public class MenuBar {
     }
 
     public void compile() {
-
+    	Compiler compiler = new Compiler();
+        System.out.println(compiler.compile());
     }
 
     public void translate() {

@@ -18,16 +18,17 @@ public class Compiler {
      * @return Error
      */
     public String compile() {
-        String parenthesisError = getParError();
-        if (!parenthesisError.equals("No Error"))
-            return parenthesisError;
-        if (getTotalOp("@") > 0) {
-            hasLoop();
-            if (!hasLoop())
-                return "@ is not having the loop";
-        }
-        return areAllOperatorsConnected() ? "Success" : "Connections Pending";
+    	String msg = "";
+    	String parenthesisError = getParError();
+    	if (!parenthesisError.equals("No Error")) 
+    		msg = parenthesisError;
+    	else if(!areAllOperatorsConnected())
+    		msg = "Connections Pending";
+    	else
+    		msg = parseGraph();
+    	return msg;
     }
+
 
     /**
      * Checks for the errors related to "( and ")" in the current tab
@@ -104,16 +105,19 @@ public class Compiler {
      *
      * @return False if any "@" operator has no loop
      */
-    boolean hasLoop() {
-        List<Connector> src = Database.selectedTab.src;
-        List<Connector> desc = Database.selectedTab.dest;
+    String parseGraph() {
+        List<Connector> src = currentTab.src;
+        List<Connector> desc = currentTab.dest;
         Graph graph = new Graph(currentTab.getComponentCount());
         for (int i = 0; i < src.size(); i++) {
             Op op1 = src.get(i).op;
             Op op2 = desc.get(i).op;
-            int minID = MainFrame.PANEL_RIGHT.getSelectedIndex() == 0 ? 8 : 1;
+            int minID = MainFrame.PANEL_RIGHT.getSelectedIndex() == 0 ? 17 : 1;
             graph.addEdge(op1.ID - minID, op2.ID - minID);
         }
-        return (graph.isCyclic());
+        if (getTotalOp("@") > 0) 
+			if (!graph.isCyclic())
+				return  "@ is not having the loop";
+        return graph.countConnectedComponents() != 1 ? "Multiple Subgraphs present" : "No Error";
     }
 }
