@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -43,9 +46,20 @@ public class Translator {
         }
 
         sb.append("}");
-        System.out.println("Translated code is "+sb.toString());
+        String basePath = new File("graphviz/graphvizcode.txt").getAbsolutePath();
+        System.out.println("Translated code is written into the file "+basePath);
+        System.out.println("Translated code is \n"+sb.toString());
 
+        try{
+            Files.writeString(Paths.get(basePath), sb.toString());
+        }
+        catch (IOException e) {
+            System.out.println("Error in writing the graphviz code");
+            e.printStackTrace();
+        }
 
     }
+
+
 
 }
