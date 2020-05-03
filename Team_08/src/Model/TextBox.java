@@ -26,8 +26,6 @@ public class TextBox extends JOptionPane {
         return JOptionPane.showInputDialog(null, "Enter Value");
     }
 
-    
-
     public Boolean isPresentInMap(Shapes s) {
         return objectMessageMap.containsKey(s);
     }
