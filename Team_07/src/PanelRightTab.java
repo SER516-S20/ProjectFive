@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -18,7 +19,6 @@ public class PanelRightTab extends JPanel implements Serializable {
     public List<Connector> src = new ArrayList<>();
     public List<Connector> dest = new ArrayList<>();
     public int OpCount;
-    GeneralPath polyline;
     static ContextMenuOp opContextMenu = new ContextMenuOp();
 
     PanelRightTab() {
@@ -32,6 +32,22 @@ public class PanelRightTab extends JPanel implements Serializable {
     static public void refreshTab() {
         Database.selectedTab.repaint();
         Database.selectedTab.revalidate();
+    }
+
+    static public List<Connector> getDestConnectors(){
+        List<Connector> connectors = new ArrayList<>();
+        for (Component component: Database.selectedTab.getComponents()
+             ) {
+            if(component instanceof Op){
+                JPanel connectorPanel = ((Op) component).inputConnector;
+                for (Component connector: connectorPanel.getComponents()
+                     ) {
+                    if(connector instanceof Connector)
+                        connectors.add((Connector) connector);
+                }
+            }
+        }
+        return connectors;
     }
 
 
