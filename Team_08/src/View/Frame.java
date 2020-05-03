@@ -101,17 +101,7 @@ public class MyChange implements ChangeListener{
     public void stateChanged(ChangeEvent e) {
         JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
         int index = sourceTabbedPane.getSelectedIndex();
-        System.out.println("Tab changed to: " + sourceTabbedPane.getTitleAt(index));
-        //rightPanel = (View.RightPanel) panelList.get(index);
-        //rightPanel.updateUI();
-        //rightPanel.repaint();
-        //tabbedPane.setSelectedComponent((JTabbedPane)sourceTabbedPane.getSelectedComponent());
-        //rightPanel.revalidate();
-        //rightPanel.updateUI();
-        //rightPanel.repaint();
-        //tabbedPane.updateUI();
-        //tabbedPane = (JTabbedPane)sourceTabbedPane.getTabComponentAt(index);;
-        //tabbedPane.add(panelList.get(index));
+        System.out.println("Tab changed to: " + sourceTabbedPane.getTitleAt(index));   
         rightPanel=panelList.get(index);
 
     }
@@ -127,22 +117,17 @@ public class MyChange implements ChangeListener{
                     tabCount++;
                     JTabbedPane tb = new JTabbedPane(JTabbedPane.TOP);
                     tb.setVisible(true);
-                    //tb.setBounds(screenSize.width / 6, 0, 4 * screenSize.width / 4, screenSize.height);
                     tb.revalidate();
                     tb.repaint();
                     tb.add(st,rp);
                     tabList.add(tb);
                     tabbedPane.addTab(st,tb);
-                    //System.out.println("current rightpane-->" +rightPanel );
                     rightPanel=rp;
                     panelList.add(rp);
-                    //tabbedPane.add(rp); //new panel
-                    //System.out.println("new panel--->"+rightPanel);
                     map.put(tb,rightPanel);
                 }
 
             } else if (str.equals("Remove Tab")) {
-                //tabbedPane.remove(tab.getTabCount() - 1);
             }
         }
 
