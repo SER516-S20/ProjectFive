@@ -51,7 +51,7 @@ public class Frame extends JFrame {
             Button button = new Button();
 
             button.addButtonsToTopPanel(topPanel);
-            topPanel.setBounds(screenSize.width / 6, 0, 4 * screenSize.width / 5, screenSize.height/8);
+            topPanel.setBounds(screenSize.width / 20, 0, 4 * screenSize.width / 6, screenSize.height/10);
             topPanel.setVisible(true);
             this.add(topPanel);
 
@@ -65,7 +65,7 @@ public class Frame extends JFrame {
             Button button = new Button();
 
             button.addButtonsToLeftPanel(leftPanel);
-            leftPanel.setBounds(0, 0, screenSize.width / 6, screenSize.height);
+            leftPanel.setBounds(0, 0, screenSize.width / 8, screenSize.height);
             leftPanel.setVisible(true);
             this.add(leftPanel);
 
@@ -76,7 +76,7 @@ public class Frame extends JFrame {
     public void createRightpanel() {
         try {
             tabbedPane = new JTabbedPane();
-            tabbedPane.setBounds(screenSize.width / 6, screenSize.height/8, 4 * screenSize.width / 5, screenSize.height);
+            tabbedPane.setBounds(screenSize.width / 7, screenSize.height/10, 4 * screenSize.width / 7, screenSize.height/2);
             tabbedPane.setVisible(true);
             rightPanel = new RightPanel();
             tabbedPane.add("Home Tab", rightPanel);//-----------
