@@ -41,6 +41,12 @@ public class ListenersPanelLeft {
 
             @Override
             public void mouseReleased(MouseEvent e) {
+                Point tabLocation = Database.selectedTab.getLocationOnScreen();
+                if(draggableOp.getLocationOnScreen().x<tabLocation.x-shift.x
+                        || draggableOp.getLocationOnScreen().y<tabLocation.y-shift.y) {
+                    Database.selectedTab.remove(draggableOp);
+                    PanelRightTab.refreshTab();
+                }
             }
 
             @Override
@@ -59,8 +65,8 @@ public class ListenersPanelLeft {
             public void mouseDragged(MouseEvent e) {
                 Point tabLocation = Database.selectedTab.getLocationOnScreen();
                 draggableOp.setLocation(
-                        e.getXOnScreen()-tabLocation.x-shift.x,
-                        e.getYOnScreen()-tabLocation.y-shift.y);
+                        e.getXOnScreen() - tabLocation.x - shift.x,
+                        e.getYOnScreen() - tabLocation.y - shift.y);
                 PanelRightTab.refreshTab();
             }
 
