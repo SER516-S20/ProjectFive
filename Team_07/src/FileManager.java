@@ -86,7 +86,7 @@ public class FileManager {
                     MainFrame.PANEL_RIGHT.addTab(ListenersInputPopup.mapTab.get(component), tab);
                 PanelRight.tabNum++;
 
-                ListenersPanelRightTab.addAllListenersToTab(tab);
+                ListenersPanelRightTab.addListenersToPanelOps(tab);
                 tab.repaint();
             }
             Database.selectedTab = (PanelRightTab) tabsToOpen[0];
