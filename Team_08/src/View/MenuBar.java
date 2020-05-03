@@ -37,13 +37,13 @@ public class MenuBar extends JMenuBar {
 		JMenu Pmenu = new JMenu(ProjectMenu);
 		JMenuBar PmenuBar = new JMenuBar();
 
-		String NewDoc = "New";
-		//NewDocument newDocument = new NewDocument(NEW);
-		//newDocument.addActionListener(newDocument);
-
 		String OpenDoc = "Open";
 		LoadDocument loadDocument = new LoadDocument(OpenDoc);
 		loadDocument.addActionListener(loadDocument);
+
+		String NewDoc = "New";
+		NewDocument newDocument = new NewDocument(NewDoc);
+		newDocument.addActionListener(newDocument);
 
 		String SaveDoc = "Save";
 		SaveDocument saveDocument = new SaveDocument(SaveDoc);
@@ -57,7 +57,7 @@ public class MenuBar extends JMenuBar {
 		Translate translate = new Translate(TranslateProject);
 		translate.addActionListener(translate);
 
-		Fmenu.add(NewDoc);
+		Fmenu.add(newDocument);
 		Fmenu.add(loadDocument);
 		Fmenu.add(saveDocument);
 
