@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -31,14 +32,17 @@ public class Frame extends JFrame {
 		this.setMinimumSize(new Dimension(800, 500));
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
+		//getContentPane().setLayout(null);
 		dragArea = new RightTabbedPane();
 		btnContainer = new LeftPanel();
-		this.getContentPane().add(createLeftPanel());
-		this.getContentPane().add(createRightPanel());
+		//this.getContentPane().add(createLeftPanel());
+		//this.getContentPane().add(createRightPanel());
+		this.getContentPane().add(new ToolBarContainer(), BorderLayout.NORTH);
+		this.getContentPane().add(createLeftPanel(), BorderLayout.WEST);
+		this.getContentPane().add(createRightPanel(),BorderLayout.CENTER);
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setLayout(null);
+		//this.setLayout(null);
 		MenuBar menuBar = new MenuBar(dragArea);
 		this.setJMenuBar(menuBar.createMenuBar());
 		this.setVisible(true);
@@ -46,11 +50,12 @@ public class Frame extends JFrame {
 	
 	private JScrollPane createLeftPanel() {
 		btnContainer.setPreferredSize(new  Dimension(200, 600));
-		btnContainer.setLocation(0, 0);
+		//btnContainer.setLocation(0, 0);
 		btnContainer.setBackground(lBackground);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(btnContainer);
-        scrollPane.setBounds(0, 0, 200, 480);
+		scrollPane.setPreferredSize(new Dimension(200,300));
+        //scrollPane.setBounds(0, 0, 200, 150);
 		return scrollPane;
 	}
 	
