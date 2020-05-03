@@ -29,10 +29,8 @@ public class MenuBar extends JMenuBar{
 		JMenuBar menuBar = new JMenuBar();
 		JMenuItem itemNew = new JMenuItem("New");
 		itemNew.addActionListener(new ActionListener(){
-		public void actionPerformed(ActionEvent e) {
-				if(fileBrowser.browser("New")) {
-					fileManager.save(fileBrowser.getCurrentFile());
-				}
+			public void actionPerformed(ActionEvent e) {
+				Model.getRightTabbedPane().addWorkingAreaTab();
 			}
 		});
 		fileMenu.add(itemNew);
@@ -57,47 +55,35 @@ public class MenuBar extends JMenuBar{
 		});
 		fileMenu.add(itemSave);
 		menuBar.add(fileMenu);
-//		JButton NewSpace = new JButton(" New Space ");
-//		NewSpace.setBorder(null);
-//		NewSpace.addActionListener(new ActionListener(){
-//			public void actionPerformed(ActionEvent e) {
-//				Model.getRightTabbedPane().addWorkingAreaTab();
-//			}
-//		});
-//		menuBar.add(NewSpace);
 		JMenu projectMenu =  new JMenu("Project");
 		JMenuItem Compiler = new JMenuItem("Compile");
-		//...
+		Compiler.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			Model.setMessage(" ");
+			tabs = Model.getTabs();
+			Thread myThreads[] = new Thread[tabs.size()];
+			int i = 0;
+			for(String key:tabs.keySet()) {
+			    myThreads[i] = new Thread(new Compilation(key));
+			    myThreads[i].start();
+				i++;
+			}
+	        try {
+				for(int j = 0 ; j < tabs.size();j++) {
+					myThreads[j].join(20000);
+				}
+	        } catch (InterruptedException t) {
+	            t.printStackTrace();
+	        }
+			String dialogMessage = Model.getMessage();
+			JOptionPane.showMessageDialog(null,dialogMessage);
+		}
+		});
 		projectMenu.add(Compiler);
 		projectMenu.addSeparator();
 		JMenuItem Translate = new JMenuItem("Translate");
-		//...
+		//do sth
 		projectMenu.add(Translate);
-//		JButton Compiler = new JButton(" Compiler ");
-//		Compiler.setBorder(null);
-//		Compiler.addActionListener(new ActionListener(){
-//			public void actionPerformed(ActionEvent e) {
-//				Model.setMessage(" ");
-//				tabs = Model.getTabs();
-//				Thread myThreads[] = new Thread[tabs.size()];
-//				int i = 0;
-//				for(String key:tabs.keySet()) {
-//				    myThreads[i] = new Thread(new Compilation(key));
-//				    myThreads[i].start();
-//					i++;
-//				}
-//		        try {
-//					for(int j = 0 ; j < tabs.size();j++) {
-//						myThreads[j].join(20000);
-//					}
-//		        } catch (InterruptedException t) {
-//		            t.printStackTrace();
-//		        }
-//				String dialogMessage = Model.getMessage();
-//				JOptionPane.showMessageDialog(null,dialogMessage);
-//			}
-//		});
-//		menuBar.add(Compiler);
 		menuBar.add(projectMenu);
 		return menuBar;
 	}
