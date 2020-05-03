@@ -54,8 +54,8 @@ public class MenuBar extends JMenuBar {
 		compileFile.addActionListener(compileFile);
 
 		String TranslateProject = "Translate";
-		//Translate translate = new Translate(TRANSLATE);
-		//Translate.addActionListener(translate);
+		Translate translate = new Translate(TranslateProject);
+		translate.addActionListener(translate);
 
 		Fmenu.add(NewDoc);
 		Fmenu.add(loadDocument);
@@ -64,21 +64,11 @@ public class MenuBar extends JMenuBar {
 		FmenuBar.add(Fmenu);
 
 		Pmenu.add(compileFile);
-		Pmenu.add(TranslateProject);
+		Pmenu.add(translate);
 		PmenuBar.add(Pmenu);
 
 		this.add(FmenuBar);
 		this.add(Pmenu);
-		/*JButton translate = new JButton("Translate");
-		translate.addActionListener(e -> {
-			Translate.save();
-		});*/
-
-		/*menuBar.add(translate);*/
 
 	}
-
-
-
-
 }

@@ -68,10 +68,13 @@ public class MenuBar {
     }
 
     public void compile() {
-
+        Compiler compiler = new Compiler();
+        System.out.println(compiler.compile());
+        //PanelTop.compileMessage.setText(compiler.compile());
     }
 
     public void translate() {
-
+        Translator translator=new Translator();
+        translator.translate();
     }
 }
