@@ -24,9 +24,9 @@ public class ListenersPanelRightTab {
     public static void addRightPanelTabListeners(JPanel rightPanel) {
         rightPanel.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
+            public void mouseClicked(MouseEvent e) {
                 if (!panelRightTabAllowance) {
-                    if (mouseEvent.getButton() == 3) {
+                    if (e.getButton() == 3) {
                         Database.selectedTab.src.get(currentConnection).connected = false;
                         Database.selectedTab.dest.get(currentConnection).connected = false;
                         Database.selectedTab.src.remove(currentConnection);
@@ -35,15 +35,15 @@ public class ListenersPanelRightTab {
                     }
                     return;
                 }
-                int mouseLocationX = mouseEvent.getX();
-                int mouseLocationY = mouseEvent.getY();
+                int mouseLocationX = e.getX();
+                int mouseLocationY = e.getY();
                 Op op = null;
                 if (Database.selectedOp == null) return;
                 try {
                     op = Database.selectedOp
                             .getClass().getDeclaredConstructor().newInstance();
-                } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                    e.printStackTrace();
+                } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException exception) {
+                    exception.printStackTrace();
                 }
                 assert op != null;
                 op.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
@@ -63,22 +63,22 @@ public class ListenersPanelRightTab {
             }
 
             @Override
-            public void mousePressed(MouseEvent mouseEvent) {
+            public void mousePressed(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
+            public void mouseReleased(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
+            public void mouseEntered(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseExited(MouseEvent mouseEvent) {
+            public void mouseExited(MouseEvent e) {
 
             }
         });
@@ -87,12 +87,12 @@ public class ListenersPanelRightTab {
     public static void addRightPanelTabMotionListeners(JPanel rightPanel) {
         rightPanel.addMouseMotionListener(new MouseMotionListener() {
             @Override
-            public void mouseDragged(MouseEvent mouseEvent) {
+            public void mouseDragged(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseMoved(MouseEvent mouseEvent) {
+            public void mouseMoved(MouseEvent e) {
                 for (int i = 0; i < Database.selectedTab.src.size(); i++) {
                     Connector srcConnector = Database.selectedTab.src.get(i), destConnector = Database.selectedTab.dest.get(i);
                     Point panelLocation = rightPanel.getLocationOnScreen();
@@ -107,8 +107,8 @@ public class ListenersPanelRightTab {
                     int y2 =
                             destLocation.y - panelLocation.y + destConnector.getHeight() / 2;
                     GeneralPath generalPath = Connection.getGeneralPath(x1, y1, x2, y2);
-                    if(generalPath.intersects(mouseEvent.getXOnScreen() - panelLocation.x,
-                            mouseEvent.getYOnScreen() - panelLocation.y, 20, 20)) {
+                    if(generalPath.intersects(e.getXOnScreen() - panelLocation.x,
+                            e.getYOnScreen() - panelLocation.y, 20, 20)) {
                         rightPanel.setCursor(HAND_CURSOR);
                         panelRightTabAllowance = false;
                         currentConnection = i;
@@ -132,35 +132,35 @@ public class ListenersPanelRightTab {
             Cursor cursor;
 
             @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                if (mouseEvent.getClickCount() == 2) {
-                    new InputPopup(mouseEvent);
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    new InputPopup(e);
                 }
             }
 
             @Override
-            public void mousePressed(MouseEvent mouseEvent) {
+            public void mousePressed(MouseEvent e) {
             }
 
             @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
+            public void mouseReleased(MouseEvent e) {
                 cursor = new Cursor(Cursor.HAND_CURSOR);
                 op.setCursor(cursor);
-                if(mouseEvent.isPopupTrigger()) {
+                if(e.isPopupTrigger()) {
                     ContextMenuOp.opToDelete = op;
-                    PanelRightTab.opContextMenu.show(op, mouseEvent.getX(), mouseEvent.getY());
+                    PanelRightTab.opContextMenu.show(op, e.getX(), e.getY());
                 }
                 PanelRightTab.refreshTab();
             }
 
             @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
+            public void mouseEntered(MouseEvent e) {
                 cursor = new Cursor(Cursor.HAND_CURSOR);
                 op.setCursor(cursor);
             }
 
             @Override
-            public void mouseExited(MouseEvent mouseEvent) {
+            public void mouseExited(MouseEvent e) {
                 cursor = new Cursor(Cursor.DEFAULT_CURSOR);
                 op.setCursor(cursor);
             }

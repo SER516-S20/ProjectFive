@@ -16,30 +16,30 @@ public class ListenersToolbarTop {
     public static void addShapeListeners(Op op) {
         op.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
+            public void mouseClicked(MouseEvent e) {
                 if (Database.selectedOp != null) {
                     Database.selectedOp.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
                 }
-                Database.selectedOp = (Op) mouseEvent.getSource();
+                Database.selectedOp = (Op) e.getSource();
                 Database.selectedOp.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             }
 
             @Override
-            public void mousePressed(MouseEvent mouseEvent) {
+            public void mousePressed(MouseEvent e) {
             }
 
             @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
+            public void mouseReleased(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseExited(MouseEvent mouseEvent) {
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
                 op.setCursor(DEFAULT_CURSOR);
             }
         });

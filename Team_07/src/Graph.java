@@ -12,13 +12,13 @@ import java.util.List;
 class Graph {
 
     private final int TOTAL_VERTICES;
-    private final List<List<Integer>> ADJACENT_VERICES;
+    private final List<List<Integer>> ADJACENT_VERTICES;
 
     public Graph(int TOTAL_VERTICES) {
         this.TOTAL_VERTICES = TOTAL_VERTICES;
-        ADJACENT_VERICES = new ArrayList<>(TOTAL_VERTICES);
+        ADJACENT_VERTICES = new ArrayList<>(TOTAL_VERTICES);
         for (int i = 0; i < TOTAL_VERTICES; i++)
-            ADJACENT_VERICES.add(new LinkedList<>());
+            ADJACENT_VERTICES.add(new LinkedList<>());
     }
 
     private boolean isCyclicUtil(int i, boolean[] visited,
@@ -31,7 +31,7 @@ class Graph {
 
         visited[i] = true;
         stack[i] = true;
-        List<Integer> children = ADJACENT_VERICES.get(i);
+        List<Integer> children = ADJACENT_VERTICES.get(i);
         for (Integer c : children)
             if (isCyclicUtil(c, visited, stack))
                 return true;
@@ -40,7 +40,7 @@ class Graph {
     }
 
     public void addEdge(int source, int dest) {
-        ADJACENT_VERICES.get(source).add(dest);
+        ADJACENT_VERTICES.get(source).add(dest);
     }
 
     /**
