@@ -1,11 +1,10 @@
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.*;
 
 /**
- * Class for Context menu of Op 
+ * Class for Context menu of Op
  *
  * @author Praveen Kumar
  * @since April 29, 2020
@@ -13,30 +12,34 @@ import javax.swing.*;
 public class ContextMenuOp extends JPopupMenu {
 
 	JMenuItem menuItemDelete = new JMenuItem("delete");
-	static Op opToDelete = null;
+	Op opToDelete = null;
 
 	public ContextMenuOp() {
 		add(menuItemDelete);
 		menuItemDelete.addActionListener(actionEvent -> deleteOp());
 	}
-
+	
+	void showContextMenu(MouseEvent mouseEvent){
+		if(mouseEvent.isPopupTrigger()) {
+			opToDelete = (Op) mouseEvent.getComponent();
+			ListenersPanelRightTab.contextMenuOp.show(opToDelete, mouseEvent.getX(), mouseEvent.getY());
+			PanelRightTab.refreshTab();
+		}
+	}
+	
 	void deleteOp()
 	{
-		Op op = opToDelete;
 		List<Connector> src = Database.selectedTab.src;
 		List<Connector> dest = Database.selectedTab.dest;
-		int opID = op.ID;
+		int opID = opToDelete.ID;
 		int destSize = dest.size();
 
-		System.out.println("delete op: " + op.label + " ID: " + op.ID);
+		System.out.println("delete op: " + opToDelete.label + " ID: " + opToDelete.ID);
 
 		// removing connections 
 		for (int i = destSize-1; i >= 0; i--){
-
-			System.out.println("delete connection " + src.get(i).op.ID + " " + dest.get(i).op.ID);
-
 			if(dest.get(i).op.ID == opID || src.get(i).op.ID == opID){
-
+				System.out.println("delete connection " + src.get(i).op.ID + " " + dest.get(i).op.ID);
 				Database.selectedTab.dest.get(i).connected = false;
 				Database.selectedTab.src.get(i).connected = false;
 				Database.selectedTab.dest.remove(i);
@@ -45,7 +48,7 @@ public class ContextMenuOp extends JPopupMenu {
 		}
 		PanelRightTab.refreshTab();
 
-		/* (to not break compiler) because "||" may have multiple connections and
+		/* (to not break compiler) because "||" may have multiple connections and 
 		 * status may be changed while removing some connections
 		 */
 		for(int i=0; i < Database.selectedTab.dest.size(); i++){
@@ -61,14 +64,14 @@ public class ContextMenuOp extends JPopupMenu {
 		Database.selectedTab.OpCount-- ;
 
 		// remove tab associated with the # operator 
-		if(op.label.equals("#")){
+		if(opToDelete.label.equals("#")){
 			PanelRightTab tabToRemove = ListenersPanelRightTab.mapOP.get(opToDelete);
 			MainFrame.PANEL_RIGHT.remove(tabToRemove);
 			ListenersPanelRightTab.mapOP.remove(opToDelete);
 			ListenersInputPopup.mapTab.remove(tabToRemove);
 		}
 
-		Database.selectedTab.remove(op);
-		ContextMenuOp.opToDelete = null;
+		Database.selectedTab.remove(opToDelete);
+		opToDelete = null;
 	}
 }
