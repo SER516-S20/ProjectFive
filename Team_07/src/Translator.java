@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,15 +27,16 @@ public class Translator {
             hashSet.add(op2.ID);
             System.out.println("src "+op1.label+" id: "+op1.ID);
             System.out.println("dest "+op2.label+" id: "+op2.ID);
-            sb.append("\"" + op1.label + " " + (op1.ID-17) +
-                    "\" -> \"" + op2.label + " " + (op2.ID-17) + "\";" + "\n");
+            sb.append(op1.ID +" [label=\"" + op1.label + "\"];" + "\n" +
+                            op2.ID +" [label=\"" + op2.label + "\"];" + "\n" +
+                            op1.ID + "->" +op2.ID + "\n");
         }
 
         for (Component component :
                 currentTab.getComponents()) {
             Op op = (Op) component;
             if(!hashSet.contains(op.ID)){
-                sb.append("\"" + op.label + " " + (op.ID-17) + "\";" + "\n");
+                sb.append(op.ID +" [label=\"" + op.label + "\"];" + "\n" + op.ID + ";" + "\n");
                 hashSet.add(op.ID);
             }
 
@@ -42,6 +44,8 @@ public class Translator {
 
         sb.append("}");
         System.out.println("Translated code is "+sb.toString());
+
+
     }
 
 }
