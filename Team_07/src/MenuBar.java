@@ -1,8 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
 
 /**
  * Contains Menu items
@@ -72,8 +69,8 @@ public class MenuBar {
     }
 
     public void translate() {
-        Tranxlator tranxlator = new Tranxlator();
-        tranxlator.translate();
+        Translator translator = new Translator();
+        translator.translate();
 //        Translator translator=new Translator();
 //        translator.translate();
     }

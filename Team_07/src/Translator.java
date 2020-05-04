@@ -1,120 +1,137 @@
 import java.awt.*;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
- * Translator translates all the symbols and their connections into graphviz code
- *
- * @author Aravind Thillai Villalan
- * @since May 2nd, 2020
+ *  * @author Karandeep Singh Grewal
+ *  * @author Aravind
+ *  * @since May 3, 2020
  */
 public class Translator {
-    //PanelRightTab currentTab = Database.selectedTab;
+    StringBuilder stringBuilder;
+    List<TranslatorNode> nodes;
+    List<TranslatorCluster> clusters;
 
-    PanelRightTab currentTab;
+    Translator() {
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("digraph{\n");
+        nodes = new ArrayList<>();
+        clusters = new ArrayList<>();
+    }
 
+    //Entry Point
     public void translate() {
-        StringBuilder sb = new StringBuilder();
-        Set<Integer> hashSet = new HashSet<>();
 
-        int tabCount = MainFrame.PANEL_RIGHT.getTabCount();
-        String tabTitle = "";
-        for(int i = 0; i < tabCount; i++)
-        {
-//            System.out.println(MainFrame.PANEL_RIGHT.getComponentCount());
-//            System.out.println(MainFrame.PANEL_RIGHT.getComponents());
-            currentTab = (PanelRightTab)MainFrame.PANEL_RIGHT.getComponentAt(i);
-            tabTitle = MainFrame.PANEL_RIGHT.getTitleAt(i);
-            if(i==0){
-                sb.append("digraph G {");
-                sb.append("\n\n");
-            }
-
-            sb.append("subgraph cluster_").append(i).append(" {").append("\n");
-            sb.append("style=filled;").append("\n");
-            sb.append("color=lightgrey;").append("\n");
-            sb.append("node [style=filled,color=white];").append("\n");
-//            List<Connector> src = Database.selectedTab.src;
-//            List<Connector> desc = Database.selectedTab.dest;
-
-            List<Connector> src = currentTab.src;
-            List<Connector> desc = currentTab.dest;
-
-            for (int j= 0; j < src.size(); j++) {
-                Op op1 = src.get(j).op;
-                Op op2 = desc.get(j).op;
-                hashSet.add(op1.ID);
-                hashSet.add(op2.ID);
-                PanelLog.logString("src " + op1.label + " id: " + op1.ID, Color.WHITE);
-                PanelLog.logString("dest " + op2.label + " id: " + op2.ID, Color.WHITE);
-                sb.append(op1.ID).append(" [label=\"").append(op1.label).append("\"];").append("\n")
-                        .append(op2.ID).append(" [label=\"").append(op2.label).append("\"];")
-                        .append("\n").append(op1.ID).append("->").append(op2.ID).append(";").append("\n");
-            }
-
-            for (Component component :
-                    currentTab.getComponents()) {
+        PanelRightTab mainTab = (PanelRightTab) MainFrame.PANEL_RIGHT.getComponentAt(0);
+        //For Main Tab
+        for (Component component : mainTab.getComponents()
+        ) {
+            if (component instanceof Op) {
                 Op op = (Op) component;
-                if (!hashSet.contains(op.ID)) {
-                    sb.append(op.ID).append(" [label=\"").append(op.label).append("\"];").append("\n").append(op.ID).append(";").append("\n");
-                    hashSet.add(op.ID);
+                TranslatorNode node = new TranslatorNode(op.label, generateID(op));
+                nodes.add(node);
+                addNodeToTranxlator(node);
+                if (op.label.equals("#")) {
+                    PanelRightTab tempPanel = ListenersPanelRightTab.mapOP.get(op);
+                    addCluster(tempPanel, MainFrame.PANEL_RIGHT.getComponentZOrder(tempPanel), op);
                 }
-
             }
-            sb.append("label = \"tab #").append(i).append("\";").append("\n");
-            sb.append("}").append("\n\n");
-
-            if(i==tabCount-1){
-                sb.append("}");
-            }
-
         }
 
+        for (Component component : MainFrame.PANEL_RIGHT.getComponents()
+        ) {
+            if (component instanceof PanelRightTab) {
+                PanelRightTab panelRightTab = (PanelRightTab) component;
+                List<Connector> src = panelRightTab.src;
+                List<Connector> desc = panelRightTab.dest;
+                for (int i = 0; i < src.size(); i++) {
+                    Op srcOp = src.get(i).op;
+                    Op destOp = desc.get(i).op;
+                    if (srcOp.label.equals("#")) {
+                        for (TranslatorCluster cluster : clusters
+                        ) {
+                            if (cluster.op == srcOp) {
+                                stringBuilder.append(cluster.desc.id).append(" -> ").append(generateID(destOp)).append(";\n");
+                            }
+                        }
+                    }
+                    if (destOp.label.equals("#")) {
+                        for (TranslatorCluster cluster : clusters
+                        ) {
+                            if (cluster.op == destOp) {
+                                stringBuilder.append(generateID(srcOp)).append(" -> ").append(cluster.src.id).append(";\n");
+                            }
+                        }
+                    } else
+                        stringBuilder.append(generateID(srcOp)).append(" -> ").append(generateID(destOp)).append(";\n");
+                }
+            }
+        }
+        stringBuilder.append("\n}");
+        saveGraph();
+    }
 
+    //Create new cluster and add nodes on the associated tab
+    public void addCluster(PanelRightTab panelRightTab, int tabNum, Op associatedOp) {
+        TranslatorCluster cluster = new TranslatorCluster(Integer.toString(tabNum), associatedOp);
+        clusters.add(cluster);
+        //adds nodes for tab
+        for (Component component : panelRightTab.getComponents()
+        ) {
+            if (component instanceof Op) {
+                Op op = (Op) component;
+                TranslatorNode node = new TranslatorNode(op.label, generateID(op));
+                nodes.add(node);
+                addNodeToTranxlator(node);
+                node.cluster = cluster;
+                if (op.label.equals("("))
+                    cluster.src = node;
+                if (op.label.equals(")"))
+                    cluster.desc = node;
+                if (op.label.equals("#")) {
+                    PanelRightTab tempPanel = ListenersPanelRightTab.mapOP.get(op);
+                    addCluster(tempPanel, MainFrame.PANEL_RIGHT.getComponentZOrder(tempPanel), op);
+                }
+            }
+        }
+        createCluster(cluster);
+    }
 
-//        sb.append("digraph G {");
-//        List<Connector> src = Database.selectedTab.src;
-//        List<Connector> desc = Database.selectedTab.dest;
-//
-//        for (int i = 0; i < src.size(); i++) {
-//            Op op1 = src.get(i).op;
-//            Op op2 = desc.get(i).op;
-//            hashSet.add(op1.ID);
-//            hashSet.add(op2.ID);
-//            PanelLog.logString("src " + op1.label + " id: " + op1.ID, Color.WHITE);
-//            PanelLog.logString("dest " + op2.label + " id: " + op2.ID, Color.WHITE);
-//            sb.append(op1.ID).append(" [label=\"").append(op1.label).append("\"];").append("\n")
-//                    .append(op2.ID).append(" [label=\"").append(op2.label).append("\"];")
-//                    .append("\n").append(op1.ID).append("->").append(op2.ID).append(";").append("\n");
-//        }
-//
-//        for (Component component :
-//                currentTab.getComponents()) {
-//            Op op = (Op) component;
-//            if (!hashSet.contains(op.ID)) {
-//                sb.append(op.ID).append(" [label=\"").append(op.label).append("\"];").append("\n").append(op.ID).append(";").append("\n");
-//                hashSet.add(op.ID);
-//            }
-//
-//        }
-//
-//        sb.append("}");
-        System.out.println(sb.toString());
-        String basePath = new File("graphviz/graphvizcode.txt").getAbsolutePath();
-        PanelLog.logString("Translated code is written into the file " + basePath, Color.WHITE);
-        PanelLog.logString("Translated code is \n" + sb.toString(), Color.WHITE);
+    //add node with label to stringbuilder
+    public void addNodeToTranxlator(TranslatorNode node) {
+        stringBuilder.append(node.id);
+        stringBuilder.append(" [ label=\"");
+        stringBuilder.append(node.label);
+        stringBuilder.append("\"];\n");
+    }
 
-        try {
-            Files.writeString(Paths.get(basePath), sb.toString());
+    //create cluster and add nodes to cluster
+    public void createCluster(TranslatorCluster cluster) {
+        stringBuilder.append("\nsubgraph cluster");
+        stringBuilder.append(cluster.label).append("{\n");
+        stringBuilder.append("label = \"tab").append(cluster.label).append("\";\n");
+        for (TranslatorNode node : nodes
+        ) {
+            if (node.cluster == cluster)
+                stringBuilder.append(node.id).append(";\n");
+        }
+        stringBuilder.append("}\n\n");
+    }
+
+    //save as file
+    public void saveGraph() {
+        try (FileOutputStream oS = new FileOutputStream(new File("file.dot"))) {
+            oS.write(stringBuilder.toString().getBytes());
         } catch (IOException e) {
-            PanelLog.logString("Error in writing the graphviz code", Color.RED);
             e.printStackTrace();
         }
+    }
 
+    //generate id from op.ID and opLocation
+    public String generateID(Op op) {
+        return op.ID + "" + op.getX() + "" + op.getY();
     }
 }
