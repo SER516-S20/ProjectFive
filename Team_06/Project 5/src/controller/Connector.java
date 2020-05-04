@@ -5,7 +5,7 @@ import javax.swing.JButton;
 /**
  *
  * @author Sheran
- * @since 03-08-2020
+ * @since 04-26-2020
  * @Description: This class is used to keep track of teh dots and bars and the connections made by the user.
  */
 public class Connector extends JButton{
