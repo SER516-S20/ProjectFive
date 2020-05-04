@@ -18,12 +18,12 @@ public class TextBox extends JOptionPane {
         objectMessageMap.put(shape, textValue);
     }
 
-    public String getUserInput() {
-        return JOptionPane.showInputDialog(null, "Enter Value");
-    }
-
     public void showUserInput(Shapes shape) {
         JOptionPane.showMessageDialog(null, objectMessageMap.get(shape));
+    }
+
+    public String getUserInput() {
+        return JOptionPane.showInputDialog(null, "Enter Value");
     }
 
     public Boolean isPresentInMap(Shapes s) {

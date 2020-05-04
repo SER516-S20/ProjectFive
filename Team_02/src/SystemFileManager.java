@@ -7,6 +7,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -24,7 +26,7 @@ public class SystemFileManager {
 			Gson gson = new Gson();
 			FileReader file = new FileReader(pathName);
 	        BufferedReader bufferreader = new BufferedReader(file);
-            RightPanelDataProcessor dataObject = RightPanelMouseListener.dataProcessor;
+	        RightPanelDataProcessor rpDataProcessor = NewTab.mapRightPanels.get(tabids).panelMouseListener.dataProcessor;
             String line;
             int lineNumber = 1;
             while ((line = bufferreader.readLine()) != null) {
@@ -63,35 +65,44 @@ public class SystemFileManager {
 	}
 
 	public void saveShape(String pathName) {
-		try {
-			RightPanelDataProcessor dataObject = RightPanelMouseListener.dataProcessor;
-			Gson gson = new Gson();
-			JsonObject object = new JsonObject();
-			for (String key: dataObject.getIconMap().keySet()) {
-				JsonObject temp = new JsonObject();
-				for (Icon icon: dataObject.getIconMap().get(key)) {
-					temp.addProperty(Integer.toString(icon.getCenterX()),icon.getCenterY());
-				}
-				object.add(key, temp);
-			}
+		String splitPattern = "\\.";
+		String fileLoc = pathName.split(splitPattern)[0];
+		
+		
+		for (Integer tabids : NewTab.mapRightPanels.keySet()) {
 			
-			String jsonDotList = gson.toJson(dataObject.getDotList());
-			String jsonLineList = gson.toJson(dataObject.getLineList());
-			String jsonBarList = gson.toJson(dataObject.getBarCenterList());
-			String jsonIconList = gson.toJson(object);
-			FileWriter file = new FileWriter(pathName, true);
-            file.write(jsonDotList);
-            file.write("\n");
-            file.write(jsonLineList);
-            file.write("\n");
-            file.write(jsonBarList);
-            file.write("\n");
-            file.write(jsonIconList);
-            file.flush();
-            file.close();
+			String finalLoc = fileLoc + String.valueOf(tabids) + ".dat";
+			
+			try {
+				RightPanelDataProcessor rpDataProcessor = NewTab.mapRightPanels.get(tabids).panelMouseListener.dataProcessor;
+				Gson gson = new Gson();
+				JsonObject object = new JsonObject();
+				for (String key: rpDataProcessor.getIconMap().keySet()) {
+					JsonObject temp = new JsonObject();
+					for (Icon icon: rpDataProcessor.getIconMap().get(key)) {
+						temp.addProperty(Integer.toString(icon.getCenterX()),icon.getCenterY());
+					}
+					object.add(key, temp);
+				}
+				
+				String jsonDotList = gson.toJson(rpDataProcessor.getDotList());
+				String jsonLineList = gson.toJson(rpDataProcessor.getLineList());
+				String jsonBarList = gson.toJson(rpDataProcessor.getBarCenterList());
+				String jsonIconList = gson.toJson(object);
+				FileWriter file = new FileWriter(finalLoc, true);
+	            file.write(jsonDotList);
+	            file.write("\n");
+	            file.write(jsonLineList);
+	            file.write("\n");
+	            file.write(jsonBarList);
+	            file.write("\n");
+	            file.write(jsonIconList);
+	            file.flush();
+	            file.close();
 
-		} catch (Exception ex) {
-			System.out.println("Trouble saving file" +  ex.getMessage());
+			} catch (Exception ex) {
+				System.out.println("Trouble saving file" +  ex.getMessage());
+			}
 		}
 	}
 
