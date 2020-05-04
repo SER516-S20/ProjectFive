@@ -89,7 +89,7 @@ public class Interpreter {
 					edge.remove(id);
 					Hashtable<Integer, HashSet<Integer>> newedges = (Hashtable<Integer, HashSet<Integer>>) edges.clone();
 					newedges.remove(nodeID);
-					loop += generateCode(id,nodes,newedges).indent(1);
+					loop += generateCode(id,nodes,newedges).indent(4);
 				}
 				else
 				{
@@ -112,7 +112,7 @@ public class Interpreter {
 			if(Model.getTabs().containsKey(node.getTitle()))
 			{
 				sub = processNodes(Model.getTabs().get(node.getTitle()));
-				code += sub.indent(1);
+				code += sub.indent(4);
 			}
 			else
 			{
@@ -130,7 +130,7 @@ public class Interpreter {
 			{
 				ButtonBox next = nodes.get(id);
 				code+=generateCode(id,nodes,edges);
-				code=code.indent(1);
+				code=code.indent(4);
 			}
 			break;
 		case ")":
@@ -143,6 +143,7 @@ public class Interpreter {
 	{
 		boolean found = false;
 		HashSet<Integer> edge = edges.get(start);
+		if(edge==null) return false;
 		if(edge.contains(end))
 			found = true;
 		else
