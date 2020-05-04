@@ -30,7 +30,10 @@ public class MenuBar extends JMenuBar{
 		JMenuItem itemNew = new JMenuItem("New");
 		itemNew.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				Model.getRightTabbedPane().addWorkingAreaTab();
+				if(fileBrowser.browser("Save file")) {
+					fileManager.save(fileBrowser.getCurrentFile());
+					fileManager.clearTabs();
+				}
 			}
 		});
 		fileMenu.add(itemNew);
@@ -38,7 +41,7 @@ public class MenuBar extends JMenuBar{
 		JMenuItem itemOpen = new JMenuItem("Open");
 		itemOpen.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-			if(fileBrowser.browser("Open")) {
+			if(fileBrowser.browser("Open file")) {
 				fileManager.open(fileBrowser.getCurrentFile());
 				}
 			}
@@ -48,7 +51,7 @@ public class MenuBar extends JMenuBar{
 		JMenuItem itemSave = new JMenuItem("Save");
 		itemSave.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-				if(fileBrowser.browser("Save")) {
+				if(fileBrowser.browser("Save file")) {
 					fileManager.save(fileBrowser.getCurrentFile());
 				}
 			}

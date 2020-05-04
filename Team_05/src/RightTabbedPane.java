@@ -8,7 +8,7 @@ public class RightTabbedPane extends JTabbedPane{
 
 	RightTabbedPane() {
 		if(Model.getTabs().size()==0)
-			addWorkingAreaTab();
+			addWorkingAreaTab("Main");
 		Model.setRightTabbedPane(this);
 	}
 	
@@ -25,15 +25,15 @@ public class RightTabbedPane extends JTabbedPane{
 		return tabInfo;
 	}
 	
-	public TabInfo addWorkingAreaTab() {
-		String init_name = "Tab";
-		String name = init_name;
-		int count = 1;
-		while(Model.getTabs().containsKey(name)) {
-			name = init_name + Integer.toString(count);
-			count++;
-		}
-		RightPanel tab = new RightPanel(name);
+	public TabInfo addWorkingAreaTab(String tabName) {
+		//String init_name = "Tab";
+		//String name = init_name;
+		//int count = 1;
+		//while(Model.getTabs().containsKey(name)) {
+		//	name = init_name + Integer.toString(count);
+		//	count++;
+		//}
+		RightPanel tab = new RightPanel(tabName);
 		return addWorkingAreaTab(tab);
 	}
 	
