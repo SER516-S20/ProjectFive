@@ -41,23 +41,23 @@ public class MenuBar {
 
         newButton.addActionListener(arg0 -> {
             FileManager.newFile();
-            System.out.println("New File created");
+            PanelLog.logString("New File created", Color.WHITE);
         });
         openButton.addActionListener(arg0 -> {
             FileManager.open();
-            System.out.println("File Opened");
+            PanelLog.logString("File Opened", Color.WHITE);
         });
         saveButton.addActionListener(arg0 -> {
             FileManager.save();
-            System.out.println("File Saved");
+            PanelLog.logString("File Saved", Color.WHITE);
         });
 
         compileButton.addActionListener(arg0 -> {
-            System.out.println("Compiled");
+            PanelLog.logString("Compiled", Color.WHITE);
             compile();
         });
         translateButton.addActionListener(arg0 -> {
-            System.out.println("Translated");
+            PanelLog.logString("Translated", Color.WHITE);
             translate();
         });
     }
@@ -68,7 +68,6 @@ public class MenuBar {
 
     public void compile() {
     	Compiler compiler = new Compiler();
-        System.out.println(compiler.compile());
     }
 
     public void translate() {

@@ -41,7 +41,7 @@ public class FileManager {
             JOptionPane.showMessageDialog(MainFrame.mainFrame, "Saved as " + file);
 
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            PanelLog.logString("File not found", Color.RED);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -92,9 +92,9 @@ public class FileManager {
             Database.selectedTab = (PanelRightTab) tabsToOpen[0];
 
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            PanelLog.logString("File not found", Color.RED);
         } catch (IOException e) {
-            System.out.println("Error initializing stream");
+            PanelLog.logString("Error initializing stream", Color.RED);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

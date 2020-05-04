@@ -55,7 +55,7 @@ public class InputPopup extends JDialog {
     }
 
     private ButtonCustom getCancelButton() {
-        ButtonCustom cancelButton = new ButtonCustom("Cancel", Color.GRAY);
+        ButtonCustom cancelButton = new ButtonCustom("Cancel", Color.WHITE);
         cancelButton.setBorder(BorderFactory.createLineBorder(Color.white, 1));
         ListenersInputPopup.addCancelButtonListeners(cancelButton, this);
         return cancelButton;

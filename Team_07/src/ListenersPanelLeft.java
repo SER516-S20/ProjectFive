@@ -42,10 +42,15 @@ public class ListenersPanelLeft {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Point tabLocation = Database.selectedTab.getLocationOnScreen();
-                if(draggableOp.getLocationOnScreen().x<tabLocation.x-shift.x
-                        || draggableOp.getLocationOnScreen().y<tabLocation.y-shift.y) {
+                if (draggableOp.getLocationOnScreen().x < tabLocation.x - shift.x
+                        || draggableOp.getLocationOnScreen().y < tabLocation.y - shift.y) {
                     Database.selectedTab.remove(draggableOp);
                     PanelRightTab.refreshTab();
+                } else if (draggableOp.getOpLabel().getText().equals("#")) {
+                    ListenersPanelRightTab.mapOP.put(draggableOp,
+                            MainFrame.PANEL_RIGHT.addNewTab());
+                    ListenersInputPopup.mapTab.put(ListenersPanelRightTab.mapOP.get(draggableOp),
+                            "Tab " + (PanelRight.tabNum - 1));
                 }
             }
 

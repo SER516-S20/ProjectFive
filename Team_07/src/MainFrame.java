@@ -14,16 +14,16 @@ public class MainFrame extends JFrame {
     static MainFrame mainFrame = new MainFrame();
     final ToolbarTop TOOLBAR_TOP = new ToolbarTop();
     final PanelLeft PANEL_LEFT = new PanelLeft();
+    final PanelLog PANEL_LOG = new PanelLog();
     final MenuBar MENU_BAR = new MenuBar();
 
     public MainFrame() {
         super("Project Five - Team 7");
-        setSize(1800, 1000);
+        setSize(1000,1000);
         add(addScrollPane());
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setJMenuBar(MENU_BAR.menu);
-
     }
 
     public static void main(String[] args) {
@@ -38,6 +38,7 @@ public class MainFrame extends JFrame {
         mainPanel.add(TOOLBAR_TOP, BorderLayout.NORTH);
         mainPanel.add(PANEL_LEFT, BorderLayout.WEST);
         mainPanel.add(PANEL_RIGHT, BorderLayout.CENTER);
+        mainPanel.add(PANEL_LOG.scrollPanelLog,BorderLayout.SOUTH);
         mainPanel.setBackground(Color.WHITE);
         scrollBarPane = new JScrollPane(mainPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         return scrollBarPane;
