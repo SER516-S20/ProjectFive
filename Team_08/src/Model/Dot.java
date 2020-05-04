@@ -19,7 +19,7 @@ import java.io.Serializable;
  * This class consists of Model.Dot
  *
  * @author Amudhan Manisekaran
- * @version 1.0
+ * @version 1.3
  */
 
 public class Dot extends Shapes implements MouseListener, MouseMotionListener, Serializable {

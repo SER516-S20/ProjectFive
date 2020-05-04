@@ -13,7 +13,7 @@ import java.awt.*;
 /**
  * This class consists of GUI for the shapes in left panel.
  * @author Amudhan Manisekaran
- * @version 1.0
+ * @version 1.1
  */
 
 public class Button {
@@ -92,7 +92,6 @@ public class Button {
 
         JButton openButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/openbracket2.jpg"));
         openButton.setPreferredSize(new Dimension(100, 50));
-        openButton.setFont(new Font("Arial", Font.PLAIN, 30));
         openButton.addActionListener(e -> {
             openButton.setName("openButton");
             resetButtonClicked(openButton);
@@ -101,7 +100,6 @@ public class Button {
 
         JButton closeButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/closebracket2.jpg"));
         closeButton.setPreferredSize(new Dimension(100, 50));
-        closeButton.setFont(new Font("Arial", Font.PLAIN, 30));
         closeButton.addActionListener(e -> {
             closeButton.setName("closeButton");
             resetButtonClicked(closeButton);
@@ -110,7 +108,6 @@ public class Button {
 
         JButton lessThanButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/lessthan2.jpg"));
         lessThanButton.setPreferredSize(new Dimension(100, 50));
-        lessThanButton.setFont(new Font("Arial", Font.PLAIN, 30));
         lessThanButton.addActionListener(e -> {
             lessThanButton.setName("lessThanButton");
             resetButtonClicked(lessThanButton);
@@ -119,7 +116,6 @@ public class Button {
 
         JButton greaterThanButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/greaterthan2.jpg"));
         greaterThanButton.setPreferredSize(new Dimension(100, 50));
-        greaterThanButton.setFont(new Font("Arial", Font.PLAIN, 30));
         greaterThanButton.addActionListener(e -> {
             greaterThanButton.setName("greaterThanButton");
             resetButtonClicked(greaterThanButton);
@@ -128,7 +124,6 @@ public class Button {
 
         JButton atTheRateButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/attherate2.jpg"));
         atTheRateButton.setPreferredSize(new Dimension(100, 50));
-        atTheRateButton.setFont(new Font("Arial", Font.PLAIN, 30));
         atTheRateButton.addActionListener(e -> {
             atTheRateButton.setName("atTheRateButton");
             resetButtonClicked(atTheRateButton);
@@ -137,7 +132,6 @@ public class Button {
 
         JButton twoBarButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/twobars2.jpg"));
         twoBarButton.setPreferredSize(new Dimension(100, 50));
-        twoBarButton.setFont(new Font("Arial", Font.PLAIN, 30));
         twoBarButton.addActionListener(e -> {
             twoBarButton.setName("twoBarButton");
             resetButtonClicked(twoBarButton);
@@ -146,7 +140,6 @@ public class Button {
 
         JButton hyphenButton = new JButton(new ImageIcon("Team_08/src/ImageFiles/hyphen2.jpg"));
         hyphenButton.setPreferredSize(new Dimension(100, 50));
-        hyphenButton.setFont(new Font("Arial", Font.PLAIN, 30));
         hyphenButton.addActionListener(e -> {
             hyphenButton.setName("hyphenButton");
             resetButtonClicked(hyphenButton);
@@ -155,12 +148,9 @@ public class Button {
 
         JButton poundButton = new JButton("#", new ImageIcon("Team_08/src/ImageFiles/pound2.jpg"));
         poundButton.setPreferredSize(new Dimension(100, 50));
-//        poundButton.setFont(new Font("Arial", Font.PLAIN, 30));
         poundButton.addActionListener(new Frame.MyAction());
         poundButton.addActionListener(e -> {
             poundButton.setName("poundButton");
-            //createTab();
-            //poundButton.addActionListener(new View.Frame.MyAction());
             resetButtonClicked(poundButton);
 
         });
