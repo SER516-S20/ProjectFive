@@ -19,7 +19,7 @@ import model.OrSymbol;
 /**
  *
  * @author Sheran
- * @since 03-08-2020
+ * @since 04-21-2020
  * @Description: Toolbar has all the 8 buttons to select and apply on the right panel.
  */
 public class ToolBar extends JToolBar{
