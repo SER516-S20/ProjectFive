@@ -14,12 +14,13 @@ import java.util.List;
 public class PanelLeft extends JPanel {
     final static List<String> PANEL_LEFT_OPERATORS = new ArrayList<>(Arrays.asList
             ("(", ")", "<", ">", "@", "||", "-","#"));
-    final Dimension DIMENSION_PANEL_LEFT = new Dimension(200, Database.SCREEN_SIZE.height);
+    final Dimension DIMENSION_PANEL_LEFT = new Dimension(200, 100);
 
 
     PanelLeft() {
         super();
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
+        setMinimumSize(DIMENSION_PANEL_LEFT);
         setPreferredSize(DIMENSION_PANEL_LEFT);
         setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.gray));
         setBackground(Color.DARK_GRAY);

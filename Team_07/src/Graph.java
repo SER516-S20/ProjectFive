@@ -77,8 +77,8 @@ class Graph {
 
     public void dfs(int start, boolean[] visited) {
         visited[start] = true;
-        for (int i = 0; i < ADJACENT_VERICES.get(start).size(); i++) {
-            int destination = ADJACENT_VERICES.get(start).get(i);
+        for (int i = 0; i < ADJACENT_VERTICES.get(start).size(); i++) {
+            int destination = ADJACENT_VERTICES.get(start).get(i);
             if (!visited[destination])
                 dfs(destination, visited);
         }

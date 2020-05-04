@@ -15,10 +15,8 @@ public class Compiler {
 
 	/**
 	 * Checks for the errors in the current tab
-	 *
-	 * @return Error
 	 */
-	public String compile() {
+	public void compile() {
 		String msg = "";
 		String parenthesisError = getParError();
 		if (!parenthesisError.equals("No Error"))
@@ -27,7 +25,6 @@ public class Compiler {
 			msg = "Connections Pending";
 		else
 			msg = parseGraph();
-		return msg;
 	}
 
 	/**

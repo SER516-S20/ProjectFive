@@ -71,7 +71,7 @@ public abstract class Op extends JPanel implements Serializable {
             outputConnector.add(connector);
             outputConnector.add(Box.createVerticalGlue());
         } else
-            System.out.println("Invalid connector type");
+            PanelLog.logString("Invalid connector type", Color.RED);
     }
 
     public String getValue() {

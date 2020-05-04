@@ -18,7 +18,7 @@ public class Translator {
 
     public void translate() {
         StringBuilder sb=new StringBuilder();
-        Set<Integer> hashSet=new HashSet<Integer>();
+        Set<Integer> hashSet= new HashSet<>();
         sb.append("digraph G {");
         List<Connector> src = Database.selectedTab.src;
         List<Connector> desc = Database.selectedTab.dest;
@@ -28,18 +28,16 @@ public class Translator {
             Op op2 = desc.get(i).op;
             hashSet.add(op1.ID);
             hashSet.add(op2.ID);
-            System.out.println("src "+op1.label+" id: "+op1.ID);
-            System.out.println("dest "+op2.label+" id: "+op2.ID);
-            sb.append(op1.ID +" [label=\"" + op1.label + "\"];" + "\n" +
-                            op2.ID +" [label=\"" + op2.label + "\"];" + "\n" +
-                            op1.ID + "->" +op2.ID + "\n");
+            PanelLog.logString("src "+op1.label+" id: "+op1.ID, Color.GRAY);
+            PanelLog.logString("dest "+op2.label+" id: "+op2.ID, Color.GRAY);
+            sb.append(op1.ID).append(" [label=\"").append(op1.label).append("\"];").append("\n").append(op2.ID).append(" [label=\"").append(op2.label).append("\"];").append("\n").append(op1.ID).append("->").append(op2.ID).append("\n");
         }
 
         for (Component component :
                 currentTab.getComponents()) {
             Op op = (Op) component;
             if(!hashSet.contains(op.ID)){
-                sb.append(op.ID +" [label=\"" + op.label + "\"];" + "\n" + op.ID + ";" + "\n");
+                sb.append(op.ID).append(" [label=\"").append(op.label).append("\"];").append("\n").append(op.ID).append(";").append("\n");
                 hashSet.add(op.ID);
             }
 
@@ -47,19 +45,16 @@ public class Translator {
 
         sb.append("}");
         String basePath = new File("graphviz/graphvizcode.txt").getAbsolutePath();
-        System.out.println("Translated code is written into the file "+basePath);
-        System.out.println("Translated code is \n"+sb.toString());
+        PanelLog.logString("Translated code is written into the file "+basePath, Color.GRAY);
+        PanelLog.logString("Translated code is \n"+sb.toString(), Color.GRAY);
 
         try{
             Files.writeString(Paths.get(basePath), sb.toString());
         }
         catch (IOException e) {
-            System.out.println("Error in writing the graphviz code");
+            PanelLog.logString("Error in writing the graphviz code", Color.RED);
             e.printStackTrace();
         }
 
     }
-
-
-
 }

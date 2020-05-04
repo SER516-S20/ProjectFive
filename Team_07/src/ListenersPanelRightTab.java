@@ -20,8 +20,8 @@ public class ListenersPanelRightTab {
     static Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
     static Cursor MOVE_CURSOR = new Cursor(Cursor.MOVE_CURSOR);
     static int currentConnection = -1;
-    private static boolean panelRightTabAllowance = true;
     static ContextMenuOp contextMenuOp = new ContextMenuOp();
+    private static boolean panelRightTabAllowance = true;
 
     public static void addRightPanelTabListeners(JPanel rightPanel) {
         rightPanel.addMouseListener(new MouseListener() {
@@ -100,18 +100,17 @@ public class ListenersPanelRightTab {
                 if (currentConnection != -1)
                     for (Connector connector : PanelRightTab.getDestConnectors()
                     ) {
-                        if (connector.getLocationOnScreen().x-2 < e.getXOnScreen())
-                            if (connector.getLocationOnScreen().x+2 + connector.getWidth() > e.getXOnScreen())
+                        if (connector.getLocationOnScreen().x - 2 < e.getXOnScreen())
+                            if (connector.getLocationOnScreen().x + 2 + connector.getWidth() > e.getXOnScreen())
                                 if (connector.getLocationOnScreen().y < e.getYOnScreen())
                                     if (connector.getLocationOnScreen().y + connector.getHeight() > e.getYOnScreen()) {
                                         if (connector instanceof ConnectorBar || (connector instanceof ConnectorDot && !connector.connected)) {
                                             Database.selectedTab.dest.get(currentConnection).connected = false;
                                             Database.selectedTab.dest.remove(currentConnection);
                                             Database.selectedTab.dest.add(currentConnection, connector);
-                                            connector.connected=true;
+                                            connector.connected = true;
                                         }
                                     }
-
                     }
             }
 
@@ -184,7 +183,7 @@ public class ListenersPanelRightTab {
 
             @Override
             public void mousePressed(MouseEvent mouseEvent) {
-            	contextMenuOp.showContextMenu(mouseEvent);
+                contextMenuOp.showContextMenu(mouseEvent);
             }
 
             @Override
@@ -247,5 +246,4 @@ public class ListenersPanelRightTab {
 
         }
     }
-
 }
