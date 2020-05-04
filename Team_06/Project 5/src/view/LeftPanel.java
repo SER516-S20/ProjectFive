@@ -22,7 +22,7 @@ import model.OrSymbol;
  *
  * @author Suyog
  * @since 04-22-2020
- * @Description: Left Panel will have different shapes that are available to draw in right panel tabs.
+ * @Description: Left Panel will have different shapes that are available to draw work panel tabs.
  */
 public class LeftPanel extends JPanel{
 
