@@ -41,6 +41,7 @@ public class Shapes extends JPanel implements ActionListener, MouseListener {
 	private JLabel barOperator1 = new JLabel();
 	private JLabel dashOperator1 = new JLabel();
 	private JLabel hashOperator1 = new JLabel();
+	public RightPanel currTabPanel;
 	private java.util.List<JButton> buttons = new ArrayList<JButton>();
 	private java.util.List<JLabel> leftButtons = new ArrayList<JLabel>();
 
@@ -170,7 +171,10 @@ public class Shapes extends JPanel implements ActionListener, MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		String temp = ClickedShape.shapeName;
+		System.out.println("in mouse released");
 		System.out.println(e.getSource());
+		//currTabPanel = NewTab.mapRightPanels.get(NewTab.currentTabIndx);
+		/*
 		if (e.getSource() == openParanthesis1) {
 			ClickedShape.shapeName = "openParanthesis";
 			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() - 25);
@@ -199,6 +203,7 @@ public class Shapes extends JPanel implements ActionListener, MouseListener {
 		}
 
 		RightPanelMouseListener.dataProcessor.customNotify();
+		*/
 		ClickedShape.shapeName = temp;
 
 	}
