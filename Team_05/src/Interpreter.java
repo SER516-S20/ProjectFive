@@ -13,10 +13,10 @@ public class Interpreter {
 		indentNum = 0;
 	}
 	
-	public void processNodes(TabInfo tabinfo)
+	public String processNodes(TabInfo tabinfo)
 	{
 		List<Connection> connects = tabinfo.getConnectionCollection();
-		Hashtable<Integer, ButtonBox> nodes = tabinfo.getshapes();
+		Hashtable<Integer, ButtonBox> nodes = (Hashtable<Integer, ButtonBox>) tabinfo.getshapes().clone();
 		Hashtable<Integer, HashSet<Integer>> edges = new Hashtable<Integer, HashSet<Integer>>();
 		for(Connection connection:connects)
 		{
@@ -26,6 +26,18 @@ public class Interpreter {
 			}
 			edges.get(connection.getSourceButton()).add(connection.getDestButton());
 		}
+		ArrayList<Integer> temp = findNodeTypeOf("(",nodes);
+		String code = "";
+		if(temp.size()>0)
+		{
+			int start = temp.get(0);
+			code = generateCode(start,nodes,edges);
+		}
+		else
+		{
+			System.out.print("No start symbol!!!");
+		}
+		return code;
 	}
 	
 	private ArrayList<Integer> findNodeTypeOf(String symbol, Hashtable<Integer, ButtonBox> table)
@@ -37,5 +49,102 @@ public class Interpreter {
 				nodes.add(key);
 		}
 		return nodes;
+	}
+	
+	private String generateCode(int nodeID, Hashtable<Integer, ButtonBox> nodes,Hashtable<Integer, HashSet<Integer>> edges)
+	{
+		String code = "";
+		ButtonBox node = nodes.get(nodeID);
+		HashSet<Integer> edge = edges.get(nodeID);
+		if(edge==null)return code;
+		switch(node.getSymbol())
+		{
+		case "-":
+		case "||":
+		case "<":
+		case ">":
+			for(int id:edge)
+			{
+				ButtonBox next = nodes.get(id);
+				code+=node.getTitle()+" -> " + next.getTitle()+"\n";
+			}
+			for(int id:(HashSet<Integer>)edge.clone())
+			{
+				ButtonBox next = nodes.get(id);
+				edge.remove(id);
+				code+=generateCode(id,nodes,edges);
+			}
+			break;
+		case "@":
+			code += node.getTitle()+" Loop->\n";
+			String loop, ex;
+			loop = "";
+			ex = "";
+			for(int id:(HashSet<Integer>)edge.clone())
+			{
+				if(findNodeOnPath(id,nodeID,(Hashtable<Integer, HashSet<Integer>>)edges.clone()))
+				{
+					edge.remove(id);
+					Hashtable<Integer, HashSet<Integer>> newedges = (Hashtable<Integer, HashSet<Integer>>) edges.clone();
+					newedges.remove(nodeID);
+					loop += generateCode(id,nodes,newedges).indent(1);
+				}
+				else
+				{
+					ex += node.getTitle() + "->" + nodes.get(id).getTitle() + "\n";
+				}
+			}
+			code+=loop;
+			for(int id:(HashSet<Integer>)edge.clone())
+			{
+				
+				ButtonBox next = nodes.get(id);
+				code+=node.getTitle()+" -> " + next.getTitle()+"\n";
+				edge.remove(id);
+				code+=generateCode(id,nodes,edges);
+			}
+			break;
+		case "#":
+			code += "Sub "+node.getTitle()+"\n";
+			String sub = "";
+			if(Model.getTabs().contains(node.getTitle()))
+			{
+				sub = processNodes(Model.getTabs().get(node.getTitle()));
+				code += sub.indent(1);
+			}
+			else
+			{
+				System.out.println("Sub graph " + node.getTitle()+"not exist");
+			}
+			break;
+		case "(":
+			for(int id:edge)
+			{
+				ButtonBox next = nodes.get(id);
+				code+=generateCode(id,nodes,edges);
+				code=code.indent(1);
+			}
+			break;
+		case ")":
+			break;
+		}
+		return code;
+	}
+	
+	private boolean findNodeOnPath(int start, int end, Hashtable<Integer, HashSet<Integer>> edges)
+	{
+		boolean found = false;
+		HashSet<Integer> edge = edges.get(start);
+		if(edge.contains(end))
+			found = true;
+		else
+			for(int node:(HashSet<Integer>)edge.clone())
+			{
+				edge.remove(node);
+				found = findNodeOnPath(node,end,edges);
+				if(found)break;
+			}
+		
+		return found;
 	}
 }
