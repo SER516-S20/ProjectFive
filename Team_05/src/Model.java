@@ -73,7 +73,7 @@ public class Model {
 	public static void clear()
 	{
 		tabs.clear();
-		shapes.clear();
+		//shapes.clear();
 		rightTabbedPane.removeAll();
 		rightTabbedPane.addWorkingAreaTab();
 	}
