@@ -17,7 +17,7 @@ import model.Symbol;
  *
  * @author Somesh
  * @since 04-30-2020
- * @Description: Menu will show different options available to users.
+ * @Description: The class passes the instance of symbol dragged to Transfer handler.
  */
 public class DragAndDropListener {
 

@@ -10,8 +10,8 @@ import javax.swing.JTabbedPane;
 /**
  *
  * @author Somesh
- * @since 03-08-2020
- * @Description: Menu will show different options available to users.
+ * @since 04-29-2020
+ * @Description: WorkSpace creates a scrollable panel and can contain many WorkPanels.
  */
 public class WorkSpace implements java.io.Serializable{
 

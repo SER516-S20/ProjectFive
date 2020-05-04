@@ -5,8 +5,8 @@ import javax.swing.JComponent;
 /**
  *
  * @author Somesh
- * @since 03-08-2020
- * @Description: Menu will show different options available to users.
+ * @since 04-23-2020
+ * @Description: This class is a subclass of Symbol and handles drawing - button.
  */
 public class MinusSymbol extends Symbol {
 

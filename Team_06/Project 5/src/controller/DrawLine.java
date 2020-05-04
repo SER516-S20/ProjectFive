@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
  *
  * @author Somesh
  * @since 05-01-2020
- * @Description: Menu will show different options available to users.
+ * @Description: The Drawline class adds listeners to connectors and when 2 connectors are clicked
+ * it draws a line using paint component.
  */
 public class DrawLine {
 

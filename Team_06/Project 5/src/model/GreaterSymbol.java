@@ -6,7 +6,7 @@ import javax.swing.JComponent;
  *
  * @author Somesh
  * @since 04-23-2020
- * @Description: Menu will show different options available to users.
+ * @Description: This class is a subclass of Symbol and handles drawing > symbol button.
  */
 public class GreaterSymbol extends Symbol{
 

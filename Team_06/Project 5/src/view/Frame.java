@@ -10,11 +10,13 @@ import controller.Collector;
 import controller.WorkSpace;
 
 /**
+ * 
  * @author Somesh
  * @since 04-22-2020
  * @Description: Frame is the main application window which is basically divided into
  * left and right panel.
  */
+
 public class Frame extends JFrame {
 	
 	private int frameWidth;

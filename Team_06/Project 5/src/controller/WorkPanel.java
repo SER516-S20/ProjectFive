@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author Somesh
  * @since 04-28-2020
- * @Description: Menu will show different options available to users.
+ * @Description: WorkPanel is the working area and represents a single tab. 
  */
 public class WorkPanel extends JPanel{
 	
