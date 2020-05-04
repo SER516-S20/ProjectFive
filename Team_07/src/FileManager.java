@@ -20,7 +20,7 @@ public class FileManager {
         FileDialog dialog = new FileDialog(MainFrame.mainFrame, "Enter file name to Save");
         dialog.setMode(FileDialog.SAVE);
         dialog.setVisible(true);
-        String file = dialog.getFile();
+        String file = dialog.getDirectory() + dialog.getFile();
 
         if (file == null)
             return;
@@ -55,7 +55,7 @@ public class FileManager {
         FileDialog dialog = new FileDialog(MainFrame.mainFrame, "Select file to open");
         dialog.setMode(FileDialog.LOAD);
         dialog.setVisible(true);
-        String file = dialog.getFile();
+        String file = dialog.getDirectory() + dialog.getFile();
         if (file == null)
             return;
 
@@ -81,12 +81,13 @@ public class FileManager {
                 PanelRightTab tab = (PanelRightTab) component;
                 if (x == 1) {
                     MainFrame.PANEL_RIGHT.addTab("Tab 1", tab);
-                    x=0;
-                }else
+                    x = 0;
+                } else
                     MainFrame.PANEL_RIGHT.addTab(ListenersInputPopup.mapTab.get(component), tab);
                 PanelRight.tabNum++;
 
                 ListenersPanelRightTab.addListenersToPanelOps(tab);
+                ListenersPanelRightTab.addRightPanelTabListeners(tab);
                 tab.repaint();
             }
             Database.selectedTab = (PanelRightTab) tabsToOpen[0];
@@ -102,6 +103,8 @@ public class FileManager {
 
     static public void newFile() {
         MainFrame.PANEL_RIGHT.removeAll();
+        ListenersPanelRightTab.mapOP.clear();
+        ListenersInputPopup.mapTab.clear();
         PanelRight.tabNum = 1;
         MainFrame.PANEL_RIGHT.addNewTab();
     }
