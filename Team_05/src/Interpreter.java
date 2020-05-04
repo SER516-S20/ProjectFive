@@ -10,7 +10,7 @@ public class Interpreter {
 		// TODO Auto-generated constructor stub
 		System.out.println("Interpreter:");
 		if(Model.getTabs().containsKey("Tab")) {
-			result = "Graph Tab\n" + processNodes(Model.getTabs().get("Tab"));
+			result = "digraph Tab\n" + processNodes(Model.getTabs().get("Tab"));
 			System.out.println(result);
 		}
 	}
@@ -75,7 +75,7 @@ public class Interpreter {
 			for(int id:edge)
 			{
 				ButtonBox next = nodes.get(id);
-				code+=node.getTitle()+" -> " + next.getTitle()+"\n";
+				code+=line(node,next);
 			}
 			for(int id:(HashSet<Integer>)edge.clone())
 			{
@@ -102,22 +102,22 @@ public class Interpreter {
 				}
 				else
 				{
-					ex += node.getTitle() + "->" + nodes.get(id).getTitle() + "\n";
+					ex += line(node,nodes.get(id));
 				}
 			}
-			code+=loop;
-			code+="End\n";
+			code+="{\n"+loop;
+			code+="}\n";
 			for(int id:(HashSet<Integer>)edge.clone())
 			{
 				//System.out.println("@ 2ed loop id: " +id);
 				ButtonBox next = nodes.get(id);
-				code+=node.getTitle()+" -> " + next.getTitle()+"\n";
+				code+=line(node,next);
 				edge.remove(id);
 				code+=generateCode(id,nodes,edges);
 			}
 			break;
 		case "#":
-			code += "Sub "+node.getTitle()+"\n";
+			code += "subgraph "+node.getTitle()+"\n";
 			String sub = "";
 			if(Model.getTabs().containsKey(node.getTitle()))
 			{
@@ -139,9 +139,11 @@ public class Interpreter {
 			for(int id:edge)
 			{
 				ButtonBox next = nodes.get(id);
+				code+="start -> "+nodes.get(id).getTitle() + ";\n";
 				code+=generateCode(id,nodes,edges);
 				code=code.indent(4);
-				code+="End\n";
+				code+="}\n";
+				code="{\n"+code;
 			}
 			break;
 		case ")":
@@ -187,5 +189,16 @@ public class Interpreter {
 				System.out.println(s+" -> "+d);
 			}
 		}
+	}
+	
+	private String line(ButtonBox a, ButtonBox b)
+	{
+		String left, right;
+		left = a.getTitle();
+		right = b.getTitle();
+		if(b.getSymbol().equals(")"))
+			right = "end";
+		String code = left + " -> " + right + ";\n";
+		return code;
 	}
 }
