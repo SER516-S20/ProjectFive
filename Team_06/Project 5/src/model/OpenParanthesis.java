@@ -5,7 +5,7 @@ import javax.swing.JComponent;
 /**
  *
  * @author Sheran
- * @since 03-08-2020
+ * @since 04-24-2020
  * @Description: This class is a subclass of Symbol and handles drawing Open Parenthesis button.
  */
 public class OpenParanthesis extends Symbol{
