@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * This class consists of the Double click feature to input text.
  *
- * @author Kartik Mathpal
+ * @author Anusha Singh
  * @version 1.0
  */
 

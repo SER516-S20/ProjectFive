@@ -37,13 +37,13 @@ public class MenuBar extends JMenuBar {
 		JMenu Pmenu = new JMenu(ProjectMenu);
 		JMenuBar PmenuBar = new JMenuBar();
 
-		String NewDoc = "New";
-		//NewDocument newDocument = new NewDocument(NEW);
-		//newDocument.addActionListener(newDocument);
-
 		String OpenDoc = "Open";
 		LoadDocument loadDocument = new LoadDocument(OpenDoc);
 		loadDocument.addActionListener(loadDocument);
+
+		String NewDoc = "New";
+		NewDocument newDocument = new NewDocument(NewDoc);
+		newDocument.addActionListener(newDocument);
 
 		String SaveDoc = "Save";
 		SaveDocument saveDocument = new SaveDocument(SaveDoc);
@@ -54,31 +54,21 @@ public class MenuBar extends JMenuBar {
 		compileFile.addActionListener(compileFile);
 
 		String TranslateProject = "Translate";
-		//Translate translate = new Translate(TRANSLATE);
-		//Translate.addActionListener(translate);
+		Translate translate = new Translate(TranslateProject);
+		translate.addActionListener(translate);
 
-		Fmenu.add(NewDoc);
+		Fmenu.add(newDocument);
 		Fmenu.add(loadDocument);
 		Fmenu.add(saveDocument);
 
 		FmenuBar.add(Fmenu);
 
 		Pmenu.add(compileFile);
-		Pmenu.add(TranslateProject);
+		Pmenu.add(translate);
 		PmenuBar.add(Pmenu);
 
 		this.add(FmenuBar);
 		this.add(Pmenu);
-		/*JButton translate = new JButton("Translate");
-		translate.addActionListener(e -> {
-			Translate.save();
-		});*/
-
-		/*menuBar.add(translate);*/
 
 	}
-
-
-
-
 }

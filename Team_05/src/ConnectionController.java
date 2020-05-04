@@ -2,6 +2,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+
 /**
  * @author ShihYu Chang
  */
@@ -9,6 +10,7 @@ import java.util.List;
 public class ConnectionController implements MouseListener {
 	private static Connection tempconnection;
 	private List<Connection> connections;
+	private static int changeid = 0;
 	public ConnectionController(ButtonBox buttonBox) {
 		connections =Model.getTabs().get(Model.getRightTabbedPane().getCurrentTabName()).getConnectionCollection();
 	}
@@ -32,18 +34,35 @@ public class ConnectionController implements MouseListener {
 				}
 			}
 			if(!selected) {
-				if(tempconnection == null) {
-					tempconnection = new Connection();
-					tempconnection.setSourceX(tempx);
-					tempconnection.setSourceY(tempy);
-					tempconnection.setSourceButton(obj.getId());
-				}else if(tempconnection != null && tempconnection.getSourceButton() == null && tempconnection.getDestButton() != obj.getId()){		
-					tempconnection.setSourceX(tempx);
-					tempconnection.setSourceY(tempy);
-					tempconnection.setSourceButton(obj.getId());
-				}else {
-					tempconnection = null;
+				if(changeid != 0) {
+					for(int i = 0; i < this.connections.size(); i++) {
+			        	Connection finishedconnection = connections.get(i);
+						if(finishedconnection.getSourceButton() == changeid) {
+							finishedconnection.setSourceX(tempx);
+							finishedconnection.setSourceY(tempy);
+							finishedconnection.setSourceButton(obj.getId());
+						}
+			        }
+					e.getComponent().getParent().getParent().repaint();
+					changeid = 0;
 				}
+				else {
+					if(tempconnection == null) {
+						tempconnection = new Connection();
+						tempconnection.setSourceX(tempx);
+						tempconnection.setSourceY(tempy);
+						tempconnection.setSourceButton(obj.getId());
+					}else if(tempconnection != null && tempconnection.getSourceButton() == null && tempconnection.getDestButton() != obj.getId()){		
+						tempconnection.setSourceX(tempx);
+						tempconnection.setSourceY(tempy);
+						tempconnection.setSourceButton(obj.getId());
+					}else {
+						tempconnection = null;
+					}
+				}
+			}
+			else {
+				changeid = obj.getId();
 			}
 		}else {
 			if(!obj.getClass().toString().equalsIgnoreCase("class BarButtonBox")) {
@@ -56,18 +75,35 @@ public class ConnectionController implements MouseListener {
 				}
 			}
 			if(!selected) {
-				if(tempconnection == null) {
-					tempconnection = new Connection();
-					tempconnection.setDestX(tempx);
-					tempconnection.setDestY(tempy);
-					tempconnection.setDestButton(obj.getId());
-				}else if(tempconnection != null && tempconnection.getDestButton() == null && tempconnection.getSourceButton() != obj.getId()){
-					tempconnection.setDestX(tempx);
-					tempconnection.setDestY(tempy);
-					tempconnection.setDestButton(obj.getId());
-				}else {
-					tempconnection = null;
+				if(changeid != 0) {
+					for(int i = 0; i < this.connections.size(); i++) {
+			        	Connection finishedconnection = connections.get(i);
+						if(finishedconnection.getDestButton() == changeid) {
+							finishedconnection.setDestX(tempx);
+							finishedconnection.setDestY(tempy);
+							finishedconnection.setDestButton(obj.getId());
+						}
+			        }
+					e.getComponent().getParent().getParent().repaint();
+					changeid = 0;
 				}
+				else {
+					if(tempconnection == null) {
+						tempconnection = new Connection();
+						tempconnection.setDestX(tempx);
+						tempconnection.setDestY(tempy);
+						tempconnection.setDestButton(obj.getId());
+					}else if(tempconnection != null && tempconnection.getDestButton() == null && tempconnection.getSourceButton() != obj.getId()){
+						tempconnection.setDestX(tempx);
+						tempconnection.setDestY(tempy);
+						tempconnection.setDestButton(obj.getId());
+					}else {
+						tempconnection = null;
+					}
+				}
+			}
+			else {
+				changeid = obj.getId();
 			}
 		}
 		if(tempconnection != null && tempconnection.getSourceButton() != null && tempconnection.getDestButton() != null) {

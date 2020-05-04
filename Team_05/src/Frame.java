@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -29,16 +30,19 @@ public class Frame extends JFrame {
 		model.setFrame(this);
 		this.setTitle(title);
 		this.setMinimumSize(new Dimension(800, 500));
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
+		//getContentPane().setLayout(null);
 		dragArea = new RightTabbedPane();
-		btnContainer = new LeftPanel();
-		this.getContentPane().add(createLeftPanel());
-		this.getContentPane().add(createRightPanel());
+		btnContainer = new LeftPanel(dragArea);
+		//this.getContentPane().add(createLeftPanel());
+		//this.getContentPane().add(createRightPanel());
+		this.getContentPane().add(new ToolBarContainer(), BorderLayout.NORTH);
+		this.getContentPane().add(createLeftPanel(), BorderLayout.WEST);
+		this.getContentPane().add(createRightPanel(),BorderLayout.CENTER);
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setLayout(null);
+		//this.setLayout(null);
 		MenuBar menuBar = new MenuBar(dragArea);
 		this.setJMenuBar(menuBar.createMenuBar());
 		this.setVisible(true);
@@ -46,19 +50,26 @@ public class Frame extends JFrame {
 	
 	private JScrollPane createLeftPanel() {
 		btnContainer.setPreferredSize(new  Dimension(200, 600));
-		btnContainer.setLocation(0, 0);
 		btnContainer.setBackground(lBackground);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(btnContainer);
-        scrollPane.setBounds(0, 0, 200, 480);
+		scrollPane.setPreferredSize(new Dimension(200,300));
 		return scrollPane;
 	}
 	
-	private RightTabbedPane createRightPanel() {
+	private JScrollPane createRightPanel() {
+		/*
 		dragArea.setLocation(200, 0);
 		dragArea.setSize(600, 500);
 		dragArea.setBackground(Color.white);		
-		return dragArea;
+		return dragArea;*/
+		//dragArea.setLocation(200, 0);
+		dragArea.setPreferredSize(new  Dimension(1000, 1000));
+		dragArea.setBackground(Color.white);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(dragArea);
+		scrollPane.setPreferredSize(new Dimension(500,600));
+		return scrollPane;
 	}
 	
 	public void contentRepaint() {

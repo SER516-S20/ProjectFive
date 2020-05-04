@@ -4,6 +4,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Hashtable;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -125,19 +127,33 @@ public class RightPanel extends JPanel implements MouseListener, MouseMotionList
 			if (e.getClickCount() == 2) {
 				Object source = e.getComponent();
 				if(source instanceof JPanel){
+					String currentTitle = " ";
+					String newTitle = " ";
 					ButtonBox panelPressed = (ButtonBox) source;
 					if(vPane == null) {
 						vPane = panelPressed.createJOptionPane();
-						panelPressed.setTitle(vPane.getvalue());
 					}else {
 						String val = panelPressed.getTitle();
 						vPane.setValue(val);
-						panelPressed.setTitle(vPane.getvalue());
+						currentTitle = val;
+					}
+					panelPressed.setTitle(vPane.getvalue());
+					newTitle = vPane.getvalue();
+					if(source.getClass().getName().equals("SharpButton")) {
+						if(Model.getTabs().containsKey(currentTitle)) {
+							if(!Model.getRightTabbedPane().renameTab(currentTitle, newTitle)) {
+								panelPressed.setTitle(currentTitle);
+							}
+						}else {
+							TabInfo tabInfo = Model.getRightTabbedPane().addWorkingAreaTab();
+							Model.getRightTabbedPane().renameTab(tabInfo.getName(), newTitle);
+						}
 					}
 				}
 			}
 		}
 		if(e.getButton() == MouseEvent.BUTTON3) {
+			JOptionPane.showMessageDialog(this, "Delete node and links");
 			this.remove(e.getComponent());
 			Object source = e.getComponent();
 			if(source instanceof JPanel){

@@ -28,6 +28,22 @@ public class CompileFile extends JMenuItem implements ActionListener {
 
     public static Map<Shapes, Integer> trackShapes = new HashMap<>();
     public static Map<Character, Integer> charMap = new HashMap<>();
+    public static boolean isSuccessful = false;
+
+    public static boolean isSuccessful() {
+        return isSuccessful;
+    }
+
+    public static String getCharMap() {
+        char [] str = new char[charMap.size()] ;
+        int i=0;
+        for ( Character key : charMap.keySet() ) {
+            str[i]=key;
+            i++;
+        }
+
+        return new String(str);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -76,6 +92,7 @@ public class CompileFile extends JMenuItem implements ActionListener {
             infoBox("Compilation Failed!!!", "Compilation Failed");
         } else {
             infoBox("Compilation successful", "Done");
+            isSuccessful = true;
         }
 
     }
@@ -96,4 +113,5 @@ public class CompileFile extends JMenuItem implements ActionListener {
     public static void removeConnectedShapesFromMap(Shapes s) {
         trackShapes.put(s, 0);
     }
+
 }
