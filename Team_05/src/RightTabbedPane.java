@@ -58,6 +58,8 @@ public class RightTabbedPane extends JTabbedPane{
 			Model.getTabs().remove(name);
 			tabInfo.setName(newName);
 			Model.getTabs().put(newName, tabInfo);
+			int index = indexOfComponent(tabInfo.getTab());
+			setTitleAt(index, newName);
 			renamed = true;
 		}
 		return renamed;
