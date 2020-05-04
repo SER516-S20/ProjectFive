@@ -6,6 +6,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 /**
  * @author Kairui Hsu
  **/
@@ -90,11 +92,17 @@ public class MenuBar extends JMenuBar{
 		projectMenu.add(Compiler);
 		projectMenu.addSeparator();
 		JMenuItem Translate = new JMenuItem("Translate");
-		//do sth
 		Translate.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
-				new Interpreter();
+				Interpreter translate = new Interpreter();
+                JTextArea text = new JTextArea(15, 15);
+                text.setText(translate.getResult());
+                text.setWrapStyleWord(true);
+                text.setLineWrap(true);
+                text.setCaretPosition(0);
+                text.setEditable(false);
+				JOptionPane.showMessageDialog(null, new JScrollPane(text),"Translate Results",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		projectMenu.add(Translate);
