@@ -18,7 +18,7 @@ import model.Symbol;
  *
  * @author Suyog
  * @since 04-28-2020
- * @Description: Menu will show different options available to users.
+ * @Description: SaveApplication class stores all tabs data inclusing symol's properties in .txt file. 
  */
 public class SaveApplication implements java.io.Serializable{
 
