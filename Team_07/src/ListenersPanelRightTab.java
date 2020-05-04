@@ -12,7 +12,8 @@ import java.util.HashMap;
  *
  * @author Aditya Bajaj
  * @author Karandeep Singh Grewal
- * @since April 29, 2020
+ * @author Praveen Kumar
+ * @since April 30, 2020
  */
 public class ListenersPanelRightTab {
     public static HashMap<Op, PanelRightTab> mapOP = new HashMap<>();

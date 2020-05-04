@@ -11,12 +11,41 @@ import java.util.List;
  * @since March 15, 2020
  */
 public class Compiler {
-	PanelRightTab currentTab = Database.selectedTab;
-
+	PanelRightTab currentTab  = Database.selectedTab;
+	
+	public void compile()
+	{
+		int tabCount = MainFrame.PANEL_RIGHT.getTabCount();
+		String tabMsg = "";
+		String tabTitle = "";
+		String logMsg = "";
+		int errorStatus = 0;
+		for(int i = 0; i < tabCount; i++)
+		{
+			System.out.println(MainFrame.PANEL_RIGHT.getComponentCount());
+			System.out.println(MainFrame.PANEL_RIGHT.getComponents());
+			currentTab = (PanelRightTab)MainFrame.PANEL_RIGHT.getComponentAt(i);
+			tabTitle = MainFrame.PANEL_RIGHT.getTitleAt(i);
+			tabMsg = compileTab();
+			logMsg = "Tab '" + tabTitle + "': " + tabMsg;
+			if(tabMsg.equals("Compile success!"))
+				PanelLog.logString(logMsg, Color.GREEN);
+			else {
+				PanelLog.logString(logMsg, Color.RED);
+				errorStatus = 1;
+			}
+		}
+		if(errorStatus == 0)
+			PanelLog.logString("Compilation Success!", Color.GRAY);
+		else
+			PanelLog.logString("Error in Compilation", Color.RED);
+	}
 	/**
 	 * Checks for the errors in the current tab
+	 *
+	 * @return Error
 	 */
-	public void compile() {
+	 String compileTab() {
 		String msg = "";
 		String parenthesisError = getParError();
 		if (!parenthesisError.equals("No Error"))
@@ -25,6 +54,7 @@ public class Compiler {
 			msg = "Connections Pending";
 		else
 			msg = parseGraph();
+		return msg;
 	}
 
 	/**
@@ -113,7 +143,7 @@ public class Compiler {
 		if (getTotalOp("@") > 0)
 			if (!graph.isCyclic())
 				return "@ is not having the loop";
-		return graph.countConnectedComponents() != 1 ? "Multiple Subgraphs present" : "Success";
+		return graph.countConnectedComponents() != 1 ? "Multiple Subgraphs present" : "Compile success!";
 	}
 
 	private int getMinID() {

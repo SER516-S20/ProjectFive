@@ -68,6 +68,7 @@ public class MenuBar {
 
     public void compile() {
     	Compiler compiler = new Compiler();
+		compiler.compile();
     }
 
     public void translate() {
