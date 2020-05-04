@@ -12,7 +12,7 @@ import model.Symbol;
 /**
  *
  * @author Sheran
- * @since 03-08-2020
+ * @since 04-27-2020
  * @Description: This class handles the mouse listeners for within the symbols like drag and drop and drawing lines and so on.
  */
 public class SymbolMouseListener {
