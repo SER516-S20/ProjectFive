@@ -41,7 +41,7 @@ public class MenuBar {
 
         newButton.addActionListener(arg0 -> {
             FileManager.newFile();
-            PanelLog.logString("New File created", Color.WHITE);
+            PanelLog.logString("New space created", Color.WHITE);
         });
         openButton.addActionListener(arg0 -> {
             FileManager.open();
@@ -53,17 +53,13 @@ public class MenuBar {
         });
 
         compileButton.addActionListener(arg0 -> {
-            PanelLog.logString("Compiled", Color.WHITE);
+            PanelLog.logString("Compiling...", Color.WHITE);
             compile();
         });
         translateButton.addActionListener(arg0 -> {
-            PanelLog.logString("Translated", Color.WHITE);
+            PanelLog.logString("Translating...", Color.WHITE);
             translate();
         });
-    }
-
-    public void newFile() {
-
     }
 
     public void compile() {

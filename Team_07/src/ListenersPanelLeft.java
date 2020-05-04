@@ -36,7 +36,7 @@ public class ListenersPanelLeft {
                     exception.printStackTrace();
                 }
                 ListenersPanelRightTab.addShapeListeners(draggableOp);
-                draggableOp.setLocation(-100,-100);
+                draggableOp.setLocation(-100,-1001);
                 Database.selectedTab.add(draggableOp);
             }
 

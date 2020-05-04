@@ -33,13 +33,12 @@ public class ContextMenuOp extends JPopupMenu {
 		List<Connector> dest = Database.selectedTab.dest;
 		int opID = opToDelete.ID;
 		int destSize = dest.size();
-
-		PanelLog.logString("delete op: " + opToDelete.label + " ID: " + opToDelete.ID, Color.WHITE);
+		int tabIntex = MainFrame.PANEL_RIGHT.getSelectedIndex();
+		PanelLog.logString("Deleted operator '" + opToDelete.label + "' in tab " + MainFrame.PANEL_RIGHT.getTitleAt(tabIntex), Color.WHITE);
 
 		// removing connections 
 		for (int i = destSize-1; i >= 0; i--){
 			if(dest.get(i).op.ID == opID || src.get(i).op.ID == opID){
-				PanelLog.logString("delete connection " + src.get(i).op.ID + " " + dest.get(i).op.ID, Color.WHITE);
 				Database.selectedTab.dest.get(i).connected = false;
 				Database.selectedTab.src.get(i).connected = false;
 				Database.selectedTab.dest.remove(i);

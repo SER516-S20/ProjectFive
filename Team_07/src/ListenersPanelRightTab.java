@@ -34,6 +34,12 @@ public class ListenersPanelRightTab {
                         Database.selectedTab.dest.get(currentConnection).connected = false;
                         Database.selectedTab.src.remove(currentConnection);
                         Database.selectedTab.dest.remove(currentConnection);
+                        for (Connector connector : Database.selectedTab.dest) {
+                            connector.connected = true;
+                        }
+                        for (Connector connector : Database.selectedTab.src) {
+                            connector.connected = true;
+                        }
                         PanelRightTab.refreshTab();
                     }
                     return;
@@ -113,6 +119,9 @@ public class ListenersPanelRightTab {
                                         }
                                     }
                     }
+                for (Connector connector : Database.selectedTab.dest) {
+                    connector.connected = true;
+                }
             }
 
             @Override
@@ -184,7 +193,7 @@ public class ListenersPanelRightTab {
 
             @Override
             public void mousePressed(MouseEvent mouseEvent) {
-            	contextMenuOp.showContextMenu(mouseEvent);
+                contextMenuOp.showContextMenu(mouseEvent);
             }
 
             @Override
@@ -247,5 +256,4 @@ public class ListenersPanelRightTab {
 
         }
     }
-
 }
