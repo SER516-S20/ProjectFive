@@ -127,34 +127,20 @@ public class RightPanel extends JPanel implements MouseListener, MouseMotionList
 			if (e.getClickCount() == 2) {
 				Object source = e.getComponent();
 				if(source instanceof JPanel){
+					ButtonBox panelPressed = (ButtonBox) source;
+					if(vPane == null) {
+						vPane = panelPressed.createJOptionPane();
+						panelPressed.setTitle(vPane.getvalue());
+					}else {
+						String val = panelPressed.getTitle();
+						vPane.setValue(val);
+						panelPressed.setTitle(vPane.getvalue());
+					}
 					if(source.getClass().getName().equals("SharpButton")) {
-						//Model.getRightTabbedPane().addWorkingAreaTab();
-						ButtonBox panelPressed = (ButtonBox) source;
-						String tabName = " ";
-						if(vPane == null) {
-							vPane = panelPressed.createJOptionPane();
-							panelPressed.setTitle(vPane.getvalue());
-						}else {
-							String val = panelPressed.getTitle();
-							vPane.setValue(val);
-							panelPressed.setTitle(vPane.getvalue());
-						}
-						tabName = vPane.getvalue();
-						if(Model.getTabs().containsKey(tabName)) {
+						if(Model.getTabs().containsKey(vPane.getvalue())) {
 							System.out.println("change tab name");
 						}else {
 							Model.getRightTabbedPane().addWorkingAreaTab(vPane.getvalue());
-						}
-					}
-					else {
-						ButtonBox panelPressed = (ButtonBox) source;
-						if(vPane == null) {
-							vPane = panelPressed.createJOptionPane();
-							panelPressed.setTitle(vPane.getvalue());
-						}else {
-							String val = panelPressed.getTitle();
-							vPane.setValue(val);
-							panelPressed.setTitle(vPane.getvalue());
 						}
 					}
 				}
