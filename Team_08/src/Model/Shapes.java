@@ -23,5 +23,4 @@ public abstract class Shapes {
 
     public abstract void setY(int y);
 
-
 }
