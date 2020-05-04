@@ -19,7 +19,7 @@ public class RightPanelMouseListener extends JPanel {
 	private Dot startDot;
 
 	public RightPanelMouseListener(RightPanel rp) {
-		this.setPreferredSize(new Dimension(1600, 800));
+		this.setPreferredSize(new Dimension(800, 500));
 		this.setVisible(true);
 		addMouseListener(new DrawBoardMouseListener());
 		addMouseMotionListener(new DrawBoardMouseMotion());
@@ -28,6 +28,8 @@ public class RightPanelMouseListener extends JPanel {
 	}
 
 	private class DrawBoardMouseListener extends MouseAdapter {
+		int shiftX = ShapeDimension.leftButtonWidth - 15;
+		
 		@Override
 		public void mouseClicked(MouseEvent event) {
 			if (!isDragDropEvent) {
@@ -35,19 +37,18 @@ public class RightPanelMouseListener extends JPanel {
 					int index = dataProcessor.getIconMap().get(ClickedShape.shapeName).size() - 1;
 					dataProcessor.getIconMap().get(ClickedShape.shapeName).remove(index);
 					String value = null;
-					String textValue = dataProcessor.getTextValue(event.getX() - 210, event.getY());
+					String textValue = dataProcessor.getTextValue(event.getX() + shiftX, event.getY());
 					if (textValue != null) {
 						value = JOptionPane.showInputDialog("Value of Shape", textValue);
 					} else {
 						value = JOptionPane.showInputDialog("Value of Shape");
 					}
-					dataProcessor.doubleClick(event.getX() - 210, event.getY(), value);
+					dataProcessor.doubleClick(event.getX() + shiftX, event.getY(), value);
 				} else if(event.getButton() == MouseEvent.BUTTON3) {
-					System.out.println("Right clicked "+event.getX()+","+event.getY());
 					int input = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Select an Option...",
 							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
 					if (input == 0) {
-						dataProcessor.rightClick(event.getX() - 210, event.getY());
+						dataProcessor.rightClick(event.getX() + shiftX, event.getY());
 					}
 				}
 				else {
@@ -57,7 +58,7 @@ public class RightPanelMouseListener extends JPanel {
 						e.printStackTrace();
 					}
 					System.out.println("Inside mouse clicked");
-					dataProcessor.onClick(event.getX() - 210, event.getY());
+					dataProcessor.onClick(event.getX() + shiftX, event.getY());
 				}
 			}
 		}
@@ -65,14 +66,14 @@ public class RightPanelMouseListener extends JPanel {
 		@Override
 		public void mousePressed(MouseEvent event) {
 			System.out.println("Inside mouse pressed");
-			startDot = new Dot(event.getX() - 210, event.getY(), false, false);
+			startDot = new Dot(event.getX() + shiftX, event.getY(), false, false);
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent event) {
 			if (isDragDropEvent) {
 				System.out.println("Inside mouse released");
-				dataProcessor.dragDrop(startDot, new Dot(event.getX() - 210, event.getY(), false, false));
+				dataProcessor.dragDrop(startDot, new Dot(event.getX() + shiftX, event.getY(), false, false));
 			}
 			isDragDropEvent = false;
 		}
