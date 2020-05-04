@@ -10,9 +10,14 @@ public class Interpreter {
 		// TODO Auto-generated constructor stub
 		System.out.println("Interpreter:");
 		if(Model.getTabs().containsKey("Tab")) {
-			System.out.println("Tab:");
-			System.out.println(processNodes(Model.getTabs().get("Tab")));
+			result = "Graph Tab\n" + processNodes(Model.getTabs().get("Tab"));
+			System.out.println(result);
 		}
+	}
+	
+	public String getResult()
+	{
+		return result;
 	}
 	
 	public String processNodes(TabInfo tabinfo)
@@ -60,7 +65,7 @@ public class Interpreter {
 		//System.out.println(node.getSymbol()+"Eval Code: ");
 		//printConnections(edges);
 		HashSet<Integer> edge = edges.get(nodeID);
-		if(edge==null)return code;
+		if(edge==null && !node.getSymbol().equals(")"))return code;
 		switch(node.getSymbol())
 		{
 		case "-":
@@ -116,7 +121,7 @@ public class Interpreter {
 			if(Model.getTabs().containsKey(node.getTitle()))
 			{
 				sub = processNodes(Model.getTabs().get(node.getTitle()));
-				code += sub.indent(4);
+				code += sub;
 			}
 			else
 			{
@@ -135,6 +140,7 @@ public class Interpreter {
 				ButtonBox next = nodes.get(id);
 				code+=generateCode(id,nodes,edges);
 				code=code.indent(4);
+				code+="End\n";
 			}
 			break;
 		case ")":
