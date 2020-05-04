@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Interpreter {
 	private String result;
-	private int indentNum;
 	
 	public Interpreter() {
 		// TODO Auto-generated constructor stub
-		result = "";
-		indentNum = 0;
+		if(Model.getTabs().contains("Tab")) {
+			System.out.println(processNodes(Model.getTabs().get("Tab")));
+		}
 	}
 	
 	public String processNodes(TabInfo tabinfo)
