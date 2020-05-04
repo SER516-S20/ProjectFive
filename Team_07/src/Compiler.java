@@ -22,8 +22,6 @@ public class Compiler {
 		int errorStatus = 0;
 		for(int i = 0; i < tabCount; i++)
 		{
-			System.out.println(MainFrame.PANEL_RIGHT.getComponentCount());
-			System.out.println(MainFrame.PANEL_RIGHT.getComponents());
 			currentTab = (PanelRightTab)MainFrame.PANEL_RIGHT.getComponentAt(i);
 			tabTitle = MainFrame.PANEL_RIGHT.getTitleAt(i);
 			tabMsg = compileTab();
