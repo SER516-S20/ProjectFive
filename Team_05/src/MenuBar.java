@@ -91,6 +91,12 @@ public class MenuBar extends JMenuBar{
 		projectMenu.addSeparator();
 		JMenuItem Translate = new JMenuItem("Translate");
 		//do sth
+		Translate.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				new Interpreter();
+			}
+		});
 		projectMenu.add(Translate);
 		menuBar.add(projectMenu);
 		return menuBar;

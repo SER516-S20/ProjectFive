@@ -8,7 +8,9 @@ public class Interpreter {
 	
 	public Interpreter() {
 		// TODO Auto-generated constructor stub
-		if(Model.getTabs().contains("Tab")) {
+		System.out.println("Interpreter:");
+		if(Model.getTabs().containsKey("Tab")) {
+			System.out.println("Tab:");
 			System.out.println(processNodes(Model.getTabs().get("Tab")));
 		}
 	}
@@ -107,7 +109,7 @@ public class Interpreter {
 		case "#":
 			code += "Sub "+node.getTitle()+"\n";
 			String sub = "";
-			if(Model.getTabs().contains(node.getTitle()))
+			if(Model.getTabs().containsKey(node.getTitle()))
 			{
 				sub = processNodes(Model.getTabs().get(node.getTitle()));
 				code += sub.indent(1);
@@ -115,6 +117,12 @@ public class Interpreter {
 			else
 			{
 				System.out.println("Sub graph " + node.getTitle()+"not exist");
+			}
+			for(int id:(HashSet<Integer>)edge.clone())
+			{
+				ButtonBox next = nodes.get(id);
+				edge.remove(id);
+				code+=generateCode(id,nodes,edges);
 			}
 			break;
 		case "(":
