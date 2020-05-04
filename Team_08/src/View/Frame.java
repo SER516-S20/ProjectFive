@@ -39,7 +39,7 @@ public class Frame extends JFrame {
 	static int tabCount = 0;
 
 	public Frame() {
-		setMinimumSize(new Dimension(800, 500));
+		setMinimumSize(new Dimension(900, 700));
 		setResizable(true);
 		String TITLE = "Project 5 - Team 8";
 		setTitle(TITLE);
