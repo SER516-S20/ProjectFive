@@ -1,4 +1,8 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.*;
 
 /**
@@ -9,7 +13,66 @@ import javax.swing.*;
  * @created on 02-19-2020
  * @version 2.0
  */
-public class MainWindow {
+public class MainWindow extends JFrame{
+	static JPanel drawingBoardPanel = new JPanel();
+	static JFrame frame;
+	static JPanel p1;
+	static NewTab obj;
+	static JTabbedPane tabbedPane = new JTabbedPane();
+	static int testWidth = 1200;
+	
+	public MainWindow()
+	{
+
+		this.setSize(ShapeDimension.frameWidth, ShapeDimension.frameHeight);
+		//int frameHeight = 800;
+		//int frameWidth = 1200;
+		this.setTitle("Project Five - Team 2");
+		//this.setBackground(Color.LIGHT_GRAY);
+		//this.setSize(new Dimension(frameWidth, frameHeight));
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.setResizable(true);
+		Menu objMenu = new Menu();
+		Shapes leftShapes = new Shapes();
+		//obj = new NewTab("main_window");
+		new NewTab("main_window");
+		Shapes shapes = new Shapes();
+		//jlabel.setText("Welcome");
+		//this.getContentPane().add(jlabel, BorderLayout.SOUTH);
+		//tabbedPane.addChangeListener(this);
+		//DrawingArea drawingArea = new DrawingArea();
+		//this.getContentPane().add(drawingArea);
+		this.getContentPane().add(leftShapes.CreateLeftShapes(), BorderLayout.WEST);
+		this.add(tabbedPane, BorderLayout.CENTER);
+		JMenuBar menuBar = objMenu.createMenu();
+		this.setJMenuBar(menuBar);
+		JToolBar toolBar = shapes.CreateShapes();
+		//tabbedPane.setBackground(Color.blue);
+		//obj.createAndShowGUI();
+		this.getContentPane().add(toolBar, BorderLayout.NORTH);
+		JScrollPane scrPane = new JScrollPane(tabbedPane);
+		add(scrPane);
+		//scrPane.setBackground(Color.orange);
+		scrPane.setVisible(true);
+		//frame.setVisible(true); 
+	}
+	
+	
+	public static void CloseApplication() {
+		try {
+			System.exit(0);
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+	}
+	
+	public static void main(String[] args) {
+		MainWindow mainWindow = new MainWindow();
+		mainWindow.setVisible(true);  
+		
+	}
+
+	/*
 	static JPanel drawingBoardPanel = new JPanel();
 	static JFrame frame;
 	static JPanel p1;
@@ -53,4 +116,5 @@ public class MainWindow {
 		//obj.createAndShowGUI();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
+	*/
 }
