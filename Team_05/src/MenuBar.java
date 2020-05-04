@@ -32,7 +32,6 @@ public class MenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				if(fileBrowser.browser("Save file")) {
 					fileManager.save(fileBrowser.getCurrentFile());
-					fileManager.clearTabs();
 				}
 			}
 		});
