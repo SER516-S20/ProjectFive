@@ -58,6 +58,29 @@ public class WorkPanel extends JPanel{
 	public void setCloseP(boolean isCloseP) {
 		this.isCloseP = isCloseP;
 	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2D = (Graphics2D) g;
+		
+		Lines =  Collector.getInstance().getTabLines(this.panel);
+		
+		if(Lines != null) {
+			for(Connector c1 : Lines.keySet()) {
+				for(Connector c2 : Lines.get(c1)) {
+				
+					int x1 = c1.getX() + c1.getParent().getX() + c1.getWidth()/2;
+					int x2 = c2.getX() + c2.getParent().getX() + c2.getWidth()/2;
+				
+					int y1 = c1.getY() + c1.getParent().getY() + c1.getHeight()/2;
+					int y2 = c2.getY() + c2.getParent().getY() + c2.getHeight()/2;
+				
+					g2D.drawLine(x1, y1, x2, y2);
+				}
+			}
+		}
+	}
 }
 
 
