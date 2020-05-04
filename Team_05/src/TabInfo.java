@@ -18,6 +18,12 @@ public class TabInfo {
 		connections = new ArrayList<Connection>();
 	}
 	
+	public void setName(String name)
+	{
+		this.name = name;
+		workingAreaTab.setName(name);
+	}
+	
 	public String getName() {
 		return name;
 	}

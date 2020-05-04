@@ -44,4 +44,22 @@ public class RightTabbedPane extends JTabbedPane{
 	public RightPanel getCurrentTab() {
 		return (RightPanel)getSelectedComponent();
 	}
+	
+	public boolean renameTab(String name, String newName)
+	{
+		boolean renamed = false;
+		if(!Model.getTabs().containsKey(name) || Model.getTabs().containsKey(newName))
+		{
+			renamed = false;
+		}
+		else
+		{
+			TabInfo tabInfo = Model.getTabs().get(name);
+			Model.getTabs().remove(name);
+			tabInfo.setName(newName);
+			Model.getTabs().put(newName, tabInfo);
+			renamed = true;
+		}
+		return renamed;
+	}
 }
