@@ -9,7 +9,7 @@ import controller.Connector;
 /**
  *
  * @author Sheran
- * @since 03-08-2020
+ * @since 04-23-2020
  * @Description: This class inherits connector from controller class and is used to paint the dots.
  */
 public class Dot extends Connector{
