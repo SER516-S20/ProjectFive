@@ -3,7 +3,7 @@
 
 This folder holds all the work that was accomplished in Project 5.<br />
 
-**Sprint Duration:** 04/22/2020 – 05/05/2020 <br />
+**Sprint Duration:** 04/22/2020 – 05/04/2020 <br />
 
 **Team:**
 - Chandan Yadav 
