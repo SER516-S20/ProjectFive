@@ -30,9 +30,10 @@ public class MenuBar extends JMenuBar{
 		JMenuItem itemNew = new JMenuItem("New");
 		itemNew.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				if(fileBrowser.browser("Save file")) {
-					fileManager.save(fileBrowser.getCurrentFile());
-				}
+				Model.clear();
+//				if(fileBrowser.browser("Save file")) {
+//					fileManager.save(fileBrowser.getCurrentFile());
+//				}
 			}
 		});
 		fileMenu.add(itemNew);
