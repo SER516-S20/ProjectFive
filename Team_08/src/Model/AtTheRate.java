@@ -8,9 +8,9 @@ import java.awt.*;
 import java.io.Serializable;
 
 /**
- * This class consists of Model.AtTheRate shape with two input and two output dots.
+ * This class consists of AtTheRate shape with two input and two output dots.
  *
- * @author Sandya
+ * @author Sandya Manoharan
  * @version 1.0
  */
 public class AtTheRate extends Shapes implements Serializable {
@@ -20,6 +20,7 @@ public class AtTheRate extends Shapes implements Serializable {
     private Shapes dot1 = null, dot2 = null, dot3= null, dot4= null;
     private Shape attherate = null;
     private boolean isLineDrawnDot1 = false, isLineDrawnDot2 = false, isLineDrawnDot3 = false, isLineDrawnDot4 = false;
+
     public AtTheRate(int x, int y) {
         int OFFSET = 50;
         this.x = x - OFFSET;

@@ -29,6 +29,7 @@ public class TwoBars extends Shapes implements Serializable {
     public void drawShape(Graphics graphic) {
         twobars = new Rectangle2D.Double(x, y, 200, 100);
         Graphics2D graphics2 = (Graphics2D) graphic;
+
         leftBar = new VerticalBar(x + 10, y + 10);
         leftBar.drawShape(graphics2);
         rightBar = new VerticalBar(x + 180, y + 10);
@@ -66,7 +67,6 @@ public class TwoBars extends Shapes implements Serializable {
     public void setY(int y) {
         this.y = y - OFFSET;
     }
-
 
     public Shapes getLeftBar() {
         return leftBar;

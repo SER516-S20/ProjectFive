@@ -7,6 +7,7 @@ package Model;
  * @version 1.1
  */
 public class Line {
+
     private int shapeX, shapeY, lineX, lineY;
     private Connections line;
     private boolean isSourceShape = false, isDestShape = false;
