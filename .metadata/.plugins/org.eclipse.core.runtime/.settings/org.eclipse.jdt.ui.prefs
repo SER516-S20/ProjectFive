@@ -1,0 +1,8 @@
+command=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/bin/javadoc
+content_assist_number_of_computers=23
+eclipse.preferences.version=1
+org.eclipse.jdt.ui.formatterprofiles.version=18
+spelling_locale=en_GB
+spelling_locale_initialized=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

@@ -16,59 +16,61 @@ import java.awt.event.*;
 
 import Controller.*;
 import Model.*;
+
 /**
  * This class consists of GUI for the Menu options.
+ *
  * @author Kartik Mathpal
- * @version 1.0
  * @author Sandya Manoharan
  * @version 1.1
  */
 
 public class MenuBar extends JMenuBar {
 
-	private static final long serialVersionUID = 1L;
-	MenuBar() {
+    private static final long serialVersionUID = 1L;
 
-		String FileMenu = "File";
-		JMenu Fmenu = new JMenu(FileMenu);
-		JMenuBar FmenuBar = new JMenuBar();
+    MenuBar() {
 
-		String ProjectMenu = "Project";
-		JMenu Pmenu = new JMenu(ProjectMenu);
-		JMenuBar PmenuBar = new JMenuBar();
+        String FileMenu = "File";
+        JMenu Fmenu = new JMenu(FileMenu);
+        JMenuBar FmenuBar = new JMenuBar();
 
-		String OpenDoc = "Open";
-		LoadDocument loadDocument = new LoadDocument(OpenDoc);
-		loadDocument.addActionListener(loadDocument);
+        String ProjectMenu = "Project";
+        JMenu Pmenu = new JMenu(ProjectMenu);
+        JMenuBar PmenuBar = new JMenuBar();
 
-		String NewDoc = "New";
-		NewDocument newDocument = new NewDocument(NewDoc);
-		newDocument.addActionListener(newDocument);
+        String OpenDoc = "Open";
+        LoadDocument loadDocument = new LoadDocument(OpenDoc);
+        loadDocument.addActionListener(loadDocument);
 
-		String SaveDoc = "Save";
-		SaveDocument saveDocument = new SaveDocument(SaveDoc);
-		saveDocument.addActionListener(saveDocument);
+        String NewDoc = "New";
+        NewDocument newDocument = new NewDocument(NewDoc);
+        newDocument.addActionListener(newDocument);
 
-		String CompileProject = "Compile";
-		CompileFile compileFile = new CompileFile(CompileProject);
-		compileFile.addActionListener(compileFile);
+        String SaveDoc = "Save";
+        SaveDocument saveDocument = new SaveDocument(SaveDoc);
+        saveDocument.addActionListener(saveDocument);
 
-		String TranslateProject = "Translate";
-		Translate translate = new Translate(TranslateProject);
-		translate.addActionListener(translate);
+        String CompileProject = "Compile";
+        CompileFile compileFile = new CompileFile(CompileProject);
+        compileFile.addActionListener(compileFile);
 
-		Fmenu.add(newDocument);
-		Fmenu.add(loadDocument);
-		Fmenu.add(saveDocument);
+        String TranslateProject = "Translate";
+        Translate translate = new Translate(TranslateProject);
+        translate.addActionListener(translate);
 
-		FmenuBar.add(Fmenu);
+        Fmenu.add(newDocument);
+        Fmenu.add(loadDocument);
+        Fmenu.add(saveDocument);
 
-		Pmenu.add(compileFile);
-		Pmenu.add(translate);
-		PmenuBar.add(Pmenu);
+        FmenuBar.add(Fmenu);
 
-		this.add(FmenuBar);
-		this.add(Pmenu);
+        Pmenu.add(compileFile);
+        Pmenu.add(translate);
+        PmenuBar.add(Pmenu);
 
-	}
+        this.add(FmenuBar);
+        this.add(Pmenu);
+
+    }
 }

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -6,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -49,12 +51,15 @@ public class Shapes extends JPanel implements ActionListener, MouseListener {
 			"images/shape5.png", "images/shape6.png", "images/shape7.png", "images/shape8.png" };
 
 	public Shapes() {
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		shapesToolBar = new JToolBar();
-		shapesToolBar.setSize(400, 100);
+		//shapesToolBar.setSize(400, 100);
+		shapesToolBar.setBackground(Color.black );
 		leftShapesToolBar = new JToolBar(JToolBar.VERTICAL);
-		leftShapesToolBar.setPreferredSize(new Dimension(1500, 30));
-		leftShapesToolBar.setBounds(0, 0, 100, 200);
-		leftShapesToolBar.setFloatable(false);
+		leftShapesToolBar.setBackground(Color.black);
+		//leftShapesToolBar.setPreferredSize(new Dimension(1500, 30));
+		//leftShapesToolBar.setBounds(0, 0, 100, 200);
+		//leftShapesToolBar.setFloatable(false);
 
 	}
 
@@ -74,11 +79,11 @@ public class Shapes extends JPanel implements ActionListener, MouseListener {
 		for (int i = 0; i < buttons.size(); i++) {
 			JButton button = buttons.get(i);
 			button.addActionListener(this);
-			button.setPreferredSize(new Dimension(150, 70));
+			//button.setPreferredSize(new Dimension(130, 70));
 			button.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(images[i]))
-					.getImage().getScaledInstance(160, 70, Image.SCALE_SMOOTH)));
+					.getImage().getScaledInstance(ShapeDimension.upButtonWidth, ShapeDimension.upButtonHeight, Image.SCALE_SMOOTH)));
 			shapesToolBar.add(button);
-			shapesToolBar.addSeparator();
+			//shapesToolBar.addSeparator();
 		}
 
 	}
@@ -87,11 +92,11 @@ public class Shapes extends JPanel implements ActionListener, MouseListener {
 		for (int i = 0; i < leftButtons.size(); i++) {
 			JLabel button = leftButtons.get(i);
 			button.addMouseListener(this);
-			button.setPreferredSize(new Dimension(50, 120));
+			//button.setPreferredSize(new Dimension(ShapeDimension.leftButtonWidth, ShapeDimension.leftButtonHeight));
 			button.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(images[i]))
-					.getImage().getScaledInstance(140, 70, Image.SCALE_SMOOTH)));
+					.getImage().getScaledInstance(ShapeDimension.leftButtonWidth, ShapeDimension.leftButtonHeight, Image.SCALE_SMOOTH)));
 			leftShapesToolBar.add(button);
-			leftShapesToolBar.addSeparator();
+			//leftShapesToolBar.addSeparator();
 		}
 
 	}
@@ -169,36 +174,46 @@ public class Shapes extends JPanel implements ActionListener, MouseListener {
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		
 		String temp = ClickedShape.shapeName;
+		System.out.println("in mouse released");
 		System.out.println(e.getSource());
+		int shiftX = ShapeDimension.leftButtonWidth + 15;
+		int shiftY = ShapeDimension.leftButtonHeight ;
+		int tabHeight = 25;
+		RightPanel currTabPanel = NewTab.mapRightPanels.get(NewTab.currentTabIndx);
+		RightPanelDataProcessor rpDataProcessor = currTabPanel.panelMouseListener.dataProcessor;
+		
 		if (e.getSource() == openParanthesis1) {
 			ClickedShape.shapeName = "openParanthesis";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() - 25);
+			rpDataProcessor.addNewIcon(e.getX() - shiftX, e.getY() - tabHeight);
 		} else if (e.getSource() == closedParanthesis1) {
 			ClickedShape.shapeName = "closedParanthesis";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 62);
+			rpDataProcessor.addNewIcon(e.getX() - shiftX, e.getY() + shiftY - tabHeight);
 		} else if (e.getSource() == lessThanOperator1) {
 			ClickedShape.shapeName = "lessThanOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 150);
+			rpDataProcessor.addNewIcon(e.getX() - shiftX, e.getY() + 2 * shiftY - tabHeight);
 		} else if (e.getSource() == greaterThanOperator1) {
 			ClickedShape.shapeName = "greaterThanOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 238);
+			rpDataProcessor.addNewIcon(e.getX() - shiftX, e.getY() + 3 * shiftY - tabHeight);
 		} else if (e.getSource() == atTheRateOperator1) {
 			ClickedShape.shapeName = "atTheRateOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 325);
+			rpDataProcessor.addNewIcon(e.getX() - shiftX, e.getY() + 4 * shiftY - tabHeight);
 		} else if (e.getSource() == barOperator1) {
 			ClickedShape.shapeName = "barOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 412);
+			rpDataProcessor.addNewIcon(e.getX() - shiftX, e.getY() + 5 * shiftY - tabHeight);
 		} else if (e.getSource() == dashOperator1) {
 			ClickedShape.shapeName = "dashOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 500);
+			rpDataProcessor.addNewIcon(e.getX() - shiftX, e.getY() + 6 * shiftY - tabHeight);
 		} else if (e.getSource() == hashOperator1) {
 			ClickedShape.shapeName = "hashOperator";
-			RightPanelMouseListener.dataProcessor.addNewIcon(e.getX() - 165, e.getY() + 587);
-			MainWindow.obj.AddPanel();
+			rpDataProcessor.addNewIcon(e.getX() - shiftX, e.getY() + 7 * shiftY - tabHeight);
+			new NewTab("");
+			//MainWindow.obj.AddPanel();
 		}
 
-		RightPanelMouseListener.dataProcessor.customNotify();
+		rpDataProcessor.customNotify();
+
 		ClickedShape.shapeName = temp;
 
 	}

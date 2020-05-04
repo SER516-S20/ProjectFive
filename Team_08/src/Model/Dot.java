@@ -19,7 +19,7 @@ import java.io.Serializable;
  * This class consists of Model.Dot
  *
  * @author Amudhan Manisekaran
- * @version 1.0
+ * @version 1.3
  */
 
 public class Dot extends Shapes implements MouseListener, MouseMotionListener, Serializable {
@@ -245,8 +245,7 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
             } else if (hyphen.getDot2().containsPoint(x, y)) {
                 hyphen.setLineDrawnDot2(true);
             }
-        }
-        else if (shape instanceof Pound) {
+        } else if (shape instanceof Pound) {
             Pound pound = (Pound) shape;
             if (pound.getDot1().containsPoint(x, y)) {
                 pound.setLineDrawnDot1(true);
@@ -299,8 +298,7 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
             } else if (hyphen.getDot2().containsPoint(x, y)) {
                 return !hyphen.isLineDrawnDot2();
             }
-        }
-        else if (shape instanceof Pound) {
+        } else if (shape instanceof Pound) {
             Pound pound = (Pound) shape;
             if (pound.getDot1().containsPoint(x, y)) {
                 return !pound.isLineDrawnDot1();

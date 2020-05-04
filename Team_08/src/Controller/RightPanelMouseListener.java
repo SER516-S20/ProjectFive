@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
+
 import Model.*;
 
 /**
@@ -23,7 +24,8 @@ public class RightPanelMouseListener implements MouseListener, MouseMotionListen
     private static Shapes shp;
     private List<Line> linesList = new ArrayList<>();
     private TextBox textBox = new TextBox();
-    private  int index  = 0;
+    private int index = 0;
+
     @Override
     public void mouseDragged(MouseEvent e) {
         if (selectedShape != null) {
@@ -50,7 +52,7 @@ public class RightPanelMouseListener implements MouseListener, MouseMotionListen
     @Override
     public void mouseClicked(MouseEvent e) {
         OpenBracket openbracket = null;
-        CloseBracket closeBracket =null;
+        CloseBracket closeBracket = null;
         LessThan lessThan = null;
         GreaterThan greaterThan = null;
         AtTheRate atTheRate = null;
@@ -184,27 +186,26 @@ public class RightPanelMouseListener implements MouseListener, MouseMotionListen
             ShapesEnum selectedShape = LeftPanelMouseListener.getSelectedShape();
             if (selectedShape == ShapesEnum.OPENBRACKET) {
                 RightPanel.getRightPanelShapes().add(new OpenBracket(x, y));
-                shp=new OpenBracket(x, y);
+                shp = new OpenBracket(x, y);
             } else if (selectedShape == ShapesEnum.CLOSEBRACKET) {
                 RightPanel.getRightPanelShapes().add(new CloseBracket(x, y));
-                shp=new CloseBracket(x, y);
+                shp = new CloseBracket(x, y);
             } else if (selectedShape == ShapesEnum.LESSTHAN) {
                 RightPanel.getRightPanelShapes().add(new LessThan(x, y));
-                shp=new LessThan(x, y);
+                shp = new LessThan(x, y);
             } else if (selectedShape == ShapesEnum.GREATERTHAN) {
                 RightPanel.getRightPanelShapes().add(new GreaterThan(x, y));
-                shp=new GreaterThan(x, y);
+                shp = new GreaterThan(x, y);
             } else if (selectedShape == ShapesEnum.ATTHERATE) {
                 RightPanel.getRightPanelShapes().add(new AtTheRate(x, y));
-                shp=new AtTheRate(x, y);
+                shp = new AtTheRate(x, y);
             } else if (selectedShape == ShapesEnum.TWOBARS) {
                 RightPanel.getRightPanelShapes().add(new TwoBars(x, y));
-                shp=new TwoBars(x, y);
+                shp = new TwoBars(x, y);
             } else if (selectedShape == ShapesEnum.HYPHEN) {
                 RightPanel.getRightPanelShapes().add(new Hyphen(x, y));
-                shp=new Hyphen(x, y);
-            }
-            else if (selectedShape == ShapesEnum.POUND) {
+                shp = new Hyphen(x, y);
+            } else if (selectedShape == ShapesEnum.POUND) {
                 RightPanel.getRightPanelShapes().add(new Pound(x, y));
             }
             Frame.rightPanel.repaint();
@@ -229,7 +230,7 @@ public class RightPanelMouseListener implements MouseListener, MouseMotionListen
                 drawline.setLine(line);
                 drawline.setSourceShape(true);
                 linesList.add(drawline);
-                
+
             } else if (line.getDestShape().equals(selectedShape)) {
                 Line drawline = new Line();
                 drawline.setLineX(line.getDestX());

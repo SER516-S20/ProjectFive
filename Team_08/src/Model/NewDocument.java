@@ -17,18 +17,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.ArrayList;
 
 /**
- * This class consists of opening a
- * new file functionality
+ * This class consists of opening a new file functionality
  * @author Sandya Manoharan
  * @version 1.0
  */
 public class NewDocument extends JMenuItem implements ActionListener{
     private static final long serialVersionUID = 1L;
-
     public NewDocument(String label) {
         super(label);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         FileInputStream fileIn = null;
@@ -70,3 +68,4 @@ public class NewDocument extends JMenuItem implements ActionListener{
     }
 
 }
+

@@ -19,7 +19,7 @@ public class NewTab extends JPanel implements ChangeListener{
 	
 	static Map<Integer, RightPanel> mapRightPanels = new HashMap<>();
 	private static final long serialVersionUID = 1L;
-	public static JTabbedPane tabbedPane;
+	//public static JTabbedPane tabbedPane;
 	static int localCounter = 0;
 	static int currentTabIndx = 0;
 	
@@ -31,19 +31,19 @@ public class NewTab extends JPanel implements ChangeListener{
 		else {
 			AddPanel();
 		}
-		tabbedPane.addChangeListener(this);
+		MainWindow.tabbedPane.addChangeListener(this);
 	}
 	
 	public void createAndShowGUI() {
 
 		try {
-			tabbedPane = new JTabbedPane();
+			//tabbedPane = new JTabbedPane();
 
 			// tabbedPane.setLocation(0, 300);
 			// tabbedPane.setSize(400,400);
-			tabbedPane.setBounds(170,100,1200,700); 
-			tabbedPane.addTab("Tab1", makePanel("This is tab 1"));
-			MainWindow.frame.getContentPane().add(tabbedPane);
+			//tabbedPane.setBounds(170,100,1200,700); 
+			MainWindow.tabbedPane.addTab("Tab1", makePanel("This is tab 1"));
+			//MainWindow.frame.getContentPane().add(tabbedPane);
 		}
 		catch(Exception ex)
 		{
@@ -57,18 +57,18 @@ public class NewTab extends JPanel implements ChangeListener{
 		localCounter += 1;
 		System.out.println("Adding panel"+mapRightPanels);
 		p.setVisible(true);
-		p.setSize(1600,800);
+		//p.setSize(600,800);
 		return p;
 	}
 
 	public void AddPanel() {
 		try {
-			int count = tabbedPane.getTabCount()+1;
+			int count = MainWindow.tabbedPane.getTabCount()+1;
 			System.out.println("adding tab");
-			tabbedPane.addTab("Tab"+count, makePanel("This is tab "+ count ));
+			MainWindow.tabbedPane.addTab("Tab"+count, makePanel("This is tab "+ count ));
 			System.out.println("added tab");
-			count = tabbedPane.getTabCount();
-			tabbedPane.setSelectedIndex(count-1);
+			count = MainWindow.tabbedPane.getTabCount();
+			MainWindow.tabbedPane.setSelectedIndex(count-1);
 		}
 		catch(Exception ex)
 		{

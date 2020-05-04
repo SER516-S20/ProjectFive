@@ -15,8 +15,6 @@ import java.awt.event.MouseEvent;
  */
 public class LeftPanelMouseListener extends MouseAdapter {
 
-    /*
-    * */
     private static boolean isPoundButtonClicked = false;
     private static boolean isOpenBracketClicked = false;
     private static boolean isCloseBracketClicked = false;
@@ -26,13 +24,14 @@ public class LeftPanelMouseListener extends MouseAdapter {
     private static boolean isTwoBarsClicked = false;
     private static boolean isHyphenClicked = false;
 
-    public static boolean isPoundButtonClicked(){
-        return  isPoundButtonClicked;
+    public static boolean isPoundButtonClicked() {
+        return isPoundButtonClicked;
     }
 
-    public static void setIsPoundButtonClicked(boolean isPoundButtonClicked){
+    public static void setIsPoundButtonClicked(boolean isPoundButtonClicked) {
         LeftPanelMouseListener.isPoundButtonClicked = isPoundButtonClicked;
     }
+
     public static boolean isOpenBracketClicked() {
         return isOpenBracketClicked;
     }
@@ -128,8 +127,7 @@ public class LeftPanelMouseListener extends MouseAdapter {
                 if (next.containsPoint(x, y)) {
                     markIsClickedTrue(ShapesEnum.HYPHEN);
                 }
-            }
-            else if (next instanceof Pound) {
+            } else if (next instanceof Pound) {
                 if (next.containsPoint(x, y)) {
                     markIsClickedTrue(ShapesEnum.POUND);
                 }
@@ -143,7 +141,7 @@ public class LeftPanelMouseListener extends MouseAdapter {
      */
     public static void markIsClickedTrue(ShapesEnum shape) {
         try {
-            if(ShapesEnum.POUND == shape){
+            if (ShapesEnum.POUND == shape) {
                 setIsPoundButtonClicked(true);
                 setOpenBracketClicked(false);
                 setCloseBracketClicked(false);
@@ -225,9 +223,9 @@ public class LeftPanelMouseListener extends MouseAdapter {
      * returns the shape that is clicked.
      */
     public static ShapesEnum getSelectedShape() {
-        if(isPoundButtonClicked()){
+        if (isPoundButtonClicked()) {
             return ShapesEnum.POUND;
-        }else if (isOpenBracketClicked()) {
+        } else if (isOpenBracketClicked()) {
             return ShapesEnum.OPENBRACKET;
         } else if (isCloseBracketClicked()) {
             return ShapesEnum.CLOSEBRACKET;

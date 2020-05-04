@@ -30,11 +30,11 @@ public class Frame extends JFrame {
 		model.setFrame(this);
 		this.setTitle(title);
 		this.setMinimumSize(new Dimension(800, 500));
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//getContentPane().setLayout(null);
 		dragArea = new RightTabbedPane();
-		btnContainer = new LeftPanel();
+		btnContainer = new LeftPanel(dragArea);
 		//this.getContentPane().add(createLeftPanel());
 		//this.getContentPane().add(createRightPanel());
 		this.getContentPane().add(new ToolBarContainer(), BorderLayout.NORTH);
@@ -50,20 +50,26 @@ public class Frame extends JFrame {
 	
 	private JScrollPane createLeftPanel() {
 		btnContainer.setPreferredSize(new  Dimension(200, 600));
-		//btnContainer.setLocation(0, 0);
 		btnContainer.setBackground(lBackground);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(btnContainer);
 		scrollPane.setPreferredSize(new Dimension(200,300));
-        //scrollPane.setBounds(0, 0, 200, 150);
 		return scrollPane;
 	}
 	
-	private RightTabbedPane createRightPanel() {
+	private JScrollPane createRightPanel() {
+		/*
 		dragArea.setLocation(200, 0);
 		dragArea.setSize(600, 500);
 		dragArea.setBackground(Color.white);		
-		return dragArea;
+		return dragArea;*/
+		//dragArea.setLocation(200, 0);
+		dragArea.setPreferredSize(new  Dimension(1000, 1000));
+		dragArea.setBackground(Color.white);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(dragArea);
+		scrollPane.setPreferredSize(new Dimension(500,600));
+		return scrollPane;
 	}
 	
 	public void contentRepaint() {

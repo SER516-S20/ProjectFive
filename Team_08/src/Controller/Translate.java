@@ -1,5 +1,7 @@
 package Controller;
+
 import View.RightPanel;
+
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
@@ -32,7 +34,7 @@ public class Translate extends JMenuItem implements ActionListener {
     }
 
     public static void save() {
-        if(CompileFile.isSuccessful()){
+        if (CompileFile.isSuccessful()) {
             try {
                 JFileChooser chosenFile = new JFileChooser();
                 int showSaveDialog = chosenFile.showSaveDialog(null);
@@ -40,13 +42,13 @@ public class Translate extends JMenuItem implements ActionListener {
                     String FILE_EXT = ".txt";
                     fileName = chosenFile.getSelectedFile().getAbsolutePath() + FILE_EXT;
                 }
-                Files.write(Paths.get(fileName), CompileFile.getCharMap().getBytes());
-                infoBox("Translation Successful","Translation Success!!!");
+                Files.write(Paths.get(fileName), CompileFile.getSymbolListOnCanvas().toString().getBytes());
+                infoBox("Translation Successful, File Saved. ", "Translation Success!!!");
             } catch (IOException i) {
                 i.printStackTrace();
             }
-        }else{
-            infoBox("<<<<Check if the compilation was successful>>>>","Translation Failed!!!");
+        } else {
+            infoBox("<<<<Check if the compilation was successful>>>>", "Translation Failed!!!");
         }
 
     }

@@ -3,6 +3,7 @@ package Controller;
 
 import View.RightPanel;
 import Model.*;
+
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
@@ -28,17 +29,23 @@ public class CompileFile extends JMenuItem implements ActionListener {
 
     public static Map<Shapes, Integer> trackShapes = new HashMap<>();
     public static Map<Character, Integer> charMap = new HashMap<>();
+    public static List<Character> symbolListOnCanvas = new ArrayList<>();
     public static boolean isSuccessful = false;
 
     public static boolean isSuccessful() {
         return isSuccessful;
     }
 
+    public static List<Character> getSymbolListOnCanvas() {
+        return symbolListOnCanvas;
+    }
+
+
     public static String getCharMap() {
-        char [] str = new char[charMap.size()] ;
-        int i=0;
-        for ( Character key : charMap.keySet() ) {
-            str[i]=key;
+        char[] str = new char[charMap.size()];
+        int i = 0;
+        for (Character key : charMap.keySet()) {
+            str[i] = key;
             i++;
         }
 
@@ -48,17 +55,16 @@ public class CompileFile extends JMenuItem implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("compile");
-
         compileCanvas();
-
     }
 
     public void push(Character item, int count) {
+        //Capture Symbol on canvas
+        symbolListOnCanvas.add(item);
         if (charMap.containsKey(item)) {
             charMap.put(item, charMap.get(item) + 1);
         } else {
             charMap.put(item, count);
-            System.out.println("Key not present in HashMap");
         }
     }
 
@@ -68,9 +74,6 @@ public class CompileFile extends JMenuItem implements ActionListener {
             infoBox("No Controller.Model.Shapes On Canvas", "Failed Case");
             return;
         }
-
-        //This will be further updated, is just a stub.
-        //When there is an unconnected shape left on canvas
         //check for unprocessed shapes
         for (Shapes shp : trackShapes.keySet()) {
             if (trackShapes.containsKey(shp)) {
@@ -105,7 +108,7 @@ public class CompileFile extends JMenuItem implements ActionListener {
 
         for (Shapes s : RightPanel.getRightPanelShapes()) {
             if (!trackShapes.containsKey(s))
-                trackShapes.put(s, 1); //every shape will have a unique obj Id.
+                trackShapes.put(s, 1);
         }
 
     }

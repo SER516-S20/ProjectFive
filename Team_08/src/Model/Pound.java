@@ -7,9 +7,9 @@ package Model;
         import java.awt.*;
 
 /**
- * This class consists of Model.Hyphen shape with one input and one output dots.
+ * This class consists of Model.Pound shape with one input and one output dots.
  *
- * @author Sandya Manoharan
+ * @author Amudhan Manisekaran
  * @version 1.1
  */
 public class Pound extends Shapes implements Serializable {
