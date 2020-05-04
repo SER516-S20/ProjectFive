@@ -5,12 +5,19 @@ import java.util.List;
 
 public class Interpreter {
 	private String result;
-	private int indentNum;
 	
 	public Interpreter() {
 		// TODO Auto-generated constructor stub
-		result = "";
-		indentNum = 0;
+		System.out.println("Interpreter:");
+		if(Model.getTabs().containsKey("Tab")) {
+			result = "Graph Tab\n" + processNodes(Model.getTabs().get("Tab"));
+			System.out.println(result);
+		}
+	}
+	
+	public String getResult()
+	{
+		return result;
 	}
 	
 	public String processNodes(TabInfo tabinfo)
@@ -55,8 +62,10 @@ public class Interpreter {
 	{
 		String code = "";
 		ButtonBox node = nodes.get(nodeID);
+		//System.out.println(node.getSymbol()+"Eval Code: ");
+		//printConnections(edges);
 		HashSet<Integer> edge = edges.get(nodeID);
-		if(edge==null)return code;
+		if(edge==null && !node.getSymbol().equals(")"))return code;
 		switch(node.getSymbol())
 		{
 		case "-":
@@ -82,12 +91,14 @@ public class Interpreter {
 			ex = "";
 			for(int id:(HashSet<Integer>)edge.clone())
 			{
-				if(findNodeOnPath(id,nodeID,(Hashtable<Integer, HashSet<Integer>>)edges.clone()))
+				if(findNodeOnPath(id,nodeID,nodes,(Hashtable<Integer, HashSet<Integer>>)edges.clone()))
 				{
 					edge.remove(id);
 					Hashtable<Integer, HashSet<Integer>> newedges = (Hashtable<Integer, HashSet<Integer>>) edges.clone();
 					newedges.remove(nodeID);
-					loop += generateCode(id,nodes,newedges).indent(1);
+					//newedges.get(nodeID).clear();
+					loop += generateCode(id,nodes,newedges).indent(4);
+					//System.out.print("Loop: \n"+loop);
 				}
 				else
 				{
@@ -97,7 +108,7 @@ public class Interpreter {
 			code+=loop;
 			for(int id:(HashSet<Integer>)edge.clone())
 			{
-				
+				//System.out.println("@ 2ed loop id: " +id);
 				ButtonBox next = nodes.get(id);
 				code+=node.getTitle()+" -> " + next.getTitle()+"\n";
 				edge.remove(id);
@@ -107,14 +118,20 @@ public class Interpreter {
 		case "#":
 			code += "Sub "+node.getTitle()+"\n";
 			String sub = "";
-			if(Model.getTabs().contains(node.getTitle()))
+			if(Model.getTabs().containsKey(node.getTitle()))
 			{
 				sub = processNodes(Model.getTabs().get(node.getTitle()));
-				code += sub.indent(1);
+				code += sub;
 			}
 			else
 			{
 				System.out.println("Sub graph " + node.getTitle()+"not exist");
+			}
+			for(int id:(HashSet<Integer>)edge.clone())
+			{
+				ButtonBox next = nodes.get(id);
+				edge.remove(id);
+				code+=generateCode(id,nodes,edges);
 			}
 			break;
 		case "(":
@@ -122,29 +139,52 @@ public class Interpreter {
 			{
 				ButtonBox next = nodes.get(id);
 				code+=generateCode(id,nodes,edges);
-				code=code.indent(1);
+				code=code.indent(4);
+				code+="End\n";
 			}
 			break;
 		case ")":
 			break;
 		}
+		//System.out.println(node.getSymbol()+"return Code: \n"+code+"\n");
 		return code;
 	}
 	
-	private boolean findNodeOnPath(int start, int end, Hashtable<Integer, HashSet<Integer>> edges)
+	private boolean findNodeOnPath(int start, int end, Hashtable<Integer, ButtonBox> nodes, Hashtable<Integer, HashSet<Integer>> edges)
 	{
+		//System.out.println("Searching: " + nodes.get(start).getSymbol() + " , "+ nodes.get(end).getSymbol());
 		boolean found = false;
 		HashSet<Integer> edge = edges.get(start);
+		if(edge==null) return false;
+		edge = (HashSet<Integer>) edge.clone();
 		if(edge.contains(end))
+		{
 			found = true;
+			//System.out.println("Searching: " + nodes.get(start).getSymbol() + " , "+ nodes.get(end).getSymbol() + " Found in edge");
+		}
 		else
 			for(int node:(HashSet<Integer>)edge.clone())
 			{
 				edge.remove(node);
-				found = findNodeOnPath(node,end,edges);
+				found = findNodeOnPath(node,end,nodes,edges);
 				if(found)break;
 			}
 		
 		return found;
+	}
+	
+	private void printConnections(Hashtable<Integer, HashSet<Integer>> edges)
+	{
+		System.out.println("Connections:");
+		for(int id:edges.keySet())
+		{
+			String s, d;
+			s=Model.getTabs().get("Tab").getshapes().get(id).getSymbol();
+			for(int dest:edges.get(id))
+			{
+				d=Model.getTabs().get("Tab").getshapes().get(dest).getSymbol();
+				System.out.println(s+" -> "+d);
+			}
+		}
 	}
 }
