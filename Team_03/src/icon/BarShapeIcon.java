@@ -1,8 +1,11 @@
+package icon;
+
 import java.awt.Component;
 import java.awt.Graphics;
-
 import javax.swing.Icon;
 import javax.swing.JButton;
+import frame.Constants;
+import shape.BarShape;
 
 /**
  * BarShapeIcon.java - a class for loading Bar shape Icon inside Bar shape
@@ -14,9 +17,8 @@ import javax.swing.JButton;
  */
 public class BarShapeIcon implements Icon {
 	JButton barShapeButton;
-	Helper helper = new Helper();
 
-	BarShapeIcon(JButton barShapeButton) {
+	public BarShapeIcon(JButton barShapeButton) {
 		this.barShapeButton = barShapeButton;
 	}
 
@@ -30,7 +32,7 @@ public class BarShapeIcon implements Icon {
 
 	public void paintIcon(Component c, Graphics g, int x, int y) {
 		BarShape barShape = new BarShape();
-		barShape.setPosition(x - 65, y - 30);
+		barShape.setPosition(x - Constants.ICON_DEVIATION_X, y - Constants.ICON_DEVIATION_Y);
 		barShape.draw(g);
 	}
 }
