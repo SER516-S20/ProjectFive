@@ -30,13 +30,15 @@ public class MenuBar extends JMenuBar{
 		JMenuItem itemNew = new JMenuItem("New");
 		itemNew.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				int res=JOptionPane.showConfirmDialog(null, "Do you want to save these files? ", "", JOptionPane.YES_NO_OPTION);
+				int res=JOptionPane.showConfirmDialog(null, "Do you want to save these files? ", "", JOptionPane.YES_NO_CANCEL_OPTION);
 				if(res==JOptionPane.YES_OPTION){ 
 					if(fileBrowser.browser("Save file")) {
 						fileManager.save(fileBrowser.getCurrentFile());
 					}
+					Model.clear();
+				}else if(res==JOptionPane.NO_OPTION) {
+					Model.clear();
 				}
-				Model.clear();
 			}
 		});
 		fileMenu.add(itemNew);
