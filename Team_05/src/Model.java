@@ -69,4 +69,12 @@ public class Model {
 	public static RightTabbedPane getRightTabbedPane() {
 		return rightTabbedPane;
 	}
+	
+	public static void clear()
+	{
+		tabs.clear();
+		shapes.clear();
+		rightTabbedPane.removeAll();
+		rightTabbedPane.addWorkingAreaTab();
+	}
 }
