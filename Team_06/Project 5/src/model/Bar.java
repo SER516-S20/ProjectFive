@@ -10,7 +10,7 @@ import controller.Connector;
  *
  * @author Suyog
  * @since 04-24-2020
- * @Description: Menu will show different options available to users.
+ * @Description: Bar class extends connector to be used in symbol.
  */
 public class Bar extends Connector{
 
