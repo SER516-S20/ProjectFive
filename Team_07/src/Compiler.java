@@ -16,14 +16,12 @@ public class Compiler {
 	public void compile()
 	{
 		int tabCount = MainFrame.PANEL_RIGHT.getTabCount();
-		String tabMsg = "";
-		String tabTitle = "";
-		String logMsg = "";
+		String tabMsg;
+		String tabTitle;
+		String logMsg;
 		int errorStatus = 0;
 		for(int i = 0; i < tabCount; i++)
 		{
-			System.out.println(MainFrame.PANEL_RIGHT.getComponentCount());
-			System.out.println(MainFrame.PANEL_RIGHT.getComponents());
 			currentTab = (PanelRightTab)MainFrame.PANEL_RIGHT.getComponentAt(i);
 			tabTitle = MainFrame.PANEL_RIGHT.getTitleAt(i);
 			tabMsg = compileTab();
@@ -46,7 +44,7 @@ public class Compiler {
 	 * @return Error
 	 */
 	 String compileTab() {
-		String msg = "";
+		String msg;
 		String parenthesisError = getParError();
 		if (!parenthesisError.equals("No Error"))
 			msg = parenthesisError;
@@ -147,16 +145,16 @@ public class Compiler {
 	}
 
 	private int getMinID() {
-		int minID = 0;
+		int minID;
 		List<Op> allOps = new ArrayList<>();
 		for (Component component : currentTab.getComponents()) {
 			if (component instanceof Op)
 				allOps.add((Op)component);
 		}
 		minID = allOps.get(0).ID;
-		for(int i = 0;i < allOps.size(); i++)
-			if(minID > allOps.get(i).ID)
-				minID = allOps.get(i).ID;
+		for (Op allOp : allOps)
+			if (minID > allOp.ID)
+				minID = allOp.ID;
 		
 		return minID;
 	}

@@ -72,7 +72,9 @@ public class MenuBar {
     }
 
     public void translate() {
-        Translator translator=new Translator();
-        translator.translate();
+        Tranxlator tranxlator = new Tranxlator();
+        tranxlator.translate();
+//        Translator translator=new Translator();
+//        translator.translate();
     }
 }
