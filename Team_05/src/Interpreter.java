@@ -85,7 +85,7 @@ public class Interpreter {
 			}
 			break;
 		case "@":
-			code += node.getTitle()+" Loop->\n";
+			code += "Loop " + node.getTitle() + "->\n";
 			String loop, ex;
 			loop = "";
 			ex = "";
@@ -106,6 +106,7 @@ public class Interpreter {
 				}
 			}
 			code+=loop;
+			code+="End\n";
 			for(int id:(HashSet<Integer>)edge.clone())
 			{
 				//System.out.println("@ 2ed loop id: " +id);
