@@ -18,7 +18,7 @@ import model.Symbol;
  *
  * @author Suyog
  * @since 04-28-2020
- * @Description: SaveApplication class stores all tabs data inclusing symol's properties in .txt file. 
+ * @Description: SaveApplication class stores all tab related data including symbol's properties in a .txt file. 
  */
 public class SaveApplication implements java.io.Serializable{
 
