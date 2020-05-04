@@ -21,6 +21,7 @@ public class ListenersPanelRightTab {
     static Cursor MOVE_CURSOR = new Cursor(Cursor.MOVE_CURSOR);
     static int currentConnection = -1;
     private static boolean panelRightTabAllowance = true;
+    static ContextMenuOp contextMenuOp = new ContextMenuOp();
 
     public static void addRightPanelTabListeners(JPanel rightPanel) {
         rightPanel.addMouseListener(new MouseListener() {
@@ -182,28 +183,25 @@ public class ListenersPanelRightTab {
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {
+            public void mousePressed(MouseEvent mouseEvent) {
+            	contextMenuOp.showContextMenu(mouseEvent);
             }
 
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseReleased(MouseEvent mouseEvent) {
                 cursor = new Cursor(Cursor.HAND_CURSOR);
                 op.setCursor(cursor);
-                if (e.isPopupTrigger()) {
-                    ContextMenuOp.opToDelete = op;
-                    PanelRightTab.opContextMenu.show(op, e.getX(), e.getY());
-                }
-                PanelRightTab.refreshTab();
+                contextMenuOp.showContextMenu(mouseEvent);
             }
 
             @Override
-            public void mouseEntered(MouseEvent e) {
+            public void mouseEntered(MouseEvent mouseEvent) {
                 cursor = new Cursor(Cursor.HAND_CURSOR);
                 op.setCursor(cursor);
             }
 
             @Override
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(MouseEvent mouseEvent) {
                 cursor = new Cursor(Cursor.DEFAULT_CURSOR);
                 op.setCursor(cursor);
             }

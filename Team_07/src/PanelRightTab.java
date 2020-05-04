@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -19,7 +18,6 @@ public class PanelRightTab extends JPanel implements Serializable {
     public List<Connector> src = new ArrayList<>();
     public List<Connector> dest = new ArrayList<>();
     public int OpCount;
-    static ContextMenuOp opContextMenu = new ContextMenuOp();
 
     PanelRightTab() {
         super();

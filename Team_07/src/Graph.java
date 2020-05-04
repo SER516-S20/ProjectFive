@@ -54,6 +54,35 @@ class Graph {
                 return true;
         return false;
     }
+    
+    public int countConnectedComponents() {
+        boolean[] visited = new boolean[TOTAL_VERTICES];
+        int count = 0;
+        int index;
+        while((index = checkGraphIsVisited(visited))!=-1){
+            dfs(index, visited);
+            count++;
+        }
+        return count;
+    }
+
+    public int checkGraphIsVisited(boolean[] visited){
+
+        for (int i = 0; i <visited.length ; i++) {
+            if(!visited[i])
+                return i;
+        }
+        return -1;
+    }
+
+    public void dfs(int start, boolean[] visited) {
+        visited[start] = true;
+        for (int i = 0; i < ADJACENT_VERICES.get(start).size(); i++) {
+            int destination = ADJACENT_VERICES.get(start).get(i);
+            if (!visited[destination])
+                dfs(destination, visited);
+        }
+    }
 }
 
 
