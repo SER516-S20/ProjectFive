@@ -1,9 +1,8 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.lang.reflect.InvocationTargetException;
-import java.awt.event.*;
 
 /**
  * Listeners for the PanelLeft
@@ -16,81 +15,71 @@ public class ListenersPanelLeft {
     static final Cursor HAND_CURSOR = new Cursor(Cursor.HAND_CURSOR);
     static final Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
     static Op draggableOp = null;
-    static boolean isOpCreated = false;
+    static Point shift;
 
     public static void addShapeListeners(Op op) {
-        final int[] dragX = new int[1];
-        final int[] dragY = new int[1];
         op.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                if (Database.selectedOp != null) {
-                    Database.selectedOp.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                shift = e.getLocationOnScreen();
+                shift.x -= op.getLocationOnScreen().x;
+                shift.y -= op.getLocationOnScreen().y;
+                draggableOp = op;
+                try {
+                    draggableOp = op.getClass().getDeclaredConstructor().newInstance();
+                } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException exception) {
+                    exception.printStackTrace();
                 }
-                Database.selectedOp = (Op) mouseEvent.getSource();
-                Database.selectedOp.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-
+                ListenersPanelRightTab.addShapeListeners(draggableOp);
+                draggableOp.setLocation(-100,-100);
+                Database.selectedTab.add(draggableOp);
             }
 
             @Override
-            public void mousePressed(MouseEvent mouseEvent) {
+            public void mouseReleased(MouseEvent e) {
+                Point tabLocation = Database.selectedTab.getLocationOnScreen();
+                if (draggableOp.getLocationOnScreen().x < tabLocation.x - shift.x
+                        || draggableOp.getLocationOnScreen().y < tabLocation.y - shift.y) {
+                    Database.selectedTab.remove(draggableOp);
+                    PanelRightTab.refreshTab();
+                } else if (draggableOp.getOpLabel().getText().equals("#")) {
+                    ListenersPanelRightTab.mapOP.put(draggableOp,
+                            MainFrame.PANEL_RIGHT.addNewTab());
+                    ListenersInputPopup.mapTab.put(ListenersPanelRightTab.mapOP.get(draggableOp),
+                            "Tab " + (PanelRight.tabNum - 1));
+                }
             }
 
             @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
-                isOpCreated = false;
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
+            public void mouseEntered(MouseEvent e) {
                 op.setCursor(HAND_CURSOR);
             }
 
             @Override
-            public void mouseExited(MouseEvent mouseEvent) {
+            public void mouseExited(MouseEvent e) {
                 op.setCursor(DEFAULT_CURSOR);
-
-
             }
         });
 
         op.addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-
-                Database.selectedOp = (Op) e.getSource();
-                try {
-                    if (!isOpCreated) {
-                        draggableOp = Database.selectedOp
-                                .getClass().getDeclaredConstructor().newInstance();
-                        isOpCreated = true;
-                    }
-                } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException exp) {
-                    exp.printStackTrace();
-                }
-
-
-                Cursor cursor = new Cursor(Cursor.MOVE_CURSOR);
-                draggableOp.setCursor(cursor);
-                int mouseLocationX = e.getXOnScreen() + dragX[0];
-                int mouseLocationY = e.getYOnScreen() + dragY[0];
-                draggableOp.setLocation(mouseLocationX,
-                        mouseLocationY);
-
-                if (isOpCreated) {
-                    MainFrame.PANEL_RIGHT.getRightTab().add(draggableOp);
-                }
-                MainFrame.PANEL_RIGHT.getRightTab().repaint();
-
+                Point tabLocation = Database.selectedTab.getLocationOnScreen();
+                draggableOp.setLocation(
+                        e.getXOnScreen() - tabLocation.x - shift.x,
+                        e.getYOnScreen() - tabLocation.y - shift.y);
+                PanelRightTab.refreshTab();
             }
 
             @Override
             public void mouseMoved(MouseEvent e) {
-                dragX[0] = op.getX() - e.getXOnScreen();
-                dragY[0] = op.getY() - e.getYOnScreen();
 
             }
-
         });
     }
 

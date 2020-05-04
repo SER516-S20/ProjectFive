@@ -1,4 +1,4 @@
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.*;
@@ -34,12 +34,12 @@ public class ContextMenuOp extends JPopupMenu {
 		int opID = opToDelete.ID;
 		int destSize = dest.size();
 
-		System.out.println("delete op: " + opToDelete.label + " ID: " + opToDelete.ID);
+		PanelLog.logString("delete op: " + opToDelete.label + " ID: " + opToDelete.ID, Color.WHITE);
 
 		// removing connections 
 		for (int i = destSize-1; i >= 0; i--){
 			if(dest.get(i).op.ID == opID || src.get(i).op.ID == opID){
-				System.out.println("delete connection " + src.get(i).op.ID + " " + dest.get(i).op.ID);
+				PanelLog.logString("delete connection " + src.get(i).op.ID + " " + dest.get(i).op.ID, Color.WHITE);
 				Database.selectedTab.dest.get(i).connected = false;
 				Database.selectedTab.src.get(i).connected = false;
 				Database.selectedTab.dest.remove(i);

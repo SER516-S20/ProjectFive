@@ -9,17 +9,17 @@ import java.awt.event.MouseEvent;
  * @since March 11, 2020
  */
 public class InputPopup extends JDialog {
-    JTextField name;
     final static Dimension DIMENSIONS_INPUT_POPUP = new Dimension(300, 110);
+    JTextField name;
     Op op;
 
-    InputPopup(MouseEvent mouseEvent) {
+    InputPopup(MouseEvent e) {
         super();
-        op = (Op) mouseEvent.getSource();
-        getContentPane().setBackground(Database.GRAY);
+        op = (Op) e.getSource();
+        getContentPane().setBackground(Color.GRAY);
         setPreferredSize(DIMENSIONS_INPUT_POPUP);
         setUndecorated(true);
-        setLocationRelativeTo(mouseEvent.getComponent());
+        setLocationRelativeTo(e.getComponent());
         setLayout(new FlowLayout(FlowLayout.CENTER, 5, 10));
 
         this.add(getTextField());
@@ -34,8 +34,8 @@ public class InputPopup extends JDialog {
     private JTextField getTextField() {
         name = new JTextField(op.getValue());
         name.setColumns(20);
-        name.setBorder(BorderFactory.createLineBorder(Database.LIGHT_GRAY, 10));
-        name.setBackground(Database.LIGHT_GRAY);
+        name.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 10));
+        name.setBackground(Color.BLUE);
         name.setForeground(Color.WHITE);
         name.setCaretColor(Color.WHITE);
         name.setEnabled(true);
@@ -48,14 +48,15 @@ public class InputPopup extends JDialog {
     }
 
     private ButtonCustom getDoneButton() {
-        ButtonCustom doneButton = new ButtonCustom("Done", Database.LIGHT_GRAY);
+        ButtonCustom doneButton = new ButtonCustom("Done", Color.DARK_GRAY);
         doneButton.setBorder(BorderFactory.createLineBorder(Color.white, 1));
         ListenersInputPopup.addDoneButtonListeners(doneButton, this);
         return doneButton;
     }
 
     private ButtonCustom getCancelButton() {
-        ButtonCustom cancelButton = new ButtonCustom("Cancel", Database.LIGHT_GRAY);
+        ButtonCustom cancelButton = new ButtonCustom("Cancel", Color.WHITE);
+        cancelButton.setBorder(BorderFactory.createLineBorder(Color.white, 1));
         ListenersInputPopup.addCancelButtonListeners(cancelButton, this);
         return cancelButton;
     }

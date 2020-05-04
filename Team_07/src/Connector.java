@@ -24,13 +24,13 @@ public abstract class Connector extends JPanel {
     public static void addConnectorListeners(Connector op) {
         op.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
+            public void mouseClicked(MouseEvent e) {
                 if (src == null) {
-                    src = (Connector) mouseEvent.getSource();
+                    src = (Connector) e.getSource();
                     op.setBackground(Color.BLACK);
 
                 } else if (dest == null) {
-                    dest = (Connector) mouseEvent.getSource();
+                    dest = (Connector) e.getSource();
                     Boolean canSourceConnect = Database.isSourceValid(src);
                     Boolean canDestConnect = Database.isDestValid(dest);
                     if (canSourceConnect && canDestConnect) {
@@ -44,24 +44,24 @@ public abstract class Connector extends JPanel {
             }
 
             @Override
-            public void mousePressed(MouseEvent mouseEvent) {
+            public void mousePressed(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
+            public void mouseReleased(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
-                op.setBackground(Color.GRAY);
+            public void mouseEntered(MouseEvent e) {
+                op.setBackground(Color.WHITE);
             }
 
             @Override
-            public void mouseExited(MouseEvent mouseEvent) {
+            public void mouseExited(MouseEvent e) {
                 //noinspection ObjectComparison
-                if (src != (mouseEvent.getSource()))
+                if (src != (e.getSource()))
                     op.setBackground(Color.WHITE);
             }
         });
