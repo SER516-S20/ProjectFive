@@ -51,114 +51,27 @@ public class RightPanelMouseListener implements MouseListener, MouseMotionListen
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        OpenBracket openbracket = null;
-        CloseBracket closeBracket = null;
-        LessThan lessThan = null;
-        GreaterThan greaterThan = null;
-        AtTheRate atTheRate = null;
-        //TwoBars twoBars = null;
-        Hyphen hyphen = null;
-        //List<Connections> lst = RightPanel.getLines();
-        //Add Re-Link Feature Will opush in next commit, some changes remaninong
-//        if (Dot.isDotClicked || Dot.isBarClicked) {
-//
-//            System.out.println("---------");
-//            //List<Connections> lst = RightPanel.getLines();
-//            if (!RightPanel.getLines().isEmpty()) {
-//                List<Connections> lst = RightPanel.getLines();
-//                if (RightPanel.getOriginShape().containsPoint(e.getX(), e.getY())) {
-//                    Shapes dest = null;
-//                    Shapes shp = RightPanel.getOriginShape(); //current click
-//                    if (shp instanceof OpenBracket)
-//                        openbracket = (OpenBracket) shp;
-//                    else if (shp instanceof CloseBracket)
-//                        closeBracket = (CloseBracket) shp;
-//                    else if (shp instanceof LessThan)
-//                        lessThan = (LessThan) shp;
-//                    else if (shp instanceof GreaterThan)
-//                        greaterThan = (GreaterThan) shp;
-//                    else if (shp instanceof AtTheRate)
-//                        atTheRate = (AtTheRate) shp;
-//                    else if (shp instanceof Hyphen)
-//                        hyphen = (Hyphen) shp;
-//
-//                    for (Connections c : lst) {
-//                        if (c.getOriginShape().equals(openbracket)) {
-//                            System.out.println("Match found.....\n");
-//                            openbracket.setLineDrawn(false);
-//                            RightPanel.getLines().remove(index);
-//                            dest = c.getDestShape();
-//                            if (dest instanceof OpenBracket){
-//                                openbracket = (OpenBracket) dest;
-//                                openbracket.setLineDrawn(false);
-//                            } else if (dest instanceof CloseBracket){
-//                                closeBracket = (CloseBracket) dest;
-//                                closeBracket.setLineDrawn(false);
-//                            } else if (dest instanceof LessThan) {
-//                                lessThan = (LessThan) dest;
-//                                lessThan.setLineDrawnDot1(false);
-//                                lessThan.setLineDrawnDot2(false);
-//                                lessThan.setLineDrawnDot3(false);
-//                            } else if (dest instanceof GreaterThan){
-//                                greaterThan = (GreaterThan) dest;
-//                                greaterThan.setLineDrawnDot1(false);
-//                                greaterThan.setLineDrawnDot2(false);
-//                                greaterThan.setLineDrawnDot3(false);
-//                            } else if (dest instanceof AtTheRate){
-//                                atTheRate = (AtTheRate) dest;
-//                                atTheRate.setLineDrawnDot1(false);
-//                                atTheRate.setLineDrawnDot2(false);
-//                                atTheRate.setLineDrawnDot3(false);
-//                                atTheRate.setLineDrawnDot4(false);
-//                            }
-//                            else if (dest instanceof Hyphen){
-//                                hyphen = (Hyphen) dest;
-//                                hyphen.setLineDrawnDot1(false);
-//                                hyphen.setLineDrawnDot2(false);
-//                            }
-//                            break;
-//                        }else if (c.getOriginShape().equals(closeBracket)) {
-//                            System.out.println("Match found.....\n");
-//                            closeBracket.setLineDrawn(false);
-//                            RightPanel.getLines().remove(index);
-//                            break;
-//                        }else if (c.getOriginShape().equals(atTheRate)) {
-//                            System.out.println("Match found.....\n");
-//                            atTheRate.setLineDrawnDot1(false);
-//                            atTheRate.setLineDrawnDot2(false);
-//                            atTheRate.setLineDrawnDot3(false);
-//                            RightPanel.getLines().remove(index);
-//                            break;
-//                        }else if (c.getOriginShape().equals(greaterThan)) {
-//                            System.out.println("Match found.....\n");
-//                            greaterThan.setLineDrawnDot1(false);
-//                            greaterThan.setLineDrawnDot2(false);
-//                            greaterThan.setLineDrawnDot3(false);
-//                            RightPanel.getLines().remove(index);
-//                            break;
-//                        }else if(c.getOriginShape().equals(lessThan)){
-//                            lessThan.setLineDrawnDot1(false);
-//                            lessThan.setLineDrawnDot2(false);
-//                            lessThan.setLineDrawnDot3(false);
-//                            RightPanel.getLines().remove(index);
-//                            break;
-//                        }else if(c.getOriginShape().equals(hyphen)){
-//                            hyphen.setLineDrawnDot1(false);
-//                            hyphen.setLineDrawnDot2(false);
-//                            RightPanel.getLines().remove(index);
-//                            break;
-//                        }
-//                        //RightPanel.getLines().remove(index);
-//                        index++;
-//                    }
-//                }
-//
-//                Frame.rightPanel.repaint();
-//            }
-//
-//
-//        }
+        if (Dot.isDotClicked) {
+            if (!RightPanel.getLines().isEmpty()) {
+                List<Connections> lst = RightPanel.getLines();
+                if (!lst.isEmpty()) {
+                    for (Connections c : lst) {
+                        if ((Dot.connectedShapes.containsKey(c.getOriginShape()))) {
+                            if (c.getOriginShape().toString().contains("Model.OpenBracket")) {
+                                OpenBracket shp = (OpenBracket) c.getOriginShape();
+                                shp.setLineDrawn(false);
+                                if (c.getDestShape().toString().contains("Model.CloseBracket")) {
+                                    CloseBracket shp1 = (CloseBracket) Dot.connectedShapes.get(c.getOriginShape());
+                                    shp1.setLineDrawn(false);
+                                }
+                                RightPanel.getLines().remove(c);
+                            }
+                        }
+                    }
+                }
 
+            }
+        }
         if (e.getClickCount() == 2 && !e.isConsumed()/*&&(Dot.isDotClicked || Dot.isBarClicked)*/) {
             Shapes currentshape = null;
             for (Shapes shape : RightPanel.getRightPanelShapes()) {
