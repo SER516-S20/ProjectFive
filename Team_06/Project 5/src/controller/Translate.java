@@ -29,16 +29,16 @@ public class Translate {
 			String title = rp.getTitleAt(index);
 			
 			if (index % 2 == 0){
-				code += "	subgraph cluster_"+title+"{\n"+
+				code += "	subgraph cluster_"+title+"_"+index+"{\n"+
 						"		style=filled;\r\n" + 
 						"		color=lightgrey;\r\n" + 
 						"		node [style=filled,color=white];\r\n" + 
-						"		label = \"process "+title+"\";\r\n";
+						"		label = \"process "+title+"_"+index+"\";\r\n";
 			}else {
-				code += "	subgraph cluster_"+title+"{\n"+
+				code += "	subgraph cluster_"+title+"_"+index+"{\n"+
 						"		color=blue;\r\n" + 
 						"		node [style=filled];\r\n" + 
-						"		label = \"process "+title+"\";\r\n";
+						"		label = \"process "+title+"_"+index+"\";\r\n";
 			}
 			
 			
@@ -51,9 +51,9 @@ public class Translate {
 			Component[] symbols = tab.getComponents();
 			
 			int openParaVertex = getOpenParaVertex(symbols); 
-			mainCode += "	"+from + " -> "+title + "_"+openParaVertex+ " ;\n";
+			mainCode += "	"+from + " -> "+title +"_"+index + "_"+openParaVertex+ " ;\n";
 			int closeParaVertex = getCloseParaVertex(symbols); 
-			mainCode += "	"+title + "_"+closeParaVertex+ " -> "+to+" ;\n";
+			mainCode += "	"+title +"_"+index + "_"+closeParaVertex+ " -> "+to+" ;\n";
 			Map<Connector, ArrayList<Connector>> currentTabLines = tabLines.get(tab);
 			
 			for (Map.Entry line : currentTabLines.entrySet()) {
@@ -63,7 +63,7 @@ public class Translate {
 				
 				if(((Symbol) symbols[fromSymbolIndex]).getText().equals("#")) {
 					int toSymbolIndex = getSymbolId(symbols, connectorList.get(0).getParent());
-					to = title + "_"+toSymbolIndex;
+					to = title +"_"+index + "_"+toSymbolIndex;
 					continue;
 				}				
 				
@@ -71,9 +71,9 @@ public class Translate {
 				for(int i = 0; i < size ; i++) {
 					int toSymbolIndex = getSymbolId(symbols, connectorList.get(i).getParent());
 					if(((Symbol) symbols[toSymbolIndex]).getText().equals("#")) {
-						from = title + "_"+fromSymbolIndex;
+						from = title +"_"+index + "_"+fromSymbolIndex;
 					}else {
-						code += "		"+title + "_"+fromSymbolIndex + " -> "+title + "_"+toSymbolIndex+";\r\n";
+						code += "		"+title +"_"+index + "_"+fromSymbolIndex + " -> "+title +"_"+index + "_"+toSymbolIndex+";\r\n";
 					}
 					
 				}			
