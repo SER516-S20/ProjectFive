@@ -24,7 +24,6 @@ public class Translator {
 
     //Entry Point
     public void translate() {
-
         PanelRightTab mainTab = (PanelRightTab) MainFrame.PANEL_RIGHT.getComponentAt(0);
         //For Main Tab
         for (Component component : mainTab.getComponents()
@@ -112,7 +111,7 @@ public class Translator {
     public void createCluster(TranslatorCluster cluster) {
         stringBuilder.append("\nsubgraph cluster");
         stringBuilder.append(cluster.label).append("{\n");
-        stringBuilder.append("label = \"tab").append(cluster.label).append("\";\n");
+        stringBuilder.append("label = \"tab").append(Integer.valueOf(cluster.label)+1).append("\";\n");
         for (TranslatorNode node : nodes
         ) {
             if (node.cluster == cluster)

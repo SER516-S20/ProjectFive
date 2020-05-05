@@ -22,6 +22,7 @@ public class PanelRightTab extends JPanel implements Serializable {
     PanelRightTab() {
         super();
         setLayout(null);
+        setPreferredSize(new Dimension(Database.SCREEN_SIZE.width,Database.SCREEN_SIZE.height));
         setBackground(Color.DARK_GRAY);
         ListenersPanelRightTab.addRightPanelTabListeners(this);
         ListenersPanelRightTab.addRightPanelTabMotionListeners(this);

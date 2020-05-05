@@ -55,7 +55,7 @@ public abstract class Connector extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                op.setBackground(Color.WHITE);
+                op.setBackground(Color.GRAY);
             }
 
             @Override

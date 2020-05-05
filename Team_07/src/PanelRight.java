@@ -14,8 +14,6 @@ public class PanelRight extends JTabbedPane {
 
     PanelRight() {
         super();
-//        setForeground(Color.BLACK);
-
         tab = new PanelRightTab();
         addTab("Tab " + tabNum, tab);
         tabNum++;

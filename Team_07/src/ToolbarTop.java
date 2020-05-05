@@ -20,7 +20,6 @@ public class ToolbarTop extends JToolBar {
         super();
         setLayout(new FlowLayout(FlowLayout.CENTER, 40, 20));
         setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.white));
-
         setBackground(Color.DARK_GRAY);
         addOperators();
     }

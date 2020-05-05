@@ -14,7 +14,7 @@ import java.util.Calendar;
  */
 
 public class PanelLog{
-    public JScrollPane scrollPanelLog;
+    public JScrollPane PANEL_LOG_SCROLLPANE;
     static JTextPane panelLogText;
 
     PanelLog() {
@@ -25,11 +25,11 @@ public class PanelLog{
             e.printStackTrace();
         }
         panelLogText = new JTextPane();
-        scrollPanelLog = new JScrollPane(panelLogText);
-        scrollPanelLog.setPreferredSize(new Dimension(200,200));
+        PANEL_LOG_SCROLLPANE = new JScrollPane(panelLogText);
+        PANEL_LOG_SCROLLPANE.setPreferredSize(new Dimension(300,200));
         panelLogText.setEditable(false);
-        scrollPanelLog.setVerticalScrollBarPolicy(
-                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        PANEL_LOG_SCROLLPANE.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     }
 
     public static void logString(String string,Color color)
