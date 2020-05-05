@@ -22,8 +22,6 @@ public class FileManager {
         dialog.setVisible(true);
         String file = dialog.getDirectory() + dialog.getFile();
 
-        if (file == null)
-            return;
         FileOutputStream fileOutputStream;
         ObjectOutputStream objectOutputStream;
         Component[] tabsToSave = MainFrame.PANEL_RIGHT.getComponents();
@@ -56,8 +54,6 @@ public class FileManager {
         dialog.setMode(FileDialog.LOAD);
         dialog.setVisible(true);
         String file = dialog.getDirectory() + dialog.getFile();
-        if (file == null)
-            return;
 
         MainFrame.PANEL_RIGHT.removeAll();
         ListenersPanelRightTab.mapOP.clear();
@@ -88,12 +84,13 @@ public class FileManager {
 
                 ListenersPanelRightTab.addListenersToPanelOps(tab);
                 ListenersPanelRightTab.addRightPanelTabListeners(tab);
+                ListenersPanelRightTab.addRightPanelTabMotionListeners(tab);
                 tab.repaint();
             }
             Database.selectedTab = (PanelRightTab) tabsToOpen[0];
 
         } catch (FileNotFoundException e) {
-            PanelLog.logString("File not found", Color.RED);
+            PanelLog.logString("File: Not Found", Color.RED);
         } catch (IOException e) {
             PanelLog.logString("Error initializing stream", Color.RED);
         } catch (ClassNotFoundException e) {

@@ -141,7 +141,7 @@ public class Compiler {
 		if (getTotalOp("@") > 0)
 			if (!graph.isCyclic())
 				return "@ is not having the loop";
-		return graph.countConnectedComponents() != 1 ? "Multiple Subgraphs present" : "Compile success!";
+		return graph.countConnectedComponents() != 1 ? "Multiple Sub-Graphs present" : "Compile success!";
 	}
 
 	private int getMinID() {

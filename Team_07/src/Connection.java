@@ -72,8 +72,6 @@ public class Connection {
     }
 
     public static GeneralPath getGeneralPath(int xSource, int ySource, int xDest, int yDest) {
-        int[] xPoints = {10, 50, 100, 150, 200, 250, 300, 350};
-        int[] yPoints = {10, 50, 10, 50, 10, 50, 10, 50};
         GeneralPath path = new GeneralPath(GeneralPath.WIND_EVEN_ODD,
                 3);
         int[][] points = getLinePoints(xSource, ySource, xDest, yDest);

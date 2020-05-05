@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Right Tabbed Pane
@@ -29,7 +28,4 @@ public class PanelRight extends JTabbedPane {
         return tab;
     }
 
-    public PanelRightTab getRightTab() {
-        return Database.selectedTab;
-    }
 }

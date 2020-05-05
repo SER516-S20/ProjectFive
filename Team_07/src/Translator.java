@@ -32,7 +32,7 @@ public class Translator {
                 Op op = (Op) component;
                 TranslatorNode node = new TranslatorNode(op.label, generateID(op));
                 nodes.add(node);
-                addNodeToTranxlator(node);
+                addNodeToTranslator(node);
                 if (op.label.equals("#")) {
                     PanelRightTab tempPanel = ListenersPanelRightTab.mapOP.get(op);
                     addCluster(tempPanel, MainFrame.PANEL_RIGHT.getComponentZOrder(tempPanel), op);
@@ -70,6 +70,7 @@ public class Translator {
             }
         }
         stringBuilder.append("\n}");
+        PanelLog.logString(String.valueOf(stringBuilder),Color.GRAY);
         saveGraph();
     }
 
@@ -84,7 +85,7 @@ public class Translator {
                 Op op = (Op) component;
                 TranslatorNode node = new TranslatorNode(op.label, generateID(op));
                 nodes.add(node);
-                addNodeToTranxlator(node);
+                addNodeToTranslator(node);
                 node.cluster = cluster;
                 if (op.label.equals("("))
                     cluster.src = node;
@@ -100,7 +101,7 @@ public class Translator {
     }
 
     //add node with label to stringbuilder
-    public void addNodeToTranxlator(TranslatorNode node) {
+    public void addNodeToTranslator(TranslatorNode node) {
         stringBuilder.append(node.id);
         stringBuilder.append(" [ label=\"");
         stringBuilder.append(node.label);
@@ -111,7 +112,7 @@ public class Translator {
     public void createCluster(TranslatorCluster cluster) {
         stringBuilder.append("\nsubgraph cluster");
         stringBuilder.append(cluster.label).append("{\n");
-        stringBuilder.append("label = \"tab").append(Integer.valueOf(cluster.label)+1).append("\";\n");
+        stringBuilder.append("label = \"tab").append(Integer.parseInt(cluster.label)+1).append("\";\n");
         for (TranslatorNode node : nodes
         ) {
             if (node.cluster == cluster)
@@ -122,7 +123,11 @@ public class Translator {
 
     //save as file
     public void saveGraph() {
-        try (FileOutputStream oS = new FileOutputStream(new File("file.dot"))) {
+        FileDialog dialog = new FileDialog(MainFrame.mainFrame, "Enter file name to Save");
+        dialog.setMode(FileDialog.SAVE);
+        dialog.setVisible(true);
+        String file = dialog.getDirectory() + dialog.getFile();
+        try (FileOutputStream oS = new FileOutputStream(new File(file))) {
             oS.write(stringBuilder.toString().getBytes());
         } catch (IOException e) {
             e.printStackTrace();

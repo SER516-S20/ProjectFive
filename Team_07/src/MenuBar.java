@@ -59,10 +59,6 @@ public class MenuBar {
         });
     }
 
-    public void newFile() {
-
-    }
-
     public void compile() {
     	Compiler compiler = new Compiler();
 		compiler.compile();
@@ -71,7 +67,5 @@ public class MenuBar {
     public void translate() {
         Translator translator = new Translator();
         translator.translate();
-//        Translator translator=new Translator();
-//        translator.translate();
     }
 }
