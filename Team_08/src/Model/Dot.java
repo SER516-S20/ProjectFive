@@ -14,6 +14,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Rectangle2D;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class consists of Model.Dot
@@ -33,6 +35,7 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
     public Shapes firstShape;
     public static boolean isBarClicked = false, isDotClicked = false;
     CompileFile compileFile = new CompileFile();
+    public static Map<Shapes,Shapes> connectedShapes = new HashMap<>();
 
     public Dot(double x, double y) {
         this.x = x;
@@ -258,6 +261,8 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
     public boolean getIsLineDrawn(Shapes shape, int x, int y) {
         if (shape instanceof OpenBracket) {
             OpenBracket openbracket = (OpenBracket) shape;
+            if(openbracket.isLineDrawn())
+                openbracket.setLineDrawn(false);
             return !openbracket.isLineDrawn();
         } else if (shape instanceof CloseBracket) {
             CloseBracket closebracket = (CloseBracket) shape;
@@ -391,6 +396,7 @@ public class Dot extends Shapes implements MouseListener, MouseMotionListener, S
 
     public void updateHashMap(Shapes firstShape, Shapes secondShape) {
         //Makes note of the shapes connected to one another
+        connectedShapes.put(firstShape,secondShape);
         if (firstShape.toString().contains("Model.OpenBracket"))
             compileFile.push('(', 1);
         if (firstShape.toString().contains("Model.LessThan"))
