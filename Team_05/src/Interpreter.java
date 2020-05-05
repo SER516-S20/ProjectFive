@@ -3,6 +3,11 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 
+/**
+ * 
+ * @author Yijian Hu
+ *
+ */
 public class Interpreter {
 	private String result;
 	
