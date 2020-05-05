@@ -1,6 +1,6 @@
 # ProjectFive
 ## Team 6 
-##How to run the project:- Copy "src" folder to eclipse Java project. Right click on view/Frame.java and Run as Java Application.
+## How to run the project:- Copy "src" folder to eclipse Java project. Right click on view/Frame.java and Run as Java Application.
 
 ### To delete a line from a connector(Bar/Dot) in working area, you have to press shift and left click on that connector 
 ### To delete a shape in the working area, you have to press shift and left click on that shape. 
