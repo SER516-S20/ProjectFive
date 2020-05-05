@@ -25,7 +25,7 @@ public class Compiler {
 			currentTab = (PanelRightTab)MainFrame.PANEL_RIGHT.getComponentAt(i);
 			tabTitle = MainFrame.PANEL_RIGHT.getTitleAt(i);
 			tabMsg = compileTab();
-			logMsg = tabTitle + "': " + tabMsg;
+			logMsg = tabTitle + ": " + tabMsg;
 			if(tabMsg.equals("Compile success"))
 				PanelLog.logString(logMsg, Color.GREEN);
 			else {
@@ -34,7 +34,7 @@ public class Compiler {
 			}
 		}
 		if(errorStatus == 0)
-			PanelLog.logString("Compilation Success!", Color.GRAY);
+			PanelLog.logString("Compilation Success", Color.GRAY);
 		else
 			PanelLog.logString("Error in Compilation", Color.RED);
 	}

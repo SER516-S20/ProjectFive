@@ -50,11 +50,11 @@ public class MenuBar {
         });
 
         compileButton.addActionListener(arg0 -> {
-            PanelLog.logString("Compiled", Color.WHITE);
+            PanelLog.logString("Compiling...", Color.WHITE);
             compile();
         });
         translateButton.addActionListener(arg0 -> {
-            PanelLog.logString("Translated", Color.WHITE);
+            PanelLog.logString("Translating...", Color.WHITE);
             translate();
         });
     }
