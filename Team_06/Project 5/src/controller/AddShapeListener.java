@@ -66,6 +66,11 @@ public class AddShapeListener {
 						panel.setComponentZOrder(symbol, 0);
 						panel.repaint();
 						Collector.getInstance().setConnectorSelected(null);
+						if(symbolName.equals("#")) {
+							((HashSymbol) symbol).setTab(WorkSpace.getInstance().addTab("Tab_#"));
+							((HashSymbol) symbol).setTabFlag(true);
+							((HashSymbol) symbol).setUserInput("Tab_#");							
+						}
 					}
 				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException 
 						| InvocationTargetException | NoSuchMethodException | SecurityException 
