@@ -19,27 +19,27 @@ public class ListenersInputPopup {
     static void addCancelButtonListeners(ButtonCustom buttonCustom, InputPopup popup) {
         buttonCustom.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
+            public void mouseClicked(MouseEvent e) {
                 popup.dispose();
             }
 
             @Override
-            public void mousePressed(MouseEvent mouseEvent) {
+            public void mousePressed(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
+            public void mouseReleased(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
+            public void mouseEntered(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseExited(MouseEvent mouseEvent) {
+            public void mouseExited(MouseEvent e) {
 
             }
         });
@@ -62,7 +62,7 @@ public class ListenersInputPopup {
     static void addDoneButtonListeners(ButtonCustom buttonCustom, InputPopup popup) {
         buttonCustom.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
+            public void mouseClicked(MouseEvent e) {
                 popup.op.setValue(popup.name.getText());
                 popup.dispose();
                 setTabTitle(ListenersPanelRightTab.mapOP.get(popup.op), popup.name.getText());
@@ -70,22 +70,22 @@ public class ListenersInputPopup {
             }
 
             @Override
-            public void mousePressed(MouseEvent mouseEvent) {
+            public void mousePressed(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
+            public void mouseReleased(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
+            public void mouseEntered(MouseEvent e) {
 
             }
 
             @Override
-            public void mouseExited(MouseEvent mouseEvent) {
+            public void mouseExited(MouseEvent e) {
             }
         });
     }

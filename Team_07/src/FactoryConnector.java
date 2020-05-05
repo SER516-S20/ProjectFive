@@ -4,7 +4,7 @@
  * @author Karandeep Singh Grewal
  * @since March 13, 2020
  */
-public class FactoryConnector {
+public abstract class FactoryConnector {
     static Connector connector = null;
 
     public static Connector getOp(String opName, Op op) {

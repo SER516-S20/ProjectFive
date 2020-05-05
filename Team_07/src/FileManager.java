@@ -8,7 +8,7 @@ import java.util.HashMap;
  *
  * @author Praveen Kumar P
  * @author Aditya Bajaj
- * @since April 30, 2020
+ * @since April 29, 2020
  */
 public class FileManager {
 
@@ -20,10 +20,8 @@ public class FileManager {
         FileDialog dialog = new FileDialog(MainFrame.mainFrame, "Enter file name to Save");
         dialog.setMode(FileDialog.SAVE);
         dialog.setVisible(true);
-        String file = dialog.getFile();
+        String file = dialog.getDirectory() + dialog.getFile();
 
-        if (file == null)
-            return;
         FileOutputStream fileOutputStream;
         ObjectOutputStream objectOutputStream;
         Component[] tabsToSave = MainFrame.PANEL_RIGHT.getComponents();
@@ -41,7 +39,7 @@ public class FileManager {
             JOptionPane.showMessageDialog(MainFrame.mainFrame, "Saved as " + file);
 
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            PanelLog.logString("File not found", Color.RED);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,9 +53,7 @@ public class FileManager {
         FileDialog dialog = new FileDialog(MainFrame.mainFrame, "Select file to open");
         dialog.setMode(FileDialog.LOAD);
         dialog.setVisible(true);
-        String file = dialog.getFile();
-        if (file == null)
-            return;
+        String file = dialog.getDirectory() + dialog.getFile();
 
         MainFrame.PANEL_RIGHT.removeAll();
         ListenersPanelRightTab.mapOP.clear();
@@ -81,20 +77,22 @@ public class FileManager {
                 PanelRightTab tab = (PanelRightTab) component;
                 if (x == 1) {
                     MainFrame.PANEL_RIGHT.addTab("Tab 1", tab);
-                    x=0;
-                }else
+                    x = 0;
+                } else
                     MainFrame.PANEL_RIGHT.addTab(ListenersInputPopup.mapTab.get(component), tab);
                 PanelRight.tabNum++;
 
-                ListenersPanelRightTab.addAllListenersToTab(tab);
+                ListenersPanelRightTab.addListenersToPanelOps(tab);
+                ListenersPanelRightTab.addRightPanelTabListeners(tab);
+                ListenersPanelRightTab.addRightPanelTabMotionListeners(tab);
                 tab.repaint();
             }
             Database.selectedTab = (PanelRightTab) tabsToOpen[0];
 
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            PanelLog.logString("File: Not Found", Color.RED);
         } catch (IOException e) {
-            System.out.println("Error initializing stream");
+            PanelLog.logString("Error initializing stream", Color.RED);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -102,10 +100,11 @@ public class FileManager {
 
     static public void newFile() {
         MainFrame.PANEL_RIGHT.removeAll();
+        ListenersPanelRightTab.mapOP.clear();
+        ListenersInputPopup.mapTab.clear();
         PanelRight.tabNum = 1;
         MainFrame.PANEL_RIGHT.addNewTab();
     }
-
 
 }
 

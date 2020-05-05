@@ -26,9 +26,10 @@ public abstract class Op extends JPanel implements Serializable {
 
     Op() {
         setPreferredSize(opDimen);
+        setMaximumSize(opDimen);
         setBounds(0, 0, opDimen.width, opDimen.height);
         setLayout(new FlowLayout(FlowLayout.LEFT, 0, vGap));
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, borderThickness));
+        setBorder(BorderFactory.createLineBorder(Color.WHITE, borderThickness));
         opLabel = getOpLabel();
         ID = Database.selectedTab.OpCount++ + 1;
     }
@@ -71,7 +72,7 @@ public abstract class Op extends JPanel implements Serializable {
             outputConnector.add(connector);
             outputConnector.add(Box.createVerticalGlue());
         } else
-            System.out.println("Invalid connector type");
+            PanelLog.logString("Invalid connector type", Color.RED);
     }
 
     public String getValue() {

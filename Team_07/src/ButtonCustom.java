@@ -15,26 +15,26 @@ public class ButtonCustom extends JPanel {
     Color buttonColor;
     final MouseListener BUTTON_CLICK_LISTENERS = new MouseListener() {
         @Override
-        public void mouseClicked(MouseEvent mouseEvent) {
+        public void mouseClicked(MouseEvent e) {
         }
 
         @Override
-        public void mousePressed(MouseEvent mouseEvent) {
+        public void mousePressed(MouseEvent e) {
             setBackground(buttonColor.darker());
         }
 
         @Override
-        public void mouseReleased(MouseEvent mouseEvent) {
+        public void mouseReleased(MouseEvent e) {
             setBackground(buttonColor);
         }
 
         @Override
-        public void mouseEntered(MouseEvent mouseEvent) {
+        public void mouseEntered(MouseEvent e) {
             setCursor(HAND_CURSOR);
         }
 
         @Override
-        public void mouseExited(MouseEvent mouseEvent) {
+        public void mouseExited(MouseEvent e) {
             setCursor(HAND_CURSOR);
         }
     };

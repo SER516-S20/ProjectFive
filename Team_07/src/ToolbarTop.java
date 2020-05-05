@@ -14,15 +14,13 @@ import java.util.List;
 public class ToolbarTop extends JToolBar {
     final static List<String> OPERATORS = new ArrayList<>(Arrays.asList
             ("(", ")", "<", ">", "@", "||", "-", "#"));
-    final Dimension DIMENSION_PANEL_TOP = new Dimension(Database.SCREEN_SIZE.width, 100);
 
 
     ToolbarTop() {
         super();
         setLayout(new FlowLayout(FlowLayout.CENTER, 40, 20));
-        setPreferredSize(DIMENSION_PANEL_TOP);
         setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.white));
-        setBackground(Database.GRAY);
+        setBackground(Color.DARK_GRAY);
         addOperators();
     }
 
@@ -36,5 +34,4 @@ public class ToolbarTop extends JToolBar {
 
         }
     }
-
 }

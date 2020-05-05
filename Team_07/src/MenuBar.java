@@ -1,20 +1,23 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
 
 /**
  * Contains Menu items
  *
  * @author Aditya Bajaj
- * @since April 30, 2020
+ * @since April 26, 2020
  */
 
 public class MenuBar {
     JMenuBar menu;
 
     public MenuBar() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
         menu = new JMenuBar();
         JMenu fileButton = new JMenu("File");
         JMenu runButton = new JMenu("Project");
@@ -35,38 +38,34 @@ public class MenuBar {
 
         newButton.addActionListener(arg0 -> {
             FileManager.newFile();
-            System.out.println("New File created");
+            PanelLog.logString("New File created", Color.WHITE);
         });
         openButton.addActionListener(arg0 -> {
             FileManager.open();
-            System.out.println("File Opened");
+            PanelLog.logString("File Opened", Color.WHITE);
         });
         saveButton.addActionListener(arg0 -> {
             FileManager.save();
-            System.out.println("File Saved");
+            PanelLog.logString("File Saved", Color.WHITE);
         });
 
-        compileButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Compiled");
-                compile();
-            }
+        compileButton.addActionListener(arg0 -> {
+            PanelLog.logString("Compiled", Color.WHITE);
+            compile();
         });
-        translateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Translated");
-                translate();
-            }
+        translateButton.addActionListener(arg0 -> {
+            PanelLog.logString("Translated", Color.WHITE);
+            translate();
         });
     }
 
     public void compile() {
-
+    	Compiler compiler = new Compiler();
+		compiler.compile();
     }
 
     public void translate() {
-
+        Translator translator = new Translator();
+        translator.translate();
     }
 }

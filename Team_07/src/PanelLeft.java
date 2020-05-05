@@ -14,15 +14,15 @@ import java.util.List;
 public class PanelLeft extends JPanel {
     final static List<String> PANEL_LEFT_OPERATORS = new ArrayList<>(Arrays.asList
             ("(", ")", "<", ">", "@", "||", "-","#"));
-    final Dimension DIMENSION_PANEL_LEFT = new Dimension(200, Database.SCREEN_SIZE.height);
 
 
     PanelLeft() {
         super();
-        setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
-        setPreferredSize(DIMENSION_PANEL_LEFT);
-        setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.gray));
-        setBackground(Database.GRAY);
+        add(Box.createRigidArea(new Dimension(5, 50)));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setMinimumSize(new Dimension(200,400));
+        setPreferredSize(new Dimension(200,530));
+        setBackground(Color.DARK_GRAY);
         addOperators();
     }
 
@@ -32,6 +32,7 @@ public class PanelLeft extends JPanel {
     void addOperators() {
         for (String opName : PANEL_LEFT_OPERATORS) {
             Op op = (Op) add(FactoryOp.getOp(opName));
+            add(Box.createRigidArea(new Dimension(5, 10)));
             ListenersPanelLeft.addShapeListeners(op);
         }
     }

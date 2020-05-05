@@ -10,37 +10,49 @@ import java.awt.*;
  */
 
 public class MainFrame extends JFrame {
-    final ToolbarTop toolbarTop = new ToolbarTop();
-    final PanelLeft panelLeft = new PanelLeft();
     final static PanelRight PANEL_RIGHT = new PanelRight();
     static MainFrame mainFrame = new MainFrame();
-    final MenuBar menuBar = new MenuBar();
+    final ToolbarTop TOOLBAR_TOP = new ToolbarTop();
+    final PanelLeft PANEL_LEFT = new PanelLeft();
+    final PanelLog PANEL_LOG = new PanelLog();
+    final MenuBar MENU_BAR = new MenuBar();
 
     public MainFrame() {
         super("Project Five - Team 7");
-        setSize(1800, 1000);
-        add(addScrollPane());
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setJMenuBar(menuBar.menu);
-
-    }
-
-    private JScrollPane addScrollPane() {
-        JScrollPane scrollBarPane;
+        setSize(1000,1000);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout(0, 0));
-        mainPanel.add(toolbarTop, BorderLayout.NORTH);
-        mainPanel.add(panelLeft, BorderLayout.WEST);
-        mainPanel.add(PANEL_RIGHT, BorderLayout.CENTER);
+        
+        JScrollPane TOOLBAR_TOP_SCROLLPANE = wrapToScrollPane(TOOLBAR_TOP);
+        TOOLBAR_TOP_SCROLLPANE.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        mainPanel.add(TOOLBAR_TOP_SCROLLPANE, BorderLayout.NORTH);
+
+        JScrollPane PANEL_LEFT_SCROLLPANE = wrapToScrollPane(PANEL_LEFT);
+        PANEL_LEFT_SCROLLPANE.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        mainPanel.add(PANEL_LEFT_SCROLLPANE, BorderLayout.WEST);
+
+        JScrollPane PANEL_RIGHT_SCROLLPANE = wrapToScrollPane(PANEL_RIGHT);
+        TOOLBAR_TOP_SCROLLPANE.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        mainPanel.add(PANEL_RIGHT_SCROLLPANE, BorderLayout.CENTER);
+        
+        mainPanel.add(PANEL_LOG.PANEL_LOG_SCROLLPANE,BorderLayout.SOUTH);
         mainPanel.setBackground(Color.WHITE);
-        scrollBarPane = new JScrollPane(mainPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        return scrollBarPane;
+        add(mainPanel);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setJMenuBar(MENU_BAR.menu);
     }
 
     public static void main(String[] args) {
         mainFrame.setVisible(true);
+        mainFrame.setExtendedState(mainFrame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }
 
-
+    public JScrollPane wrapToScrollPane(Component panel){
+        JScrollPane jScrollPane = new JScrollPane(panel);
+        jScrollPane.setPreferredSize(panel.getPreferredSize());
+        jScrollPane.getVerticalScrollBar().setUnitIncrement(10);
+        jScrollPane.getHorizontalScrollBar().setUnitIncrement(10);
+        return jScrollPane;
+    }
 }
