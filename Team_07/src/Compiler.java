@@ -25,8 +25,8 @@ public class Compiler {
 			currentTab = (PanelRightTab)MainFrame.PANEL_RIGHT.getComponentAt(i);
 			tabTitle = MainFrame.PANEL_RIGHT.getTitleAt(i);
 			tabMsg = compileTab();
-			logMsg = "Tab '" + tabTitle + "': " + tabMsg;
-			if(tabMsg.equals("Compile success!"))
+			logMsg = tabTitle + "': " + tabMsg;
+			if(tabMsg.equals("Compile success"))
 				PanelLog.logString(logMsg, Color.GREEN);
 			else {
 				PanelLog.logString(logMsg, Color.RED);
@@ -141,7 +141,7 @@ public class Compiler {
 		if (getTotalOp("@") > 0)
 			if (!graph.isCyclic())
 				return "@ is not having the loop";
-		return graph.countConnectedComponents() != 1 ? "Multiple Sub-Graphs present" : "Compile success!";
+		return graph.countConnectedComponents() != 1 ? "Multiple Sub-Graphs present" : "Compile success";
 	}
 
 	private int getMinID() {
