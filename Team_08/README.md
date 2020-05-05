@@ -2,4 +2,5 @@
 
 Required: JDK 1.8 version installed.
 
-https://docs.google.com/viewer?url=https://drive.google.com/drive/u/2/my-drive
+
+[embed]https://github.com/SER516-S20/ProjectFive/blob/master/Team_08/doc/Quality%20Report.pdf[embed]
