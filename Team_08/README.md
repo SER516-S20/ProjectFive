@@ -13,7 +13,7 @@
 
 <a href="https://github.com/SER516-S20/ProjectFive/blob/master/Team_08/doc/Quality%20Report.pdf" target="_blank">STAN Quality Report.</a>
 
-<a href="https://github.com/SER516-S20/ProjectFive/tree/master/Team_08/doc/Project 5 Documentation" target="_blank"> Project 5 Documentation </a>
+<a href="https://github.com/SER516-S20/ProjectFive/blob/master/Team_08/doc/Project%205%20Documentation.pdf" target="_blank"> Project 5 Documentation </a>
 
 **Burndown for Project 5:**
-![burndown](/doc/burndown.png)
+![burndown](doc/burndown.png)
