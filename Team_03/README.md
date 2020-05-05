@@ -20,7 +20,7 @@ This folder holds all the work that was accomplished in Project 5.<br />
 
 ![Class Diagram](Documents/Astah_Class_Diagram.png)
 
-#### I vs A Graph
+#### Instability vs Abstraction Graph
 
 ![I Vs A Graph](Documents/I_Vs_A_Graph.png)
 
