@@ -25,6 +25,7 @@ public class PanelLog{
             e.printStackTrace();
         }
         panelLogText = new JTextPane();
+        panelLogText.setBackground(Color.DARK_GRAY);
         PANEL_LOG_SCROLLPANE = new JScrollPane(panelLogText);
         PANEL_LOG_SCROLLPANE.setPreferredSize(new Dimension(300,200));
         panelLogText.setEditable(false);
