@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 /**
  * ShapePanel.java - a class for shapes in the left panel
  * 
- * @author srinivasan sundar
+ * @author Chandan Yadav
  * @since 01/26/2020
  * @version 1.0
  */
