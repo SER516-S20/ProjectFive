@@ -27,7 +27,7 @@ import view.Workspace;
  * This class provides functionality to save and load workspace.
  * 
  * @author Raghavan
- * @version 2.0
+ * @version 3.0
  */
 public class FileManager {
 	private final String FILE_EXT = ".ser";
@@ -142,6 +142,7 @@ public class FileManager {
 	 * Adding action listeners to the dots while loading them back from the file.
 	 * 
 	 * @param tabList
+	 * @param workspaceController
 	 */
 	private void addActionListeners(TabList tabList, WorkspaceController workspaceController) {
 		for (Icons icon : tabList.getTab().getIconList()) {
