@@ -96,7 +96,7 @@ public class MenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent e)
 			{
 				Interpreter translate = new Interpreter();
-                JTextArea text = new JTextArea(15, 15);
+                JTextArea text = new JTextArea(15, 60);
                 text.setText(translate.getResult());
                 text.setWrapStyleWord(true);
                 text.setLineWrap(true);
