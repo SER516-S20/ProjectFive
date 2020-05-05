@@ -193,7 +193,7 @@ public class Interpreter {
 	
 	private String indent(String input)
 	{
-		return input.replaceAll("(?m)^","\t");
+		return input.replaceAll("(?m)^","    ");
 	}
 	
 	private String line(ButtonBox a, ButtonBox b)
