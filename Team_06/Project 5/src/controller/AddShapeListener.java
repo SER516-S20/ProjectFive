@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
+import model.HashSymbol;
+
 /**
  *
  * @author Sheran
