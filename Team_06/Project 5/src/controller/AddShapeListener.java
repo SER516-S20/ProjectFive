@@ -138,10 +138,15 @@ public class AddShapeListener {
                         		Point panelPosition = panel.getLocationOnScreen();
                         		int x = mousePosition.x - panelPosition.x;
                         		int y = mousePosition.y - panelPosition.y;
-                                classNames.get(value.toString()).getDeclaredConstructor(JComponent.class, 
+                        		JButton symbol = (JButton) classNames.get(value.toString()).getDeclaredConstructor(JComponent.class, 
             							int.class, int.class).newInstance(panel,x,y);
                                 panel.repaint();
                                 Collector.getInstance().setConnectorSelected(null);
+                                if(value.toString().equals("#")) {
+        							((HashSymbol) symbol).setTab(WorkSpace.getInstance().addTab("Tab_#"));
+        							((HashSymbol) symbol).setTabFlag(true);
+        							((HashSymbol) symbol).setUserInput("Tab_#");							
+        						}
                                 accept = true;
         					}
     					}
