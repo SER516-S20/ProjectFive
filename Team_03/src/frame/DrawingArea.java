@@ -20,7 +20,7 @@ import listener.MouseListener;
  * DrawingArea.java - a class for drawing different shapes and save,load the
  * files and draw it respectively.
  * 
- * @author Nachiappan Lakshmanan
+ * @author Chandan Yadav
  * @version 1.0
  * 
  */
