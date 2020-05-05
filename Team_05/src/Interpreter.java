@@ -97,7 +97,7 @@ public class Interpreter {
 					Hashtable<Integer, HashSet<Integer>> newedges = (Hashtable<Integer, HashSet<Integer>>) edges.clone();
 					newedges.remove(nodeID);
 					//newedges.get(nodeID).clear();
-					loop += generateCode(id,nodes,newedges).indent(4);
+					loop += indent(generateCode(id,nodes,newedges));
 					//System.out.print("Loop: \n"+loop);
 				}
 				else
@@ -141,7 +141,7 @@ public class Interpreter {
 				ButtonBox next = nodes.get(id);
 				code+="start -> "+nodes.get(id).getTitle() + ";\n";
 				code+=generateCode(id,nodes,edges);
-				code=code.indent(4);
+				code=indent(code);
 				code+="}\n";
 				code="{\n"+code;
 			}
@@ -189,6 +189,11 @@ public class Interpreter {
 				System.out.println(s+" -> "+d);
 			}
 		}
+	}
+	
+	private String indent(String input)
+	{
+		return input.replaceAll("(?m)^","\t");
 	}
 	
 	private String line(ButtonBox a, ButtonBox b)
