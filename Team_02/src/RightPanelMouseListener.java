@@ -42,8 +42,8 @@ public class RightPanelMouseListener extends JPanel {
 						value = JOptionPane.showInputDialog("Value of Shape", textValue);
 					} else {
 						value = JOptionPane.showInputDialog("Value of Shape");
+						dataProcessor.doubleClick(event.getX() + shiftX, event.getY(), value);
 					}
-					dataProcessor.doubleClick(event.getX() + shiftX, event.getY(), value);
 				} else if (event.getButton() == MouseEvent.BUTTON3) {
 					int input = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Select an Option...",
 							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);

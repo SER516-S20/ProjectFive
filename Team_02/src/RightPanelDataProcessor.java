@@ -82,6 +82,9 @@ public class RightPanelDataProcessor extends Observable {
 			for(Icon eachIcon: iconMap.get(key)) {
 				if (isClickedIcon(eachIcon, x, y)) {
 					eachIcon.setText(value);
+					if (key.equalsIgnoreCase("hashOperator")){
+						MainWindow.obj.AddPanel(value);
+					}
 					break;
 				}
 			}

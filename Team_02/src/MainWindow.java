@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  * @author Kunal Sharma
@@ -9,22 +11,24 @@ import javax.swing.*;
  * @created on 02-19-2020
  * @version 2.0
  */
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements ChangeListener {
 	static JPanel drawingBoardPanel = new JPanel();
 	static JFrame frame;
 	static JPanel p1;
 	static NewTab obj;
 	static JTabbedPane tabbedPane = new JTabbedPane();
-
+	static String currentTabName;
+	
 	public MainWindow() {
-
 		this.setSize(ShapeDimension.frameWidth, ShapeDimension.frameHeight);
 		this.setTitle("Project Five - Team 2");
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setResizable(true);
 		Menu objMenu = new Menu();
 		Shapes leftShapes = new Shapes();
-		new NewTab("main_window");
+		obj = new NewTab();
+		currentTabName = "start";
+		obj.createAndShowGUI("start");
 		Shapes shapes = new Shapes();
 		this.getContentPane().add(leftShapes.CreateLeftShapes(), BorderLayout.WEST);
 		this.add(tabbedPane, BorderLayout.CENTER);
@@ -35,6 +39,7 @@ public class MainWindow extends JFrame {
 		JScrollPane scrPane = new JScrollPane(tabbedPane);
 		add(scrPane);
 		scrPane.setVisible(true);
+		tabbedPane.addChangeListener(this);
 	}
 
 	public static void CloseApplication() {
@@ -49,5 +54,13 @@ public class MainWindow extends JFrame {
 		MainWindow mainWindow = new MainWindow();
 		mainWindow.setVisible(true);
 
+	}
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
+		System.out.println(tabbedPane.getSelectedIndex());
+		//currentTabName = tabbedPane.getSelectedIndex();
+		NewTab.mapRightPanels.get(currentTabName).customRepaint();
 	}
 }
