@@ -11,13 +11,16 @@ import java.awt.Toolkit;
  */
 public class ShapeDimension {
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	
-	public static int frameWidth = screenSize.width ;  
-	public static int frameHeight = screenSize.height ;
-	
+
+	public static int frameWidth = screenSize.width;
+	public static int frameHeight = screenSize.height;
+
 	public static int upButtonWidth = (frameWidth - 120) / 8;
 	public static int upButtonHeight = (frameHeight) / 10;
-	
+
 	public static int leftButtonWidth = (frameWidth) / 8;
-	public static int leftButtonHeight = (frameHeight - upButtonHeight - 120)/ 8;
+	public static int leftButtonHeight = (frameHeight - upButtonHeight - 120) / 8;
+
+	public static int panelWidth = screenSize.width - leftButtonWidth - 60;
+	public static int panelHeight = screenSize.height - upButtonHeight - 145;
 }

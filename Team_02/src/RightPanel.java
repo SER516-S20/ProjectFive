@@ -45,7 +45,7 @@ public class RightPanel extends JPanel implements Observer {
 			setVisible(true);
 			Border blackline = BorderFactory.createLineBorder(Color.black);
 			setBorder(blackline);
-			setSize(800, 500);
+			setSize(ShapeDimension.panelWidth, ShapeDimension.panelHeight);
 			repaint();
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());

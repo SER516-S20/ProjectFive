@@ -19,17 +19,17 @@ public class RightPanelMouseListener extends JPanel {
 	private Dot startDot;
 
 	public RightPanelMouseListener(RightPanel rp) {
-		this.setPreferredSize(new Dimension(800, 500));
+		this.setPreferredSize(new Dimension(ShapeDimension.panelWidth, ShapeDimension.panelHeight));
+		this.setSize(ShapeDimension.panelWidth, ShapeDimension.panelHeight);
 		this.setVisible(true);
 		addMouseListener(new DrawBoardMouseListener());
 		addMouseMotionListener(new DrawBoardMouseMotion());
-		//dataProcessor.observers.add((Observer) rp);
 		dataProcessor = new RightPanelDataProcessor(rp);
 	}
 
 	private class DrawBoardMouseListener extends MouseAdapter {
-		int shiftX = ShapeDimension.leftButtonWidth - 15;
-		
+		int shiftX = 15;
+
 		@Override
 		public void mouseClicked(MouseEvent event) {
 			if (!isDragDropEvent) {
@@ -44,14 +44,13 @@ public class RightPanelMouseListener extends JPanel {
 						value = JOptionPane.showInputDialog("Value of Shape");
 					}
 					dataProcessor.doubleClick(event.getX() + shiftX, event.getY(), value);
-				} else if(event.getButton() == MouseEvent.BUTTON3) {
+				} else if (event.getButton() == MouseEvent.BUTTON3) {
 					int input = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Select an Option...",
 							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
 					if (input == 0) {
 						dataProcessor.rightClick(event.getX() + shiftX, event.getY());
 					}
-				}
-				else {
+				} else {
 					try {
 						Thread.sleep(200); // To wait for double click.
 					} catch (InterruptedException e) {

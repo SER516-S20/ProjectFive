@@ -25,54 +25,54 @@ public class SystemFileManager {
 		try {
 			Gson gson = new Gson();
 			FileReader file = new FileReader(pathName);
-	        BufferedReader bufferReader = new BufferedReader(file);
-	        String tabLocation;
-            int tabNumber = 0;
-            while ((tabLocation = bufferReader.readLine()) != null) {
-            	//RightPanel newRP = new RightPanel();
-            	if (tabNumber != 0){
-            		new NewTab("others");
-            	}
-            	RightPanelDataProcessor dataObject = NewTab.mapRightPanels.get(tabNumber).panelMouseListener.dataProcessor;
-            	
-            	//NewTab.mapRightPanels.put(tabNumber, newRP);
-            	//RightPanelDataProcessor dataObject = newRP.panelMouseListener.dataProcessor;
-                String line;
-                int lineNumber = 1;
-                FileReader tabFile = new FileReader(tabLocation);
-                BufferedReader tabBufferReader = new BufferedReader(tabFile);
+			BufferedReader bufferReader = new BufferedReader(file);
+			String tabLocation;
+			int tabNumber = 0;
+			while ((tabLocation = bufferReader.readLine()) != null) {
+				if (tabNumber != 0) {
+					new NewTab("others");
+				}
+				RightPanelDataProcessor dataObject = NewTab.mapRightPanels
+						.get(tabNumber).panelMouseListener.dataProcessor;
+				String line;
+				int lineNumber = 1;
+				FileReader tabFile = new FileReader(tabLocation);
+				BufferedReader tabBufferReader = new BufferedReader(tabFile);
 				while ((line = tabBufferReader.readLine()) != null) {
-                    if (lineNumber == 1) {
-                    	List<Dot> temp = new ArrayList<Dot>();
-                        temp = gson.fromJson(line, new TypeToken<List<Dot>>(){}.getType());
-                        dataObject.setDotList(temp);
-                    }
-                    if (lineNumber == 2) {
-                    	List<Line> temp = new ArrayList<Line>();
-                        temp = gson.fromJson(line, new TypeToken<List<Line>>(){}.getType());
-                        dataObject.setLineList(temp);
-                    }
-                    if (lineNumber == 3) {
-                    	List<Dot> temp = new ArrayList<Dot>();
-                        temp = gson.fromJson(line, new TypeToken<List<Dot>>(){}.getType());
-                        dataObject.setBarCenterList(temp);
-                    }
-                    if (lineNumber == 4) {
-                    	JsonObject convertedObject = gson.fromJson(line, JsonObject.class);
-                    	for (String each : convertedObject.keySet()) {
-                    		ClickedShape.shapeName = each;
-                    		JsonObject allIcons = convertedObject.get(each).getAsJsonObject();
-                    		for (String x : allIcons.keySet()) {
-                    			dataObject.addNewIcon(Integer.valueOf(x),allIcons.get(x).getAsInt());
-                    		}
-                    	}
+					if (lineNumber == 1) {
+						List<Dot> temp = new ArrayList<Dot>();
+						temp = gson.fromJson(line, new TypeToken<List<Dot>>() {
+						}.getType());
+						dataObject.setDotList(temp);
+					}
+					if (lineNumber == 2) {
+						List<Line> temp = new ArrayList<Line>();
+						temp = gson.fromJson(line, new TypeToken<List<Line>>() {
+						}.getType());
+						dataObject.setLineList(temp);
+					}
+					if (lineNumber == 3) {
+						List<Dot> temp = new ArrayList<Dot>();
+						temp = gson.fromJson(line, new TypeToken<List<Dot>>() {
+						}.getType());
+						dataObject.setBarCenterList(temp);
+					}
+					if (lineNumber == 4) {
+						JsonObject convertedObject = gson.fromJson(line, JsonObject.class);
+						for (String each : convertedObject.keySet()) {
+							ClickedShape.shapeName = each;
+							JsonObject allIcons = convertedObject.get(each).getAsJsonObject();
+							for (String x : allIcons.keySet()) {
+								dataObject.addNewIcon(Integer.valueOf(x), allIcons.get(x).getAsInt());
+							}
+						}
 
-                    }
-                    lineNumber++;
-                }
-                tabNumber++;
-                dataObject.customNotify();
-            }
+					}
+					lineNumber++;
+				}
+				tabNumber++;
+				dataObject.customNotify();
+			}
 
 		} catch (Exception ex) {
 			System.out.println("Trouble loading file" + ex);
