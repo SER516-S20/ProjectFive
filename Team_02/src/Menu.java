@@ -21,7 +21,7 @@ public class Menu implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	JMenu menu;
 	JMenuBar mb;
-	JMenuItem save, restore, quit, newTab, compile;
+	JMenuItem save, restore, quit, newTab, compile, translate;
 	java.util.List<Point> displayList = new ArrayList<Point>();
 	String pathName = "";
 	Point initial = new Point(0, 0);
@@ -33,6 +33,7 @@ public class Menu implements ActionListener {
 			quit = new JMenuItem("Quit");
 			newTab = new JMenuItem("New");
 			compile = new JMenuItem("Compile");
+			translate = new JMenuItem("Translate");
 			menu = new JMenu("Menu");
 			mb = new JMenuBar();
 			save.addActionListener(this);
@@ -40,12 +41,14 @@ public class Menu implements ActionListener {
 			quit.addActionListener(this);
 			newTab.addActionListener(this);
 			compile.addActionListener(this);
+			translate.addActionListener(this);
 			mb.add(menu);
 			menu.add(newTab);
 			menu.add(save);
 			menu.add(restore);
 			menu.add(compile);
 			menu.add(quit);
+			menu.add(translate);
 			return mb;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,7 +120,7 @@ public class Menu implements ActionListener {
 		} else if (e.getSource() == quit) {
 			MainWindow.CloseApplication();
 		} else if (e.getSource() == newTab) {
-			new NewTab("button");
+			//new NewTab("button");
 		} else if (e.getSource() == compile) {
 			Compiler cObj = new Compiler();
 			for (Integer key : NewTab.mapRightPanels.keySet()) {

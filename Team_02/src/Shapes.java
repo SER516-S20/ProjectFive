@@ -181,7 +181,7 @@ public class Shapes extends JPanel implements ActionListener, MouseListener {
 		int shiftX = ShapeDimension.leftButtonWidth + 15;
 		int shiftY = ShapeDimension.leftButtonHeight ;
 		int tabHeight = 25;
-		RightPanel currTabPanel = NewTab.mapRightPanels.get(NewTab.currentTabIndx);
+		RightPanel currTabPanel = NewTab.mapRightPanels.get(MainWindow.currentTabName);
 		RightPanelDataProcessor rpDataProcessor = currTabPanel.panelMouseListener.dataProcessor;
 		
 		if (e.getSource() == openParanthesis1) {
@@ -208,7 +208,6 @@ public class Shapes extends JPanel implements ActionListener, MouseListener {
 		} else if (e.getSource() == hashOperator1) {
 			ClickedShape.shapeName = "hashOperator";
 			rpDataProcessor.addNewIcon(e.getX() - shiftX, e.getY() + 7 * shiftY - tabHeight);
-			new NewTab("");
 			//MainWindow.obj.AddPanel();
 		}
 

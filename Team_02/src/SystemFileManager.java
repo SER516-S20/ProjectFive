@@ -29,8 +29,10 @@ public class SystemFileManager {
 			String tabLocation;
 			int tabNumber = 0;
 			while ((tabLocation = bufferReader.readLine()) != null) {
+				String fileLoc = tabLocation.split("-")[1].split("\\.")[0];
+				System.out.println("file location" +fileLoc);
 				if (tabNumber != 0) {
-					new NewTab("others");
+					MainWindow.obj.AddPanel(fileLoc);
 				}
 				RightPanelDataProcessor dataObject = NewTab.mapRightPanels
 						.get(tabNumber).panelMouseListener.dataProcessor;
@@ -85,8 +87,7 @@ public class SystemFileManager {
 		try {
 			FileWriter orgFile = new FileWriter(pathName, true);
 			for (Integer tabids : NewTab.mapRightPanels.keySet()) {
-
-				String finalLoc = fileLoc + String.valueOf(tabids) + ".dat";
+				String finalLoc = fileLoc + "-" +String.valueOf(NewTab.nameList.get(tabids)) + ".dat";
 				orgFile.write(finalLoc);
 				orgFile.write("\n");
 

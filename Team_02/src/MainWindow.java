@@ -17,7 +17,7 @@ public class MainWindow extends JFrame implements ChangeListener {
 	static JPanel p1;
 	static NewTab obj;
 	static JTabbedPane tabbedPane = new JTabbedPane();
-	static String currentTabName;
+	static int currentTabName;
 	
 	public MainWindow() {
 		this.setSize(ShapeDimension.frameWidth, ShapeDimension.frameHeight);
@@ -27,7 +27,6 @@ public class MainWindow extends JFrame implements ChangeListener {
 		Menu objMenu = new Menu();
 		Shapes leftShapes = new Shapes();
 		obj = new NewTab();
-		currentTabName = "start";
 		obj.createAndShowGUI("start");
 		Shapes shapes = new Shapes();
 		this.getContentPane().add(leftShapes.CreateLeftShapes(), BorderLayout.WEST);
@@ -60,7 +59,7 @@ public class MainWindow extends JFrame implements ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
 		System.out.println(tabbedPane.getSelectedIndex());
-		//currentTabName = tabbedPane.getSelectedIndex();
+		currentTabName = tabbedPane.getSelectedIndex();
 		NewTab.mapRightPanels.get(currentTabName).customRepaint();
 	}
 }

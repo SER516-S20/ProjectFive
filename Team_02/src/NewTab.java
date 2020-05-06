@@ -1,5 +1,7 @@
 import java.awt.Panel;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JPanel;
@@ -16,27 +18,18 @@ import javax.swing.event.ChangeListener;
  * @created 04-27-2020
  * @version 2.0
  */
-public class NewTab extends JPanel implements ChangeListener {
-
+public class NewTab extends JPanel {
+	static List<String> nameList = new ArrayList<>();
 	static Map<Integer, RightPanel> mapRightPanels = new HashMap<>();
 	private static final long serialVersionUID = 1L;
 	static int localCounter = 0;
-	static int currentTabIndx = 0;
+	//static int currentTabIndx = 0;
 
-	NewTab(String source) {
-		System.out.println(source);
-		if (source.equals("main_window")) {
-			createAndShowGUI();
-		} else {
-			AddPanel();
-		}
-		MainWindow.tabbedPane.addChangeListener(this);
-	}
 
-	public void createAndShowGUI() {
+	public void createAndShowGUI(String name) {
 
 		try {
-			MainWindow.tabbedPane.addTab("Tab1", makePanel("This is tab 1"));
+			MainWindow.tabbedPane.addTab(name, makePanel(name));
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
@@ -45,29 +38,23 @@ public class NewTab extends JPanel implements ChangeListener {
 	private static JPanel makePanel(String text) {
 		RightPanel p = new RightPanel();
 		mapRightPanels.put(localCounter, p);
+		nameList.add(text);
 		localCounter += 1;
 		System.out.println("Adding panel" + mapRightPanels);
 		p.setVisible(true);
 		return p;
 	}
 
-	public void AddPanel() {
+	public void AddPanel(String tabName) {
 		try {
 			int count = MainWindow.tabbedPane.getTabCount() + 1;
 			System.out.println("adding tab");
-			MainWindow.tabbedPane.addTab("Tab" + count, makePanel("This is tab " + count));
+			MainWindow.tabbedPane.addTab(tabName, makePanel(tabName));
 			System.out.println("added tab");
 			count = MainWindow.tabbedPane.getTabCount();
 			MainWindow.tabbedPane.setSelectedIndex(count - 1);
 		} catch (Exception ex) {
 			System.out.println("Exception while adding panel " + ex);
 		}
-	}
-
-	@Override
-	public void stateChanged(ChangeEvent e) {
-		JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
-		currentTabIndx = tabbedPane.getSelectedIndex();
-		mapRightPanels.get(currentTabIndx).customRepaint();
 	}
 }
