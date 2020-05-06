@@ -17,6 +17,7 @@ import javax.swing.border.TitledBorder;
 /**
  * this class is to show the app
  * @author Hongqi Zhang
+ * @modified by ShihYu Chang
  */
 public class Frame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -32,17 +33,13 @@ public class Frame extends JFrame {
 		this.setMinimumSize(new Dimension(800, 500));
 		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//getContentPane().setLayout(null);
 		dragArea = new RightTabbedPane();
 		btnContainer = new LeftPanel(dragArea);
-		//this.getContentPane().add(createLeftPanel());
-		//this.getContentPane().add(createRightPanel());
 		this.getContentPane().add(new ToolBarContainer(), BorderLayout.NORTH);
 		this.getContentPane().add(createLeftPanel(), BorderLayout.WEST);
 		this.getContentPane().add(createRightPanel(),BorderLayout.CENTER);
 		this.pack();
 		this.setLocationRelativeTo(null);
-		//this.setLayout(null);
 		MenuBar menuBar = new MenuBar(dragArea);
 		this.setJMenuBar(menuBar.createMenuBar());
 		this.setVisible(true);
@@ -58,12 +55,6 @@ public class Frame extends JFrame {
 	}
 	
 	private JScrollPane createRightPanel() {
-		/*
-		dragArea.setLocation(200, 0);
-		dragArea.setSize(600, 500);
-		dragArea.setBackground(Color.white);		
-		return dragArea;*/
-		//dragArea.setLocation(200, 0);
 		dragArea.setPreferredSize(new  Dimension(1000, 1000));
 		dragArea.setBackground(Color.white);
 		JScrollPane scrollPane = new JScrollPane();

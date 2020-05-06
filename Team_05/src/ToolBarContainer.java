@@ -1,5 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+/**
+ * @author Hongqi Zhang
+ */
 public class ToolBarContainer extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private JButton []btns;
@@ -35,10 +36,7 @@ public class ToolBarContainer extends JPanel implements ActionListener{
 												btnHolder.getPreferredSize().height));
 			btnHolder.add(btns[i]);
 		}
-		//btnHolder.setBackground(Color.green);
 		this.add(btnHolder);
-		//this.setBackground(Color.RED);
-		//this.setPreferredSize(new Dimension(800,50));
 	}
 	
 	public void resizeToolBar(int width, int height) {

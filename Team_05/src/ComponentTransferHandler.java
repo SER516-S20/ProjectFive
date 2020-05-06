@@ -1,13 +1,13 @@
-import java.awt.Component;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
-
+import java.util.Random;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.TransferHandler;
-
+/**
+ * @author Hongqi Zhang
+ */
 public class ComponentTransferHandler extends TransferHandler {
 	public static final DataFlavor SUPPORTED_DATE_FLAVOR = DataFlavor.stringFlavor;
 	private static final long serialVersionUID = 1L;
@@ -31,22 +31,14 @@ public class ComponentTransferHandler extends TransferHandler {
 
     @Override
     protected void exportDone(JComponent source, Transferable data, int action) {
-        //super.exportDone(source, data, action);
-        // Decide what to do after the drop has been accepted
-    	/*
-    	JFrame frame = (JFrame) source.getTopLevelAncestor();
-    	System.out.println(source.getDropTarget().getClass().getName());
-    	Component []comps = frame.getComponents();
-    	for(int i = 0; i < comps.length; i++) {
-    		if(comps[i] instanceof RightTabbedPane) {
-    			//comps[i].getx
-    		}
-    	}
-    	System.out.println(frame.getClass().getName());
-    	System.out.println(source.getParent().getComponentCount() + ", " + source.getAlignmentY());
-    	*/
-        workArea.addButton(0, cmd, " ", 100, 100);
-        System.out.println();
+        super.exportDone(source, data, action);
+        Random rand = new Random();
+        int difference = 100;
+        int height = workArea.getHeight() /2;
+        int width = workArea.getWidth() / 2;
+        int xPos = rand.nextInt(width - difference) + difference;
+        int yPos = rand.nextInt(height - difference) + difference;
+        workArea.addButton(0, cmd, " ", xPos, yPos);
     }
 
 }
