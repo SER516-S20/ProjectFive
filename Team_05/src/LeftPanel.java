@@ -24,7 +24,6 @@ public class LeftPanel extends JPanel implements ActionListener, MouseMotionList
 	}
 	
 	public void initButton() {
-		//DragMouseAdapter adapter = new DragMouseAdapter();
 		btns = new JButton[N];
 		for(int i = 0; i < btns.length; i++) {
 			btns[i] = new JButton();
@@ -51,8 +50,6 @@ public class LeftPanel extends JPanel implements ActionListener, MouseMotionList
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-
-		//System.out.println(button.getActionCommand());
 	}
 
 	@Override
@@ -62,8 +59,6 @@ public class LeftPanel extends JPanel implements ActionListener, MouseMotionList
 	}
 	public void mousePressed(MouseEvent e) {
 		JButton target = (JButton)e.getSource();
-		//Box instance = Box.getInstance();
-		//instance.setText(target.getActionCommand());
 		System.out.println(target.getActionCommand());
 		target.setTransferHandler(new ComponentTransferHandler(target.getText(), workArea.getCurrentTab()));
 		JButton button = (JButton)e.getSource();
@@ -80,7 +75,6 @@ public class LeftPanel extends JPanel implements ActionListener, MouseMotionList
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		//System.out.println(e.getX() + ",==== " + e.getY());
 		
 	}
 

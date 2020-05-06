@@ -36,11 +36,9 @@ public class ComponentTransferHandler extends TransferHandler {
         int difference = 100;
         int height = workArea.getHeight() /2;
         int width = workArea.getWidth() / 2;
-        System.out.println(width + "===" + height);
         int xPos = rand.nextInt(width - difference) + difference;
         int yPos = rand.nextInt(height - difference) + difference;
         workArea.addButton(0, cmd, " ", xPos, yPos);
-        System.out.println();
     }
 
 }

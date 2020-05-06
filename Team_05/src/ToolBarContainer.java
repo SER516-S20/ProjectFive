@@ -1,5 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,10 +33,7 @@ public class ToolBarContainer extends JPanel implements ActionListener{
 												btnHolder.getPreferredSize().height));
 			btnHolder.add(btns[i]);
 		}
-		//btnHolder.setBackground(Color.green);
 		this.add(btnHolder);
-		//this.setBackground(Color.RED);
-		//this.setPreferredSize(new Dimension(800,50));
 	}
 	
 	public void resizeToolBar(int width, int height) {
