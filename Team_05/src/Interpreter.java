@@ -12,11 +12,8 @@ public class Interpreter {
 	private String result;
 	
 	public Interpreter() {
-		// TODO Auto-generated constructor stub
-		System.out.println("Interpreter:");
 		if(Model.getTabs().containsKey("Tab")) {
 			result = "digraph Tab\n" + processNodes(Model.getTabs().get("Tab"));
-			System.out.println(result);
 		}
 	}
 	
@@ -67,8 +64,6 @@ public class Interpreter {
 	{
 		String code = "";
 		ButtonBox node = nodes.get(nodeID);
-		//System.out.println(node.getSymbol()+"Eval Code: ");
-		//printConnections(edges);
 		HashSet<Integer> edge = edges.get(nodeID);
 		if(edge==null && !node.getSymbol().equals(")"))return code;
 		switch(node.getSymbol())
@@ -101,9 +96,7 @@ public class Interpreter {
 					edge.remove(id);
 					Hashtable<Integer, HashSet<Integer>> newedges = (Hashtable<Integer, HashSet<Integer>>) edges.clone();
 					newedges.remove(nodeID);
-					//newedges.get(nodeID).clear();
 					loop += indent(generateCode(id,nodes,newedges));
-					//System.out.print("Loop: \n"+loop);
 				}
 				else
 				{
@@ -114,7 +107,6 @@ public class Interpreter {
 			code+="}\n";
 			for(int id:(HashSet<Integer>)edge.clone())
 			{
-				//System.out.println("@ 2ed loop id: " +id);
 				ButtonBox next = nodes.get(id);
 				code+=line(node,next);
 				edge.remove(id);
@@ -154,13 +146,11 @@ public class Interpreter {
 		case ")":
 			break;
 		}
-		//System.out.println(node.getSymbol()+"return Code: \n"+code+"\n");
 		return code;
 	}
 	
 	private boolean findNodeOnPath(int start, int end, Hashtable<Integer, ButtonBox> nodes, Hashtable<Integer, HashSet<Integer>> edges)
 	{
-		//System.out.println("Searching: " + nodes.get(start).getSymbol() + " , "+ nodes.get(end).getSymbol());
 		boolean found = false;
 		HashSet<Integer> edge = edges.get(start);
 		if(edge==null) return false;
@@ -168,7 +158,6 @@ public class Interpreter {
 		if(edge.contains(end))
 		{
 			found = true;
-			//System.out.println("Searching: " + nodes.get(start).getSymbol() + " , "+ nodes.get(end).getSymbol() + " Found in edge");
 		}
 		else
 			for(int node:(HashSet<Integer>)edge.clone())
