@@ -6,6 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+/**
+ * @author Hongqi Zhang
+ */
 public class ToolBarContainer extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private JButton []btns;
