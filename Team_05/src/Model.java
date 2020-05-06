@@ -10,7 +10,6 @@ import java.util.Hashtable;
 public class Model {
 	private static RightTabbedPane rightTabbedPane;
 	private static Hashtable<String, TabInfo> tabs;
-	private static Hashtable<Integer, ButtonBox> shapes;
 	private static Frame frame;
 	private static String dialogMessage;
 	
@@ -22,14 +21,6 @@ public class Model {
 	
 	public Frame getFrame() {
 		return frame;
-	}
-	
-	public void setshapes( Hashtable<Integer, ButtonBox> inshapes) {
-		this.shapes = inshapes;
-	}
-	
-	public Hashtable<Integer, ButtonBox> getshapes() {
-		return shapes;
 	}
 	
 	public static void setMessage(String message) {
