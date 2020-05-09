@@ -48,6 +48,7 @@ public class NewTab extends JPanel {
 	public void AddPanel(String tabName) {
 		try {
 			int count = MainWindow.tabbedPane.getTabCount() + 1;
+			System.out.println("Befor-- "+ count);
 			System.out.println("adding tab");
 			MainWindow.tabbedPane.addTab(tabName, makePanel(tabName));
 			System.out.println("added tab");

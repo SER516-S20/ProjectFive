@@ -57,9 +57,14 @@ public class MainWindow extends JFrame implements ChangeListener {
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
-		System.out.println(tabbedPane.getSelectedIndex());
-		currentTabName = tabbedPane.getSelectedIndex();
-		NewTab.mapRightPanels.get(currentTabName).customRepaint();
+		if (Menu.boolState != true){
+			JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
+			System.out.println(tabbedPane.getSelectedIndex());
+			currentTabName = tabbedPane.getSelectedIndex();
+			NewTab.mapRightPanels.get(currentTabName).customRepaint();	
+		}
+		else {
+			Menu.boolState = false;	
+		}
 	}
 }

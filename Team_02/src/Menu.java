@@ -20,6 +20,7 @@ public class Menu implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	JMenu menu;
+	static Boolean boolState = false;
 	JMenuBar mb;
 	JMenuItem save, restore, quit, newTab, compile, translate;
 	java.util.List<Point> displayList = new ArrayList<Point>();
@@ -120,6 +121,13 @@ public class Menu implements ActionListener {
 		} else if (e.getSource() == quit) {
 			MainWindow.CloseApplication();
 		} else if (e.getSource() == newTab) {
+			boolState = true;
+			System.out.println("Before"+MainWindow.tabbedPane.getTabCount());
+			MainWindow.tabbedPane.removeAll();
+			NewTab.mapRightPanels.clear();
+			NewTab.localCounter = 0;
+			MainWindow.obj.AddPanel("new_tab");
+			System.out.println(MainWindow.tabbedPane.getTabCount());
 			//new NewTab("button");
 		} else if (e.getSource() == compile) {
 			Compiler cObj = new Compiler();
